@@ -15,9 +15,29 @@ const HomePage: React.FunctionComponent = () => {
 
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
-  
+
   return (
     <Page className="page">
+      <img className="w-screen   h-auto" src={BannerImage} />
+           {" "}
+      <Input.Search
+        label="Label"
+        helperText="Helper text"
+        placeholder="Placeholder"
+        defaultValue="Filled"
+        clearable
+        onSearch={(value) => {
+          console.log(value);
+        }}
+      />
+           {" "}
+      <Box mt={6}>
+                <Text.Title size="small">Được yêu thích</Text.Title>     {" "}
+      </Box>
+           {" "}
+      <Box mt={6}>
+                <Text.Title size="small">Được yêu thích</Text.Title>     {" "}
+      </Box>
     </Page>
   );
 };
