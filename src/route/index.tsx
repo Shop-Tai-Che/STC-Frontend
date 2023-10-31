@@ -1,29 +1,24 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import { App, ZMPRouter, AnimationRoutes, SnackbarProvider } from "zmp-ui";
-import Store from "../redux/store";
+import {HomePage} from "../pages";
 import { Provider } from "react-redux";
-import BottomNavigationComponent from "../components/layout/bottom-navigation";
-import { RecoilRoot } from "recoil";
-import HomePage from "../pages";
+import { Route } from "react-router-dom";
+import { Box, ZMPRouter, AnimationRoutes, SnackbarProvider } from "zmp-ui";
+import Store from "../redux/store";
 
-
-const MyApp = () => { 
+const MainRoute = () => { 
   return (
-    <Provider store={Store}>
-      <RecoilRoot>
-        <App>
-          <SnackbarProvider>
-            <ZMPRouter>
-              <AnimationRoutes>
-                <Route path="/" element={<HomePage></HomePage>}></Route>
-              </AnimationRoutes>
-              <BottomNavigationComponent />
-            </ZMPRouter>
-          </SnackbarProvider>
-        </App>
-      </RecoilRoot>
-    </Provider>
+    <Provider store={Store}> 
+      <Box className="flex-1 flex flex-col overflow-hidden">
+        <SnackbarProvider>
+          <ZMPRouter>
+            <AnimationRoutes> 
+              <Route path="/" element={<HomePage></HomePage>}></Route> 
+            </AnimationRoutes>
+          </ZMPRouter>
+        </SnackbarProvider>
+      </Box> 
+  </Provider>
   );
 };
-export default MyApp;
+
+export default MainRoute;
