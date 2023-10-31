@@ -13,34 +13,16 @@ const BottomNavigationComponent = (props) => {
       >
         <BottomNavigation.Item
           key="chat"
-          label="Tin Nhắn"
-          icon={<Icon icon="zi-chat" />}
-          activeIcon={<Icon icon="zi-chat-solid" />}
+          label="Cửa hàng"
+          icon={<Icon icon="zi-home" />}
+          activeIcon={<Icon icon="zi-home" />}
         />
         <BottomNavigation.Item
-          label="Danh bạ"
-          key="contact"
-          icon={<Icon icon="zi-call" />}
-          activeIcon={<Icon icon="zi-call-solid" />}
-        />
-        <BottomNavigation.Item
-          label="Khám phá"
-          key="discovery"
-          icon={<Icon icon="zi-more-grid" />}
-          activeIcon={<Icon icon="zi-more-grid-solid" />}
-        />
-        <BottomNavigation.Item
-          key="timeline"
-          label="Nhật ký"
-          icon={<Icon icon="zi-clock-1" />}
-          activeIcon={<Icon icon="zi-clock-1-solid" />}
-        />
-        <BottomNavigation.Item
-          key="me"
           label="Cá nhân"
+          key="contact"
           icon={<Icon icon="zi-user" />}
           activeIcon={<Icon icon="zi-user-solid" />}
-        />
+        /> 
       </BottomNavigation> 
   );
 };

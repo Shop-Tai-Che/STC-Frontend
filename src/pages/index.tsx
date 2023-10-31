@@ -1,34 +1,23 @@
 import React from "react";
-import { List, Page, Icon, useNavigate } from "zmp-ui";
+import { List, Text, Page, Icon, useNavigate, Input, Box } from "zmp-ui";
 import { useRecoilValue } from "recoil";
 import { userState } from "../state";
-
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { searchFilterChange, statusFilterChange } from "../redux/FilterSlice";
 import UserCard from "../components/user-card";
+import BannerImage from "../assets/images/banner.png";
 
 const HomePage: React.FunctionComponent = () => {
+  const count = useAppSelector((state) => state);
+  console.log(count);
+  const assdas: string = "asdasdasdas";
+  const dispatch = useAppDispatch();
+
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
+  
   return (
     <Page className="page">
-      <div className="section-container">
-        <UserCard user={user.userInfo} />
-      </div>
-      <div className="section-container">
-        <List>
-          <List.Item
-            onClick={() => navigate("/about")}
-            suffix={<Icon icon="zi-arrow-right" />}
-          >
-            <div>About</div>
-          </List.Item>
-          <List.Item
-            onClick={() => navigate("/user")}
-            suffix={<Icon icon="zi-arrow-right" />}
-          >
-            <div>User</div>
-          </List.Item>
-        </List>
-      </div>
     </Page>
   );
 };

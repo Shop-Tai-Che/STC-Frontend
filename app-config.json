@@ -1,20 +1,22 @@
 {
   "app": {
-    "title": "Thu mua nhựa",
+    "title": "Shop Tái Chế",
     "headerTitle": "Thu mua nhựa",
-    "headerColor": "#1843EF",
+    "headerColor": "#288f4e",
     "textColor": "white",
     "textAlign": "left",
-    "statusBarColor": "#1843EF",
+    "statusBarColor": "#288f4e",
     "leftButton": "back",
     "statusBar": "normal",
     "actionBarHidden": false,
     "hideAndroidBottomNavigationBar": false,
-    "hideIOSSafeAreaBottom": false
+    "hideIOSSafeAreaBottom": false,
+    "selfControlLoading": false
   },
   "debug": false,
   "pages": [],
   "listCSS": [],
   "listSyncJS": [],
-  "listAsyncJS": []
+  "listAsyncJS": [],
+  "template": {}
 }
