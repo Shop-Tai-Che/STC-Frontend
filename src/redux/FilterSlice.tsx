@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from './store';
-import { Product } from "../utils/type/Product";
-interface  ObjectItemFilterSlideType  {
-    map(arg0: (product: any, index: any) => import("react").JSX.Element): import("react").ReactNode; 
+
+interface  ObjectItemFilterSlideType  { 
     search: string,
     status: string,
-    priorities: Product[] 
+    priorities: string[] 
 };
 
 const initialState: ObjectItemFilterSlideType  = {
@@ -24,7 +23,7 @@ const objectItemFilterSlide = createSlice({
     statusFilterChange: (state, action: PayloadAction<string>) => {
       state.status = action.payload;
     },
-    PrioritiesFilterChange: (state, action: PayloadAction<Product[]>) => {
+    PrioritiesFilterChange: (state, action: PayloadAction<string[]>) => {
       state.priorities = action.payload;
     },
   },
