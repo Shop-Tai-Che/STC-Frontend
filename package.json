@@ -23,8 +23,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
-    "@tanstack/react-query": "^5.0.5",
-    "immer": "^10.0.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -32,7 +30,6 @@
     "react-router-dom": "^6.17.0",
     "recoil": "^0.7.7",
     "redux": "^4.2.1",
-    "swiper": "^11.0.3",
     "webpack-dev-server": "^4.15.1",
     "zmp-sdk": "^2.30.3",
     "zmp-ui": "^1.8.2"
