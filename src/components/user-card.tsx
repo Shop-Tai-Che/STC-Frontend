@@ -14,6 +14,7 @@ const UserCard: React.FunctionComponent<UserProps> = ({ user }) => {
         online
         src={user.avatar.startsWith("http") ? user.avatar : undefined}
       >
+        Helllo wewqe
         {user.avatar}
       </Avatar>
       <Box ml={4}>
