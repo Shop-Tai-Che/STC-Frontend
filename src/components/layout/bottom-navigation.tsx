@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { BottomNavigation, Icon, Page } from "zmp-ui";
 
-const BottomNavigationComponent = (props) => {
+const BottomNavigationComponent = () => {
   const [activeTab, setActiveTab] = useState("chat");
-  const { title } = props;
   return (
     <BottomNavigation
       fixed
