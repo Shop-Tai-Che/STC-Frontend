@@ -4,6 +4,5 @@ export type CategoryId =
   | "quần áo" ;
 
 export interface Category {
-  id: CategoryId;
-  name: string; 
+  id: CategoryId; 
 }

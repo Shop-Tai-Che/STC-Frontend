@@ -2,14 +2,22 @@ import React from "react";
 import { Page, Box } from "zmp-ui";
 import BannerHome from "../components/common/BannerHome";
 import SearchProduct from "../components/services/tmn_search";
+import {
+  ProductListSwipe,
+  ProductListGrid,
+} from "../components/services/tmn_product";
+import Divider from "../components/common/DividerSpace";
 
 const HomePage: React.FC = () => {
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
-      <Box className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto pb-20">
         <BannerHome />
         <SearchProduct />
-      </Box>
+        <ProductListSwipe />
+        <Divider />
+        <ProductListGrid />
+      </div>
     </Page>
   );
 };
