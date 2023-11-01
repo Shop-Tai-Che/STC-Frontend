@@ -1,6 +1,7 @@
 import React from "react";
-import { App, ZMPRouter, SnackbarProvider } from "zmp-ui"; 
-import Layout from "../route"; 
+import { App, ZMPRouter, SnackbarProvider } from "zmp-ui";
+import Layout from "../route";
+import "./app.css";
 
 const MyApp = () => {
   return (

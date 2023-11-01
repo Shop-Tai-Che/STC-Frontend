@@ -18,5 +18,11 @@
   "listCSS": [],
   "listSyncJS": [],
   "listAsyncJS": [],
-  "template": {}
+  "template": {
+    "primaryColor": "#288f4e",
+    "secondaryColor": "#E5E2E5",
+    "prefixCurrencySymbol": false,
+    "currencySymbol": " đ",
+    "headerLogo": ""
+  }
 }

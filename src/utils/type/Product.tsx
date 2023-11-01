@@ -1,8 +1,8 @@
 import { CategoryId } from "./Category";
 
 export interface PercentSale {
-  type: "percent";
-  percent: number;
+  amount: number;
+  type: "percent"; 
 }
 
 export interface FixedSale {

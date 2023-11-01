@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "image": "https://vnn-imgs-a1.vgcloud.vn/icdn.dantri.com.vn/2021/05/05/tuixach-3-1620170623715.jpg",
+    "price": 19.99,
+    "categoryId": ["giày dép"],
+    "description": "Product 1 description",
+    "sale": {
+      "amount": 0.1,
+      "type": "percent"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Product 1",
+    "image": "https://vnn-imgs-a1.vgcloud.vn/icdn.dantri.com.vn/2021/05/05/tuixach-3-1620170623715.jpg",
+    "price": 19.99,
+    "categoryId": ["giày dép"],
+    "description": "Product 1 description",
+    "sale": {
+      "amount": 0.1,
+      "type": "percent"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Product 1",
+    "image": "https://vnn-imgs-a1.vgcloud.vn/icdn.dantri.com.vn/2021/05/05/tuixach-3-1620170623715.jpg",
+    "price": 19.99,
+    "categoryId": ["giày dép"],
+    "description": "Product 1 description",
+    "sale": {
+      "amount": 0.1,
+      "type": "percent"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Product 1",
+    "image": "https://vnn-imgs-a1.vgcloud.vn/icdn.dantri.com.vn/2021/05/05/tuixach-3-1620170623715.jpg",
+    "price": 19.99,
+    "categoryId": ["giày dép"],
+    "description": "Product 1 description",
+    "sale": {
+      "amount": 0.1,
+      "type": "percent"
+    }
+  }
+]

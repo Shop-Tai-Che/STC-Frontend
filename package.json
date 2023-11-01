@@ -30,6 +30,8 @@
     "react-router-dom": "^6.17.0",
     "recoil": "^0.7.7",
     "redux": "^4.2.1",
+    "swiper": "^6.8.4",
+    "vite-tsconfig-paths": "^4.0.5",
     "webpack-dev-server": "^4.15.1",
     "zmp-sdk": "^2.30.3",
     "zmp-ui": "^1.8.2"
