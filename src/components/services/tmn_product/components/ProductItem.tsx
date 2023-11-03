@@ -1,16 +1,22 @@
 import { Product } from "../../../../utils/type";
-import { Text, Box } from "zmp-ui";
+import { Text, Box, useNavigate } from "zmp-ui";
 import React from "react";
 import { PriceDisplay } from "../../../display/DisplayPrice";
 import { FinalPriceDisplay } from "../../../display/DisplayFinalPrice";
 import { primaryColor } from "../../../../utils/helper/config";
 
 const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
+  const navigate = useNavigate();
   return (
-    <div className="border-2 rounded-md">
+    <div
+      className="border-2 rounded-md"
+      onClick={() => {
+        navigate("/product-detail");
+      }}
+    >
       <Box
         className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton "
-        style={{ backgroundImage: `url(${product.image})` }}
+        style={{ backgroundImage: `url(${product.image[0]})` }}
       >
         {product.sale && (
           <Text
@@ -39,7 +45,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
             className=" mt-2 text-primary"
             style={{ color: primaryColor, fontWeight: "bolder" }}
           >
-            <FinalPriceDisplay>{product}</FinalPriceDisplay>
+            <FinalPriceDisplay product={product} />
           </Text>
           <Text size="xxSmall" className="text-gray-400">
             23 đã bán

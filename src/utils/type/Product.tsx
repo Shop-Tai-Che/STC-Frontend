@@ -39,9 +39,9 @@ export type Variant = SingleOptionVariant | MultipleOptionVariant;
 export interface Product {
   id: number;
   name: string;
-  image: string;
+  image: string[];
   price: number;
-  categoryId: CategoryId[];
+  categoryId: CategoryId;
   description?: string;
   sale?: Sale;
   variants?: Variant[];

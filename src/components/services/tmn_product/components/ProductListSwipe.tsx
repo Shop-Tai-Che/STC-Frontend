@@ -3,7 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductSlideSkeleton } from "../../../../components/common/SkeletonsList";
 import React from "react";
 import SectionText from "../../../common/SectionText";
-import "swiper/swiper.min.css";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import ProductItem from "./../components/ProductItem";
 import mockProduct from "../../../../../mockProduct.json";
 

@@ -2,8 +2,8 @@
   "app": {
     "title": "Shop Tái Chế",
     "headerTitle": "Thu mua nhựa",
-    "headerColor": "#288f4e",
-    "textColor": "white",
+    "headerColor": "#ffffff",
+    "textColor": "black",
     "textAlign": "left",
     "statusBarColor": "#288f4e",
     "leftButton": "back",

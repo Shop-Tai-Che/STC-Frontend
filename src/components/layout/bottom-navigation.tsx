@@ -1,27 +1,52 @@
-import React, { useState } from "react";
-import { BottomNavigation, Icon, Page } from "zmp-ui";
+import React, { FC, useMemo, useState } from "react";
+import { MenuItem } from "../../utils/type";
+import { BottomNavigation, Icon } from "zmp-ui";
+import { useVirtualKeyboardVisible } from "../../utils/hooks";
+import { useLocation, useNavigate } from "react-router";
 
-const BottomNavigationComponent = (props) => {
+const tabs: Record<string, MenuItem> = {
+  "/": {
+    label: "Trang chủ",
+    icon: <Icon icon="zi-home" />,
+    activeIcon: <Icon icon="zi-home" />,
+  },
+  "/profile": {
+    label: "Cá nhân",
+    icon: <Icon icon="zi-user" />,
+    activeIcon: <Icon icon="zi-user-solid" />,
+  },
+};
+
+export type TabKeys = keyof typeof tabs;
+export const NO_BOTTOM_NAVIGATION_PAGES = ["/product-detail", "/search"];
+
+const BottomNavigationComponent: FC = () => {
   const [activeTab, setActiveTab] = useState("chat");
-  const { title } = props;
+  const keyboardVisible = useVirtualKeyboardVisible();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const notBottomNav = useMemo(() => {
+    return NO_BOTTOM_NAVIGATION_PAGES.includes(location.pathname);
+  }, [location]);
+
+  if (notBottomNav || keyboardVisible) {
+    return <></>;
+  }
   return (
     <BottomNavigation
       fixed
       activeKey={activeTab}
       onChange={(key) => setActiveTab(key)}
     >
-      <BottomNavigation.Item
-        key="chat"
-        label="Cửa hàng"
-        icon={<Icon icon="zi-home" />}
-        activeIcon={<Icon icon="zi-home" />}
-      />
-      <BottomNavigation.Item
-        label="Cá nhân"
-        key="contact"
-        icon={<Icon icon="zi-user" />}
-        activeIcon={<Icon icon="zi-user-solid" />}
-      />
+      {Object.keys(tabs).map((path: TabKeys) => (
+        <BottomNavigation.Item
+          key={path}
+          label={tabs[path].label}
+          icon={tabs[path].icon}
+          activeIcon={tabs[path].activeIcon}
+          onClick={() => navigate(path)} 
+        />
+      ))}
     </BottomNavigation>
   );
 };
