@@ -1,9 +1,8 @@
-import { Product } from "../../../../utils/type";
-import { Text, Box, useNavigate } from "zmp-ui";
 import React from "react";
-import { PriceDisplay } from "../../../display/DisplayPrice";
-import { FinalPriceDisplay } from "../../../display/DisplayFinalPrice";
-import { primaryColor } from "../../../../utils/helper/config";
+import { Text, Box, useNavigate } from "zmp-ui";
+import { PriceDisplay, FinalPriceDisplay } from "@components/display";
+import { primaryColor } from "@utils/helper/config";
+import { Product } from "@utils/type";
 
 const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
       }}
     >
       <Box
-        className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton "
+        className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
         style={{ backgroundImage: `url(${product.image[0]})` }}
       >
         {product.sale && (
@@ -23,7 +22,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
             size="xxSmall"
             className="absolute right-2 top-2 uppercase bg-green text-white h-8 px-[6px] rounded-full"
           >
-            Giảm{" "}
+            Giảm
             {product.sale.type === "percent" ? (
               `${product.sale.amount * 100}%`
             ) : (
@@ -33,12 +32,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
         )}
       </Box>
       <div className="p-2">
-        <Text size="small" className="my-2">
-          {product.name}
-        </Text>
-        <Text size="xxSmall" className="my-2 line-through text-gray-400">
-          <PriceDisplay>{product.price}</PriceDisplay>
-        </Text>
+        <p className="my-2 two-line-display max-line-2">{product.name}</p>
         <div className="flex items-end justify-between">
           <Text
             size="small"

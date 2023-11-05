@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useState } from "react";
-import { MenuItem } from "../../utils/type";
+import { MenuItem } from "@utils/type";
 import { BottomNavigation, Icon } from "zmp-ui";
-import { useVirtualKeyboardVisible } from "../../utils/hooks";
+import { useVirtualKeyboardVisible } from "@utils/hooks";
 import { useLocation, useNavigate } from "react-router";
 
 const tabs: Record<string, MenuItem> = {

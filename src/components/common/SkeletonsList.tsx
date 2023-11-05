@@ -1,7 +1,7 @@
 import React, { FC, HTMLProps, PropsWithChildren } from "react";
 import { Text, Box } from "zmp-ui";
 import { BodyTextProps } from "zmp-ui/text";
-import { secondaryColor } from "../../utils/helper/config";
+import { secondaryColor } from "@utils/helper/config";
 
 export const TextSkeleton: FC<PropsWithChildren<BodyTextProps>> = ({
   className,

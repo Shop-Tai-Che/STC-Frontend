@@ -1,11 +1,11 @@
 import React from "react";
 import { HomePage } from "../pages";
 import { Provider } from "react-redux";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { Box, ZMPRouter, AnimationRoutes, SnackbarProvider } from "zmp-ui";
+import { Route, Routes } from "react-router-dom";
+import { Box, ZMPRouter } from "zmp-ui";
 import Store from "../redux/store";
 import BottomNavigationComponent from "../components/layout/bottom-navigation";
-import DetailProductPage from "src/pages/DetailProductPage";
+import DetailProductPage from "../pages/DetailProductPage";
 
 const MainRoute = () => {
   return (
@@ -13,11 +13,8 @@ const MainRoute = () => {
       <Provider store={Store}>
         <Box className="flex-1 flex flex-col overflow-hidden">
           <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route
-              path="/product-detail"
-              element={<DetailProductPage />}
-            ></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product-detail" element={<DetailProductPage />} />
           </Routes>
           <BottomNavigationComponent />
         </Box>

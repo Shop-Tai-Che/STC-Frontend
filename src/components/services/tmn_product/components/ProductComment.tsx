@@ -1,11 +1,11 @@
 import React from "react";
 import CommentList from "../../../../../mockReview.json";
-import { ReplySvg } from "src/assets/svg";
+import { ReplySvg } from "@assets/svg";
 
 const ProductComment: React.FC = () => {
   return (
     <section className="bg-white antialiased">
-      <div className="max-w-2xl mx-auto px-4">
+      <div className="max-w-2xl mx-auto">
         {Object.keys(CommentList).map((IdParent: string) =>
           CommentList[IdParent].map((itemComment, index) => {
             return (

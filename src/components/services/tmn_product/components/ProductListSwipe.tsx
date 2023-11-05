@@ -1,13 +1,13 @@
+import React from "react";
+import SectionText from "../../../common/SectionText";
+import ProductItem from "./../components/ProductItem";
+import mockProduct from "../../../../../mockProduct.json";
 import { FC, Suspense } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductSlideSkeleton } from "../../../../components/common/SkeletonsList";
-import React from "react";
-import SectionText from "../../../common/SectionText";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import ProductItem from "./../components/ProductItem";
-import mockProduct from "../../../../../mockProduct.json";
 
 const ProductListSwipeContent: FC = () => {
   const recommendProducts = mockProduct;
@@ -29,6 +29,7 @@ const ProductListSwipeContent: FC = () => {
     </SectionText>
   );
 };
+
 const ProductListSwipeFallBack: FC = () => {
   const recommendProducts = [...new Array(3)];
   return (
@@ -43,6 +44,7 @@ const ProductListSwipeFallBack: FC = () => {
     </SectionText>
   );
 };
+
 const ProductListSwipe: FC = () => {
   return (
     <Suspense fallback={<ProductListSwipeFallBack />}>
