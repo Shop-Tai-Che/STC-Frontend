@@ -1,23 +1,28 @@
 import React from "react";
-import {HomePage} from "../pages";
+import { HomePage } from "../pages";
 import { Provider } from "react-redux";
-import { Route } from "react-router-dom";
-import { Box, ZMPRouter, AnimationRoutes, SnackbarProvider } from "zmp-ui";
+import { Route, Routes } from "react-router-dom";
+import { Box, ZMPRouter } from "zmp-ui";
 import Store from "../redux/store";
+import BottomNavigationComponent from "../components/layout/bottom-navigation";
+import DetailProductPage from "../pages/DetailProductPage";
 
-const MainRoute = () => { 
+const MainRoute = () => {
   return (
-    <Provider store={Store}> 
-      <Box className="flex-1 flex flex-col overflow-hidden">
-        <SnackbarProvider>
-          <ZMPRouter>
-            <AnimationRoutes> 
-              <Route path="/" element={<HomePage></HomePage>}></Route> 
-            </AnimationRoutes>
-          </ZMPRouter>
-        </SnackbarProvider>
-      </Box> 
-  </Provider>
+    <ZMPRouter>
+      <Provider store={Store}>
+        <Box className="flex-1 flex flex-col overflow-hidden">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/product-detail/:idProduct"
+              element={<DetailProductPage />}
+            />
+          </Routes>
+          <BottomNavigationComponent />
+        </Box>
+      </Provider>
+    </ZMPRouter>
   );
 };
 

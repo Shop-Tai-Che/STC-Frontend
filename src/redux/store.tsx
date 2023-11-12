@@ -3,10 +3,9 @@ import todoSliceReducer from "./TodoSlice";
 
 export const Store = configureStore({
   reducer: {
-    tododes:todoSliceReducer 
+    tododes: todoSliceReducer,
   },
-})
-export type RootState = ReturnType<typeof Store.getState>
-export type AppDispatch = typeof Store.dispatch
-export default Store
-
+});
+export type RootState = ReturnType<typeof Store.getState>;
+export type AppDispatch = typeof Store.dispatch;
+export default Store;
