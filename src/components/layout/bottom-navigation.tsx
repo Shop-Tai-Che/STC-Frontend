@@ -18,7 +18,7 @@ const tabs: Record<string, MenuItem> = {
 };
 
 export type TabKeys = keyof typeof tabs;
-export const NO_BOTTOM_NAVIGATION_PAGES = ["/product-detail", "/search"];
+export const NO_BOTTOM_NAVIGATION_PAGES = ["/product-detail/", "/search"];
 
 const BottomNavigationComponent: FC = () => {
   const [activeTab, setActiveTab] = useState("chat");
@@ -26,7 +26,9 @@ const BottomNavigationComponent: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const notBottomNav = useMemo(() => {
-    return NO_BOTTOM_NAVIGATION_PAGES.includes(location.pathname);
+    return NO_BOTTOM_NAVIGATION_PAGES.some((page) =>
+      location.pathname.startsWith(page)
+    );
   }, [location]);
 
   if (notBottomNav || keyboardVisible) {
@@ -44,7 +46,7 @@ const BottomNavigationComponent: FC = () => {
           label={tabs[path].label}
           icon={tabs[path].icon}
           activeIcon={tabs[path].activeIcon}
-          onClick={() => navigate(path)} 
+          onClick={() => navigate(path)}
         />
       ))}
     </BottomNavigation>

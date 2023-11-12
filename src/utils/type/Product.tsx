@@ -1,8 +1,6 @@
-import { CategoryId } from "./Category";
-
 export interface PercentSale {
   amount: number;
-  type: "percent"; 
+  type: "percent";
 }
 
 export interface FixedSale {
@@ -36,13 +34,50 @@ export interface MultipleOptionVariant extends BaseVariant {
 
 export type Variant = SingleOptionVariant | MultipleOptionVariant;
 
-export interface Product {
+export interface ProductMedia {
+  url: string;
+  sequence: number;
+}
+
+export interface CountLove {
+  Love: number;
+}
+
+export interface Tag {
   id: number;
   name: string;
-  image: string[];
+}
+
+export interface Love {
+  id: number;
+  user_id: number;
+  product_id: number;
+  created_at: string;
+}
+
+export interface Product {
+  id: number;
+  title: string;
   price: number;
-  categoryId: CategoryId;
   description?: string;
-  sale?: Sale;
-  variants?: Variant[];
+  amount?: number;
+  shop_id?: number;
+  discount: number;
+  discount_start?: null;
+  discount_end?: null;
+  created_at: string;
+  updated_at: null;
+  tag_id?: number;
+  tag: Tag;
+  ProductMedia: ProductMedia[];
+  _count?: CountLove;
+  Love?: Love;
+}
+
+export interface ProductList {
+  data: Product[];
+  page: number;
+  pageSize: number;
+  status: string;
+  total: number;
 }

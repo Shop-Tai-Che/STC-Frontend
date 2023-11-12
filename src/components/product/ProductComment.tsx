@@ -1,5 +1,5 @@
 import React from "react";
-import CommentList from "../../../../../mockReview.json";
+import CommentList from "../../../mockReview.json";
 import { ReplySvg } from "@assets/svg";
 
 const ProductComment: React.FC = () => {

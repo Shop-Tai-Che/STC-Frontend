@@ -14,7 +14,10 @@ const MainRoute = () => {
         <Box className="flex-1 flex flex-col overflow-hidden">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/product-detail" element={<DetailProductPage />} />
+            <Route
+              path="/product-detail/:idProduct"
+              element={<DetailProductPage />}
+            />
           </Routes>
           <BottomNavigationComponent />
         </Box>

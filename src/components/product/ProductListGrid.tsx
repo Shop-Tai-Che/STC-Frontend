@@ -1,17 +1,27 @@
-import React, { Suspense } from "react"; 
-import mockProduct from "../../../../../mockProduct.json";
+import React, { Suspense, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import { ProductItemSkeleton, SectionText } from "@components/common";
+import { GetAllLatestProduct } from "@services/ProductServices";
+import { FetchState } from "@utils/type/FetchState";
 
 const ProductListGridContent: React.FC = () => {
-  const recommendProducts = mockProduct;
+  const [products, fetchState, getRes] = GetAllLatestProduct();
+
+  useEffect(() => {
+    if (fetchState === FetchState.DEFAULT) getRes();
+  }, []);
   return (
     <SectionText title="Mới ra mắt" padding="title-only">
-      <div className="grid grid-cols-2 gap-2 px-4">
-        {recommendProducts.map((product: any, index) => (
-          <ProductItem key={index} product={product} />
-        ))}
-      </div>
+      {(fetchState === FetchState.ERROR ||
+        fetchState === FetchState.LOADING) && <ProductListGridFallback />}
+
+      {fetchState === FetchState.SUCCESS && (
+        <div className="grid grid-cols-2 gap-2 px-4">
+          {products?.data.map((product: any, index) => (
+            <ProductItem key={index} product={product} />
+          ))}
+        </div>
+      )}
     </SectionText>
   );
 };

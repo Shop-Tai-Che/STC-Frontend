@@ -8,10 +8,7 @@ import "swiper/css/navigation";
 import "@assets/css/OverrideSwipe.css";
 import { Box } from "zmp-ui";
 
-interface Props {
-  product: Product;
-}
-const ProductDetailImageSwipe = ({ product }: Props) => {
+const ProductDetailImageSwipe = ({ product }) => {
   return (
     <Swiper
       pagination={{
@@ -21,13 +18,13 @@ const ProductDetailImageSwipe = ({ product }: Props) => {
       navigation={true}
       className="mySwiper"
     >
-      {product?.image?.map((ProductImage, ChildIndex) => {
+      {product.ProductMedia?.map((MediaItem, ChildIndex) => {
         return (
           <SwiperSlide key={ChildIndex}>
             <Box
               className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
               style={{
-                backgroundImage: `url(${ProductImage})`,
+                backgroundImage: `url(${MediaItem.url})`,
                 minHeight: "60vh",
                 width: "100%",
               }}

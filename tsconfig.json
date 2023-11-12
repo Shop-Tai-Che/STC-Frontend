@@ -27,7 +27,7 @@
     "removeComments": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"], 
@@ -40,5 +40,5 @@
   },
   
   "exclude": ["node_modules"],
-  "include": ["src", "test", "src/*.json"]
+  "include": ["./src", "test", "src/*.json", "src/**/*.ts"]
 }

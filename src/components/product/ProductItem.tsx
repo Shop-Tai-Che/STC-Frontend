@@ -1,23 +1,26 @@
 import React from "react";
-import { Text, Box, useNavigate } from "zmp-ui";
+import { Text, Box } from "zmp-ui";
 import { PriceDisplay, FinalPriceDisplay } from "@components/display";
 import { primaryColor } from "@utils/helper/config";
 import { Product } from "@utils/type";
+import { useNavigate } from "react-router-dom";
 
 const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
+
   return (
     <div
       className="border-2 rounded-md"
       onClick={() => {
-        navigate("/product-detail");
+        const pageRedirect = `/product-detail/${product.id}`;
+        navigate(pageRedirect);
       }}
     >
       <Box
         className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
-        style={{ backgroundImage: `url(${product.image[0]})` }}
+        style={{ backgroundImage: `url(${product.ProductMedia[0].url})` }}
       >
-        {product.sale && (
+        {/* {product.sale && (
           <Text
             size="xxSmall"
             className="absolute right-2 top-2 uppercase bg-green text-white h-8 px-[6px] rounded-full"
@@ -29,10 +32,10 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
               <PriceDisplay>{product.sale.amount}</PriceDisplay>
             )}
           </Text>
-        )}
+        )} */}
       </Box>
       <div className="p-2">
-        <p className="my-2 two-line-display max-line-2">{product.name}</p>
+        <p className="my-2 two-line-display max-line-2">{product.title}</p>
         <div className="flex items-end justify-between">
           <Text
             size="small"

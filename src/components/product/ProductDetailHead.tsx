@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import ProductDetailImageSwipe from "./ProductDetailImageSwipe";
 import { Icon, Text } from "zmp-ui";
 import { FinalPriceDisplay } from "@components/display";
 import { Product } from "@utils/type";
 import { primaryColor } from "@utils/helper/config";
 
-interface Props {
-  product: Product;
-}
-const ProductDetailHead = ({ product }: Props) => {
+const ProductDetailHead: FC<{ product: Product }> = ({product}) => {
   const [hasLoveProduct, setHasLoveProduct] = useState(false);
 
   return (
     <div className="p-2">
       <ProductDetailImageSwipe product={product} />
       <Text size="xLarge" className="my-2">
-        {product.name}
+        {product.title}
       </Text>
       <div className="grid grid-cols-4 gap-8 items-end">
         <div className="col-span-3 flex items-end justify-start gap-6">

@@ -1,11 +1,8 @@
 import React from "react";
 import { Page } from "zmp-ui";
 import { BannerHome, DividerSpace } from "@components/common";
-import SearchProduct from "@components/services/tmn_search";
-import {
-  ProductListSwipe,
-  ProductListGrid,
-} from "@components/services/tmn_product";
+import SearchProduct from "@components/search";
+import { ProductListSwipe, ProductListGrid } from "@components/product";
 
 const HomePage: React.FC = () => {
   return (
