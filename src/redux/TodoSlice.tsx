@@ -31,7 +31,7 @@ const todoListSlice = createSlice({
         product: action.payload,
       });
     },
-  },
+  }, 
 });
 
 export const { addTodo, toggleTodoStatus, addProductList } =
