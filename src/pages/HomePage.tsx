@@ -1,12 +1,8 @@
 import React from "react";
-import { Page, Box } from "zmp-ui";
-import BannerHome from "../components/common/BannerHome";
-import SearchProduct from "../components/services/tmn_search";
-import {
-  ProductListSwipe,
-  ProductListGrid,
-} from "../components/services/tmn_product";
-import Divider from "../components/common/DividerSpace";
+import { Page } from "zmp-ui";
+import { BannerHome, DividerSpace } from "@components/common";
+import SearchProduct from "@components/search";
+import { ProductListSwipe, ProductListGrid } from "@components/product";
 
 const HomePage: React.FC = () => {
   return (
@@ -15,7 +11,7 @@ const HomePage: React.FC = () => {
         <BannerHome />
         <SearchProduct />
         <ProductListSwipe />
-        <Divider />
+        <DividerSpace />
         <ProductListGrid />
       </div>
     </Page>

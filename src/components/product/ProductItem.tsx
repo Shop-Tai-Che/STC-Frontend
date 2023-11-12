@@ -1,45 +1,48 @@
-import { Product } from "../../../../utils/type";
-import { Text, Box } from "zmp-ui";
 import React from "react";
-import { PriceDisplay } from "../../../display/DisplayPrice";
-import { FinalPriceDisplay } from "../../../display/DisplayFinalPrice";
-import { primaryColor } from "../../../../utils/helper/config";
+import { Text, Box } from "zmp-ui";
+import { PriceDisplay, FinalPriceDisplay } from "@components/display";
+import { primaryColor } from "@utils/helper/config";
+import { Product } from "@utils/type";
+import { useNavigate } from "react-router-dom";
 
 const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="border-2 rounded-md">
+    <div
+      className="border-2 rounded-md"
+      onClick={() => {
+        const pageRedirect = `/product-detail/${product.id}`;
+        navigate(pageRedirect);
+      }}
+    >
       <Box
-        className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton "
-        style={{ backgroundImage: `url(${product.image})` }}
+        className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
+        style={{ backgroundImage: `url(${product.ProductMedia[0].url})` }}
       >
-        {product.sale && (
+        {/* {product.sale && (
           <Text
             size="xxSmall"
             className="absolute right-2 top-2 uppercase bg-green text-white h-8 px-[6px] rounded-full"
           >
-            Giảm{" "}
+            Giảm
             {product.sale.type === "percent" ? (
               `${product.sale.amount * 100}%`
             ) : (
               <PriceDisplay>{product.sale.amount}</PriceDisplay>
             )}
           </Text>
-        )}
+        )} */}
       </Box>
       <div className="p-2">
-        <Text size="small" className="my-2">
-          {product.name}
-        </Text>
-        <Text size="xxSmall" className="my-2 line-through text-gray-400">
-          <PriceDisplay>{product.price}</PriceDisplay>
-        </Text>
+        <p className="my-2 two-line-display max-line-2">{product.title}</p>
         <div className="flex items-end justify-between">
           <Text
             size="small"
             className=" mt-2 text-primary"
             style={{ color: primaryColor, fontWeight: "bolder" }}
           >
-            <FinalPriceDisplay>{product}</FinalPriceDisplay>
+            <FinalPriceDisplay product={product} />
           </Text>
           <Text size="xxSmall" className="text-gray-400">
             23 đã bán

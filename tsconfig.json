@@ -15,12 +15,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "@assets/*":["src/assets/*"],
-      "@components/*":["src/components/*"]
-    },
+    "moduleResolution": "node", 
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -32,8 +27,18 @@
     "removeComments": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"],
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"], 
+      "@pages/*": ["pages/*"], 
+      "@redux/*": ["redux/*"], 
+      "@services/*": ["services/*"], 
+      "@utils/*": ["utils/*"], 
+      "@assets/*": ["assets/*"], 
+    },
   },
+  
   "exclude": ["node_modules"],
-  "include": ["src", "test", "src/*.json"]
+  "include": ["./src", "test", "src/*.json", "src/**/*.ts"]
 }

@@ -1,14 +1,22 @@
+import React, { useEffect } from "react";
+import SectionText from "../common/SectionText";
+import ProductItem from "./ProductItem"; 
 import { FC, Suspense } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ProductSlideSkeleton } from "../../../../components/common/SkeletonsList";
-import React from "react";
-import SectionText from "../../../common/SectionText";
-import "swiper/swiper.min.css";
-import ProductItem from "./../components/ProductItem";
-import mockProduct from "../../../../../mockProduct.json";
+import { ProductSlideSkeleton } from "../common/SkeletonsList";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { GetAllLatestProduct } from "@services/ProductServices";
+import { FetchState } from "@utils/type/FetchState";
 
 const ProductListSwipeContent: FC = () => {
-  const recommendProducts = mockProduct;
+  const [products, fetchState, getRes] = GetAllLatestProduct();
+
+  useEffect(() => {
+    if (fetchState === FetchState.DEFAULT) getRes();
+  }, []);
+
   return (
     <SectionText title="Gợi ý cho bạn" padding="title-only">
       <Swiper
@@ -18,15 +26,21 @@ const ProductListSwipeContent: FC = () => {
         onSwiper={(swiper) => console.log(swiper)}
         className="px-4"
       >
-        {recommendProducts.map((product) => (
-          <SwiperSlide key={product.id}>
-            <ProductItem product={product} />
-          </SwiperSlide>
-        ))}
+        {(fetchState === FetchState.ERROR ||
+          fetchState === FetchState.LOADING) && <ProductListSwipeFallBack />}
+
+        {fetchState === FetchState.SUCCESS && (
+          <div className="grid grid-cols-2 gap-2 px-4">
+            {products?.data.map((product: any, index) => (
+              <ProductItem key={index} product={product} />
+            ))}
+          </div>
+        )}
       </Swiper>
     </SectionText>
   );
 };
+
 const ProductListSwipeFallBack: FC = () => {
   const recommendProducts = [...new Array(3)];
   return (
@@ -41,6 +55,7 @@ const ProductListSwipeFallBack: FC = () => {
     </SectionText>
   );
 };
+
 const ProductListSwipe: FC = () => {
   return (
     <Suspense fallback={<ProductListSwipeFallBack />}>

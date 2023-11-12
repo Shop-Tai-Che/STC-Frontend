@@ -1,7 +1,7 @@
 import React, { FC, HTMLProps, PropsWithChildren } from "react";
 import { Text, Box } from "zmp-ui";
 import { BodyTextProps } from "zmp-ui/text";
-import { secondaryColor } from "../../utils/helper/config";
+import { secondaryColor } from "@utils/helper/config";
 
 export const TextSkeleton: FC<PropsWithChildren<BodyTextProps>> = ({
   className,
@@ -46,7 +46,7 @@ export const ProductSlideSkeleton: FC = () => {
 
 export const ProductItemSkeleton: FC = () => {
   return (
-    <div className="space-y-3" >
+    <div className="space-y-3">
       <ImageSkeleton className="w-full aspect-video rounded-lg" />
       <Box className="space-y-1">
         <TextSkeleton size="small">1234567890</TextSkeleton>

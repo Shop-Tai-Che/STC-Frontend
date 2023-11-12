@@ -1,6 +1,6 @@
-import BannerImage from "../../assets/images/banner.png";
-import { Box } from "zmp-ui";
 import React from "react";
+import BannerImage from "@assets/images/banner.png";
+import { Box } from "zmp-ui";
 
 const BannerHome: React.FunctionComponent = () => {
   return (

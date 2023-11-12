@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { getConfig } from "../../utils/helper/config";
+import { getConfig } from "@utils/helper/config";
 
 export const PriceDisplay: FC<{ children: number }> = ({ children }) => {
   const symbol = getConfig((config) => config.template.currencySymbol);
@@ -7,13 +7,13 @@ export const PriceDisplay: FC<{ children: number }> = ({ children }) => {
     return (
       <>
         {symbol}
-        {children.toLocaleString()}
+        {children && children.toLocaleString()}
       </>
     );
   } else {
     return (
       <>
-        {children.toLocaleString()}
+        {children && children.toLocaleString()}
         {symbol}
       </>
     );

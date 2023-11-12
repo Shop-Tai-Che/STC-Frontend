@@ -1,12 +1,11 @@
 {
   "app": {
     "title": "Shop Tái Chế",
-    "headerTitle": "Thu mua nhựa",
-    "headerColor": "#288f4e",
-    "textColor": "white",
+    "headerTitle": "Shop Tái Chế",
+    "headerColor": "#ffffff",
+    "textColor": "black",
     "textAlign": "left",
-    "statusBarColor": "#288f4e",
-    "leftButton": "back",
+    "statusBarColor": "#288f4e", 
     "statusBar": "normal",
     "actionBarHidden": false,
     "hideAndroidBottomNavigationBar": false,
