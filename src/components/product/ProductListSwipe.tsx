@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import SectionText from "../common/SectionText";
-import ProductItem from "./ProductItem"; 
+import ProductItem from "./ProductItem";
 import { FC, Suspense } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductSlideSkeleton } from "../common/SkeletonsList";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { GetAllLatestProduct } from "@services/ProductServices";
+import { GetAllPopularProducts } from "@services/ProductServices";
 import { FetchState } from "@utils/type/FetchState";
 
 const ProductListSwipeContent: FC = () => {
-  const [products, fetchState, getRes] = GetAllLatestProduct();
+  const [products, fetchState, getRes] = GetAllPopularProducts();
 
   useEffect(() => {
     if (fetchState === FetchState.DEFAULT) getRes();

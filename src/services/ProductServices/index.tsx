@@ -1,3 +1,4 @@
 import { GetAllLatestProduct } from "./GetAllLatestProducts";
+import { GetAllPopularProducts } from "./GetAllPopularProducts";
 
-export { GetAllLatestProduct };
+export { GetAllLatestProduct, GetAllPopularProducts };
