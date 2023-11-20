@@ -1,4 +1,4 @@
-import ProductListGrid from "./ProductListGrid";
+import ProductListGrid from "./ProductListGrid"; 
 import ProductListSwipe from "./ProductListSwipe"; 
 import ProductComment from "./ProductComment";
 import ProductDetailDescription from "./ProductDetailDescription";
@@ -14,4 +14,4 @@ export {
   ProductDetailImageSwipe,
   ProductDetailShop,
   ProductDetailHead,
-};
+}; 
