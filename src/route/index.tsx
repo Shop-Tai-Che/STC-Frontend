@@ -18,6 +18,10 @@ const MainRoute = () => {
               path="/product-detail/:idProduct"
               element={<DetailProductPage />}
             />
+            <Route
+              path="/order"
+              element={<> </>}
+            />
           </Routes>
           <BottomNavigationComponent />
         </Box>
