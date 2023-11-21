@@ -20,6 +20,7 @@
   "template": {
     "primaryColor": "#288f4e",
     "secondaryColor": "#E5E2E5",
+    "tertiaryColor":"#B87A00",
     "prefixCurrencySymbol": false,
     "currencySymbol": " đ",
     "headerLogo": ""

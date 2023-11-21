@@ -58,7 +58,7 @@ const ProductDetailContent: React.FC = () => {
           <SectionText title="Đánh giá sản phẩm" padding="title-only">
             <ProductComment />
           </SectionText>
-          <ButtonOrder />
+          <ButtonOrder product={productItem as Product}/>
         </>
       )}
     </div>
