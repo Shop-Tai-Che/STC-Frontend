@@ -1,3 +1,5 @@
 import ReplySvg from "./reply";
+import PaymentSvg from "./payment";
+import ShipSvg from "./ship";
 
-export { ReplySvg };
+export { ReplySvg, PaymentSvg, ShipSvg };

@@ -10,13 +10,17 @@ export const GetAllPopularProducts = () => {
     try {
       setFetchState(FetchState.LOADING); 
       const res = await axios.get(
-        `${import.meta.env.VITE_API_SUGGESTION}?page=0&pageSize=10`
+        `http://54.251.11.200:5000/api/v1/product/suggestion?page=0&pageSize=10`,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }
       );
       const resData = res.data as ProductList;
       setProducts(resData);
       setFetchState(FetchState.SUCCESS);
     } catch (error) {
-        console.log(  `${import.meta.env.VITE_API_SUGGESTION}?page=0&pageSize=10`, error)
       setFetchState(FetchState.ERROR);
     }
   };

@@ -18,7 +18,7 @@ const tabs: Record<string, MenuItem> = {
 };
 
 export type TabKeys = keyof typeof tabs;
-export const NO_BOTTOM_NAVIGATION_PAGES = ["/product-detail/", "/search"];
+export const NO_BOTTOM_NAVIGATION_PAGES = ["/product-detail/", "/search","/order"];
 
 const BottomNavigationComponent: FC = () => {
   const [activeTab, setActiveTab] = useState("chat");

@@ -11,7 +11,12 @@ export const GetAllLatestProduct = () => {
       setFetchState(FetchState.LOADING);
 
       const res = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL_PRODUCT}?page=0&pageSize=10`
+        'http://54.251.11.200:5000/api/v1/product?page=0&pageSize=10',
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }
       );
       const resData = res.data as ProductList;
       setProducts(resData);
