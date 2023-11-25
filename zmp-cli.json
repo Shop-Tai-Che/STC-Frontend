@@ -1,6 +1,6 @@
 {
-  "cwd": "C:\\Users\\PC_ASUS\\Documents\\thu-mua-nhua",
-  "name": "Thu mua nhựa",
+  "cwd": "C:\\Users\\PC_ASUS\\Documents\\shop-tai-che",
+  "name": "Shop Tái Chế",
   "framework": "react-typescript",
   "cssPreProcessor": "css",
   "includeTailwind": true,
