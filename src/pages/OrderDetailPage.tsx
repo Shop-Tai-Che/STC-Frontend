@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Product } from "@utils/type";
+import { Product, StatusOrder, STATUS_ORDER } from "@utils/type";
 import { TYPESPAYMENT, Payment } from "@utils/type/Payment";
 import ProductShortageItem from "@components/product/ProductShortageItem";
 import {
@@ -21,13 +21,15 @@ const OrderDetailPage: React.FC = () => {
     typePayment: TYPESPAYMENT.CASH,
     totalPrices: 3121,
   });
+
+
   return (
     <Page className="bg-white flex flex-col justify-between">
       <ProductShortageItem />
       <DividerSpace />
       <OrderInforReceive editView />
       <DividerSpace />
-      <OrderPaymentFillInfo editView/>
+      <OrderPaymentFillInfo editView />
       <DividerSpace />
       <TotalPaymentAndOrder />
     </Page>

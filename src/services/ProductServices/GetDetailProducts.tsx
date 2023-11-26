@@ -14,8 +14,8 @@ export const GetDetailProduct = (idProduct: string) => {
         `http://54.251.11.200:5000/api/v1/product/${idProduct}`,
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         }
       );
 

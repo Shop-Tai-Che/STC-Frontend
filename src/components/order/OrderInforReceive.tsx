@@ -2,9 +2,11 @@ import {
   SectionText,
   InputNoOutline,
   ButtonSecondary,
+  DividerSpaceLine,
 } from "@components/common";
 import React from "react";
-import { Button, Icon } from "zmp-ui";
+import { Button, Icon, Text } from "zmp-ui";
+import { primaryColor } from "@utils/helper/config";
 
 const OrderInforReceive: React.FC<{ editView?: boolean }> = ({ editView }) => {
   const AdressField = editView ? (
@@ -17,38 +19,46 @@ const OrderInforReceive: React.FC<{ editView?: boolean }> = ({ editView }) => {
   );
 
   const ReceiverField = editView ? (
-    <InputNoOutline
-      placeholder="Cho phép truy cập SĐT để tự động điền"
-      id="number_phone_user"
-    />
+    <>
+      <div>
+        <label htmlFor="number_phone_user">Người nhận</label>
+        <InputNoOutline
+          placeholder="Cho phép truy cập SĐT để tự động điền"
+          id="number_phone_user"
+        />
+      </div>{" "}
+      <Icon icon="zi-chevron-right" className="ml-5 self-center" />
+    </>
   ) : (
-    <h3>Ken Pham - 0342137491</h3>
+    <div>
+      <p className="font-medium" style={{ color: primaryColor }}>
+        Ken Pham - 0342137491
+      </p>
+      <Text>Người nhận</Text>
+    </div>
   );
 
   const NoteField = editView ? (
-    <InputNoOutline placeholder="Ghi chú cho người bán..." />
+    <>
+      <InputNoOutline placeholder="Ghi chú cho người bán..." />
+    </>
   ) : (
     <h3>Đóng gói hàng cẩn thận dùm!</h3>
   );
 
-  const Space = <div className="my-4"></div>;
-  return (
+   return (
     <SectionText title="1. Thông tin nhận hàng" padding="title-only">
-      <div className="p-2">
+      <div className="px-4">
         <div className="flex gap-5 justify-start items-center">
           <Icon icon="zi-location" />
           {AdressField}
         </div>
-        {Space}
+        <DividerSpaceLine />
         <div className="flex gap-5 justify-start items-start">
           <Icon icon="zi-user" />
-          <div>
-            <label htmlFor="number_phone_user">Người nhận</label>
-            {ReceiverField}
-          </div>
-          <Icon icon="zi-chevron-right" className="ml-5 self-center" />
+          {ReceiverField}
         </div>
-        {Space}
+        <DividerSpaceLine />
         <div className="flex gap-5 justify-start items-start">
           <Icon icon="zi-note" />
           {NoteField}

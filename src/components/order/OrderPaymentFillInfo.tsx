@@ -1,4 +1,4 @@
-import { SectionText } from "@components/common";
+import { SectionText, DividerSpaceLine } from "@components/common";
 import { PaymentSvg, ShipSvg } from "@assets/svg";
 import { PriceDisplay } from "@components/display";
 import { Text } from "zmp-ui";
@@ -19,12 +19,12 @@ const OrderPaymentFillInfo: React.FC<{ editView?: boolean }> = ({
 
   return (
     <SectionText title="2. Thông tin thanh toán" padding="title-only">
-      <div className="p-2">
+      <div className="px-4">
         <div className="flex gap-5 justify-start items-center">
           <PaymentSvg />
           {TypePayment}
         </div>
-        {Space}
+        <DividerSpaceLine />
         <div className="flex gap-5 justify-start items-center">
           <ShipSvg />
           <div>
