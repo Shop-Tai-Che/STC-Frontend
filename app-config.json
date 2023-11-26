@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Shop Tái Chế",
+ "title": "Shop Tái Chế",
     "headerTitle": "Shop Tái Chế",
     "headerColor": "#ffffff",
     "textColor": "black",
@@ -20,6 +20,7 @@
   "template": {
     "primaryColor": "#288f4e",
     "secondaryColor": "#E5E2E5",
+    "tertiaryColor":"#B87A00",
     "prefixCurrencySymbol": false,
     "currencySymbol": " đ",
     "headerLogo": ""
