@@ -1,7 +1,7 @@
 import React from "react";
 import App from "./route";
 import appConfig from "../app-config.json";
-import { createRoot } from "react-dom/client"; 
+import { createRoot } from "react-dom/client";
 import "./css/tailwind.css";
 import "zmp-ui/zaui.css";
 import "./css/app.css";

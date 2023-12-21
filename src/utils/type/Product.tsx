@@ -61,7 +61,7 @@ export interface Product {
   price: number;
   description?: string;
   amount?: number;
-  shop_id?: number;
+  shop_id: number;
   discount: number;
   discount_start?: null;
   discount_end?: null;

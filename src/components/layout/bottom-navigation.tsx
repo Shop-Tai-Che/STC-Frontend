@@ -32,7 +32,7 @@ const BottomNavigationComponent: FC = () => {
   const location = useLocation();
   const notBottomNav = useMemo(() => {
     return NO_BOTTOM_NAVIGATION_PAGES.some((page) =>
-      location.pathname.startsWith(page)
+      location.pathname.startsWith(page),
     );
   }, [location]);
 

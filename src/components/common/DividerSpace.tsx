@@ -10,8 +10,8 @@ const DividerSpace: FC<{ size?: number; className?: string } & BoxProps> = ({
     <Box
       style={{
         minHeight: size,
-        marginTop:"20px",
-        marginBottom:"20px",
+        marginTop: "20px",
+        marginBottom: "20px",
         backgroundColor: "#f4f5f6",
       }}
       {...props}

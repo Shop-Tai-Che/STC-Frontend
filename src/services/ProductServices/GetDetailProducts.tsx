@@ -11,12 +11,12 @@ export const GetDetailProduct = (idProduct: string) => {
     try {
       setFetchStateDetailProduct(FetchState.LOADING);
       const res = await axios.get(
-        `http://54.251.11.200:5000/api/v1/product/${idProduct}`,
+        `${import.meta.env.VITE_API_PRODUCT}/${idProduct}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-        }
+        },
       );
 
       const resData = res.data.data as Product;

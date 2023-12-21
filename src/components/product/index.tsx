@@ -1,5 +1,5 @@
-import ProductListGrid from "./ProductListGrid"; 
-import ProductListSwipe from "./ProductListSwipe"; 
+import ProductListGrid from "./ProductListGrid";
+import ProductListSwipe from "./ProductListSwipe";
 import ProductComment from "./ProductComment";
 import ProductDetailDescription from "./ProductDetailDescription";
 import ProductDetailImageSwipe from "./ProductDetailImageSwipe";
@@ -8,10 +8,10 @@ import ProductDetailHead from "./ProductDetailHead";
 
 export {
   ProductListGrid,
-  ProductListSwipe, 
+  ProductListSwipe,
   ProductComment,
   ProductDetailDescription,
   ProductDetailImageSwipe,
   ProductDetailShop,
   ProductDetailHead,
-}; 
+};

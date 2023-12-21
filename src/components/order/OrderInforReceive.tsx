@@ -8,10 +8,17 @@ import React from "react";
 import { Button, Icon, Text } from "zmp-ui";
 import { primaryColor } from "@utils/helper/config";
 
-const OrderInforReceive: React.FC<{ editView?: boolean }> = ({ editView }) => {
+const OrderInforReceive: React.FC<{
+  editView?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ editView, onChange }) => {
   const AdressField = editView ? (
     <>
-      <InputNoOutline placeholder="Nhập địa chỉ..." />
+      <InputNoOutline
+        id="address"
+        placeholder="Nhập địa chỉ..."
+        onChange={onChange}
+      />
       <ButtonSecondary title="Tự động điền" isSecondary />
     </>
   ) : (
@@ -21,10 +28,11 @@ const OrderInforReceive: React.FC<{ editView?: boolean }> = ({ editView }) => {
   const ReceiverField = editView ? (
     <>
       <div>
-        <label htmlFor="number_phone_user">Người nhận</label>
+        <label htmlFor="numberphone">Người nhận</label>
         <InputNoOutline
           placeholder="Cho phép truy cập SĐT để tự động điền"
-          id="number_phone_user"
+          id="numberphone"
+          onChange={onChange}
         />
       </div>{" "}
       <Icon icon="zi-chevron-right" className="ml-5 self-center" />
@@ -40,13 +48,17 @@ const OrderInforReceive: React.FC<{ editView?: boolean }> = ({ editView }) => {
 
   const NoteField = editView ? (
     <>
-      <InputNoOutline placeholder="Ghi chú cho người bán..." />
+      <InputNoOutline
+        id="note"
+        placeholder="Ghi chú cho người bán..."
+        onChange={onChange}
+      />
     </>
   ) : (
     <h3>Đóng gói hàng cẩn thận dùm!</h3>
   );
 
-   return (
+  return (
     <SectionText title="1. Thông tin nhận hàng" padding="title-only">
       <div className="px-4">
         <div className="flex gap-5 justify-start items-center">

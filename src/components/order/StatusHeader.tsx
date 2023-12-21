@@ -107,10 +107,10 @@ const StatusHeader: FC<{ currentStatusOrder: StatusOrder | null }> = ({
     if (currentStatusOrder.typeStatus === STATUS_ORDER.PROCESSING)
       return <ItemStatusProcessing />;
 
-    if (currentStatusOrder.typeStatus === STATUS_ORDER.SHIPPING)
+    if (currentStatusOrder.typeStatus === STATUS_ORDER.DELIVERING)
       return <ItemStatusShipping />;
 
-    if (currentStatusOrder.typeStatus === STATUS_ORDER.RECEIVED)
+    if (currentStatusOrder.typeStatus === STATUS_ORDER.SUCCESS)
       return <ItemStatusReceived />;
 
     if (currentStatusOrder.typeStatus === STATUS_ORDER.CANCELED)

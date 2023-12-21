@@ -4,7 +4,12 @@ import { Route, Routes } from "react-router-dom";
 import { Box, ZMPRouter } from "zmp-ui";
 import Store from "../redux/store";
 import BottomNavigationComponent from "../components/layout/bottom-navigation";
-import { HomePage, OrderDetailPage, DetailProductPage, StatusOrderPage } from "../pages";
+import {
+  HomePage,
+  OrderDetailPage,
+  DetailProductPage,
+  StatusOrderPage,
+} from "../pages";
 
 const MainRoute = () => {
   return (
@@ -18,7 +23,10 @@ const MainRoute = () => {
               element={<DetailProductPage />}
             />
             <Route path="/order" element={<OrderDetailPage />} />
-            <Route path="/status-order" element={<StatusOrderPage />} />
+            <Route
+              path="/status-order/:idOrder"
+              element={<StatusOrderPage />}
+            />
           </Routes>
           <BottomNavigationComponent />
         </Box>

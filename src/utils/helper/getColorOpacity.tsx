@@ -3,7 +3,7 @@ const getColorOpacity = (hexColor: string, opacity: string): string => {
     const normalizedHex = hex
       .replace(
         /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-        (m, r, g, b) => "#" + r + r + g + g + b + b
+        (m, r, g, b) => "#" + r + r + g + g + b + b,
       )
       .substring(1);
     const rgbValues = normalizedHex.match(/.{2}/g);

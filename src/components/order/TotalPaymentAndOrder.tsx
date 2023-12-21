@@ -1,31 +1,29 @@
 import React from "react";
-import { Button, Text } from "zmp-ui";
+import { Text } from "zmp-ui";
 import { PriceDisplay } from "@components/display";
 import { primaryColor } from "@utils/helper/config";
 import { ButtonSecondary } from "@components/common";
-import { useNavigate } from "react-router-dom";
 
-const TotalPaymentAndOrder: React.FC = () => {
-  const navigate = useNavigate();
-  const moveToStatusOrder = () => {
-    navigate("/status-order");
-  };
-
+const TotalPaymentAndOrder: React.FC<{
+  totalPayment: number;
+  onClick: () => void;
+}> = ({ totalPayment, onClick }) => {
   return (
-    <div className="p-2 flex gap-5 justify-between items-center ">
-      <div className="">
+    <div className="p-2 grid grid-cols-2 grid-gap-4">
+      <div>
         <Text size="normal" className="mb-2">
           Tổng thanh toán
         </Text>
         <Text
           size="xLarge"
-          className="   text-primary"
+          className="text-primary"
           style={{ color: primaryColor, fontWeight: "bolder" }}
         >
-          <PriceDisplay children={93200} />
+          <PriceDisplay children={totalPayment} />
         </Text>
       </div>
-      <ButtonSecondary title="Đặt hàng" isPrimary onClick={moveToStatusOrder} />
+
+      <ButtonSecondary title="Đặt hàng" isPrimary onClick={onClick} />
     </div>
   );
 };

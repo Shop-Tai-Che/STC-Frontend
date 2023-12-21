@@ -88,9 +88,7 @@ const ButtonStatusOrderReceived: FC = () => {
           color: primaryColor,
         }}
       >
-        <Icon icon="zi-recall" />
-        {" "}
-        Đánh giá sản phẩm
+        <Icon icon="zi-recall" /> Đánh giá sản phẩm
       </Button>
     </>
   );
@@ -108,10 +106,10 @@ const ButtonStatusOrder: FC<{ currentStatusOrder: StatusOrder | null }> = ({
     if (currentStatusOrder.typeStatus == STATUS_ORDER.PROCESSING)
       return <ButtonStatusOrderProcessing />;
 
-    if (currentStatusOrder.typeStatus == STATUS_ORDER.SHIPPING)
+    if (currentStatusOrder.typeStatus == STATUS_ORDER.DELIVERING)
       return <ButtonStatusOrderShipping />;
 
-    if (currentStatusOrder.typeStatus == STATUS_ORDER.RECEIVED)
+    if (currentStatusOrder.typeStatus == STATUS_ORDER.SUCCESS)
       return <ButtonStatusOrderReceived />;
 
     if (currentStatusOrder.typeStatus == STATUS_ORDER.CANCELED)

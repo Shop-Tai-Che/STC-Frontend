@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Product, StatusOrder, STATUS_ORDER } from "@utils/type";
-import { TYPESPAYMENT, Payment } from "@utils/type/Payment";
+import { Order, Product, ShipPayment } from "@utils/type";
+import { FetchState } from "@utils/type/FetchState";
+import { TYPESPAYMENT } from "@utils/type/Payment";
+import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import ProductShortageItem from "@components/product/ProductShortageItem";
 import {
   OrderInforReceive,
@@ -9,30 +11,107 @@ import {
 } from "@components/order";
 import { DividerSpace } from "@components/common";
 import { Page } from "zmp-ui";
+import { PRODUCT_ORDER, getNativeStorage } from "@utils/helper/nativeStorage";
+import { CreateOrder } from "@services/OrderServices/OrderProduct";
+import { useNavigate } from "react-router-dom";
+
+interface typeInputOrderInfoReceive {
+  numberphone: string | null;
+  note: string | null;
+  address: string | null;
+}
+
+const INITINPUTORDERINFORECEIVE: typeInputOrderInfoReceive = {
+  numberphone: null,
+  note: null,
+  address: null,
+};
 
 const OrderDetailPage: React.FC = () => {
+  const navigate = useNavigate();
   const [productItem, setProductItem] = useState<Product | null>(null);
-  const [addressUserOrder, setAddressUserOrder] = useState<string | null>(null);
-  const [numberPhoneUserOrder, setNumberPhoneUserOrder] = useState<
-    string | null
-  >(null);
-  const [noteUserOrder, setNoteUserOrder] = useState<string | null>(null);
-  const [paymentInfor, setPaymentInfor] = useState<Payment>({
+  const [inputOrderInfoReceive, setInputOrderInfoReceive] =
+    useState<typeInputOrderInfoReceive>(INITINPUTORDERINFORECEIVE);
+  const [totalPayment, setTotalPayment] = useState<number>(0);
+  const [paymentInfor, setPaymentInfor] = useState<ShipPayment>({
     typePayment: TYPESPAYMENT.CASH,
-    totalPrices: 3121,
+    shipPrices: 20000,
   });
+  const [resCreateOrder, fetchStatusOrder, postOrder] = CreateOrder();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await getNativeStorage(PRODUCT_ORDER);
+        setProductItem(data);
+      } catch (error) {
+        console.error("Error in fetchData:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    productItem && setTotalPayment(productItem.price + paymentInfor.shipPrices);
+  }, [productItem, paymentInfor.shipPrices]);
+
+  const handleChangeInputOrderInfoReceive = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { id, value } = event.target;
+
+    setInputOrderInfoReceive((prevInput) => ({
+      ...prevInput,
+      [id]: value,
+    }));
+  };
+
+  useEffect(() => {
+    if (fetchStatusOrder == FetchState.SUCCESS) handleOrderProduct();
+  }, [fetchStatusOrder]);
+
+  const handleOrderProduct = () => {
+    console.log(resCreateOrder?.id);
+    if (resCreateOrder?.id) navigate(`/status-order/${resCreateOrder.id}`);
+  };
+
+  const handleCreateOrder = () => {
+    if (productItem) {
+      const orderNeedPost: Order = {
+        user_id: 1,
+        product_id: productItem.id,
+        shop_id: productItem.shop_id,
+        amount: 1,
+        payment_method: TYPESPAYMENT.CASH,
+        address: inputOrderInfoReceive.address as string,
+        note: inputOrderInfoReceive.note as string,
+        status: STATUS_ORDER.PROCESSING,
+      };
+      // postOrder(orderNeedPost);
+    }
+  };
 
   return (
-    <Page className="bg-white flex flex-col justify-between">
-      <ProductShortageItem />
-      <DividerSpace />
-      <OrderInforReceive editView />
-      <DividerSpace />
-      <OrderPaymentFillInfo editView />
-      <DividerSpace />
-      <TotalPaymentAndOrder />
-    </Page>
+    <>
+      {productItem && (
+        <Page className="bg-white flex flex-col justify-between">
+          <ProductShortageItem product={productItem as Product} />
+          <DividerSpace />
+          <OrderInforReceive
+            editView
+            onChange={handleChangeInputOrderInfoReceive}
+          />
+          <DividerSpace />
+          <OrderPaymentFillInfo editView paymentInfor={paymentInfor} />
+          <DividerSpace />
+          <TotalPaymentAndOrder
+            onClick={handleCreateOrder}
+            totalPayment={totalPayment}
+          />
+        </Page>
+      )}
+    </>
   );
 };
 

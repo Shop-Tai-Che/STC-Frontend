@@ -11,12 +11,11 @@ import {
 import { Product } from "@utils/type";
 import { useNavigate } from "react-router-dom";
 
-
 const ButtonOrder: FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
   const saveNativeStorgeProduct = () => {
     setNativeStorage(PRODUCT_ORDER, product);
-    navigate("/order");
+    navigate(`/order`);
   };
 
   return (

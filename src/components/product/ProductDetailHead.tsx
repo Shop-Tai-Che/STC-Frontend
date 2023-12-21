@@ -5,7 +5,7 @@ import { FinalPriceDisplay } from "@components/display";
 import { Product } from "@utils/type";
 import { primaryColor } from "@utils/helper/config";
 
-const ProductDetailHead: FC<{ product: Product }> = ({product}) => {
+const ProductDetailHead: FC<{ product: Product }> = ({ product }) => {
   const [hasLoveProduct, setHasLoveProduct] = useState(false);
 
   return (

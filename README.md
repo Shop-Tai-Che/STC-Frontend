@@ -1,4 +1,4 @@
-# Shop Tái Chế
+# shop-tai-che
 
 ## ZMP CLI Options
 
@@ -7,7 +7,7 @@ ZMP app created with following options:
 ```
 {
   "cwd": "C:\\Users\\PC_ASUS\\Documents\\shop-tai-che",
-  "name": "Shop Tái Chế",
+  "name": "shop-tai-che",
   "framework": "react-typescript",
   "cssPreProcessor": "css",
   "includeTailwind": true,

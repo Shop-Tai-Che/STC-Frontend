@@ -9,8 +9,9 @@ import {
 } from "@components/product";
 import { useParams } from "react-router-dom";
 import { GetDetailProduct } from "@services/ProductServices/GetDetailProducts";
+import { GetReviewsByProductId } from "@services/ReviewServices/ReviewProduct";
 import { FetchState } from "@utils/type/FetchState";
-import { Product } from "@utils/type";
+import { Product, Review } from "@utils/type";
 
 const ProductDetailContent: React.FC = () => {
   const { idProduct } = useParams();
@@ -18,13 +19,23 @@ const ProductDetailContent: React.FC = () => {
   const [productItem, fetchStateDetailProduct, getResDetailProduct] =
     GetDetailProduct(idProduct as string);
 
+  const [reviews, fetchStateListReview, getResGetListReview] =
+    GetReviewsByProductId(idProduct as string);
   useEffect(() => {
-    if (fetchStateDetailProduct === FetchState.DEFAULT)
+    if (fetchStateDetailProduct === FetchState.DEFAULT) {
       try {
         getResDetailProduct();
       } catch (error) {
         console.log(error);
       }
+    }
+    if (fetchStateListReview === FetchState.DEFAULT) {
+      try {
+        getResGetListReview();
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }, []);
 
   return (
@@ -55,10 +66,34 @@ const ProductDetailContent: React.FC = () => {
             <ProductDetailDescription description={productItem?.description} />
           </SectionText>
           <DividerSpace />
+        </>
+      )}
+
+      {fetchStateListReview === FetchState.LOADING && (
+        <Page className="flex justify-center items-center">
+          <Button
+            variant="secondary"
+            type="highlight"
+            onClick={() => {
+              openSnackbar({
+                text: "Loading...",
+                type: "loading",
+              });
+            }}
+          >
+            Loading
+          </Button>
+        </Page>
+      )}
+      {fetchStateListReview === FetchState.SUCCESS && (
+        <>
           <SectionText title="Đánh giá sản phẩm" padding="title-only">
-            <ProductComment />
+            <ProductComment
+              listReview={reviews as Review[]}
+              productId={Number(idProduct) as number}
+            />
           </SectionText>
-          <ButtonOrder product={productItem as Product}/>
+          <ButtonOrder product={productItem as Product} />
         </>
       )}
     </div>

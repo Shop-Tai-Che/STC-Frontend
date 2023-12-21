@@ -1,6 +1,6 @@
 import { setStorage, getStorage } from "zmp-sdk/apis";
 
-const PRODUCT_ORDER = "PRODUCT_ORDER"
+const PRODUCT_ORDER = "PRODUCT_ORDER";
 const getKey = (nameStore: string): string | null => {
   switch (nameStore) {
     case PRODUCT_ORDER:
@@ -22,7 +22,6 @@ const setNativeStorage = (nameStore: string, dataStore: any): boolean => {
         return true;
       },
       fail: (error) => {
-        console.log(error);
         return false;
       },
     });
@@ -30,7 +29,9 @@ const setNativeStorage = (nameStore: string, dataStore: any): boolean => {
   return false;
 };
 
-const getNativeStorage = (nameStore: string): Promise<{ data: any | null; error: any | null }> => {
+const getNativeStorage = (
+  nameStore: string,
+): Promise<{ data: any | null; error: any | null }> => {
   const key = getKey(nameStore);
 
   return new Promise((resolve) => {
@@ -38,11 +39,9 @@ const getNativeStorage = (nameStore: string): Promise<{ data: any | null; error:
       getStorage({
         keys: [key],
         success: (data) => {
-          console.log(data);
-          resolve({ data, error: null });
+          resolve({ data: data[key], error: null });
         },
         fail: (error) => {
-          console.log(error);
           resolve({ data: null, error });
         },
       });
