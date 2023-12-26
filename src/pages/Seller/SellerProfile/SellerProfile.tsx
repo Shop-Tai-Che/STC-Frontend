@@ -8,8 +8,9 @@ import SellerOrderEntry from '@components/common/SellerOrderEntry'
 
 const SellerProfile: React.FC = () => {
   let productCount = 2;
-  let reviewCount = 3;
+  let totalReviewCount = 10;
   let orderCount = 3;
+  let notReplyReview = 3;
 
   return (
     <Page>
@@ -27,7 +28,7 @@ const SellerProfile: React.FC = () => {
         userInfoContentStyle={{
           marginLeft: 8
         }}
-        subTitle={`${productCount} sản phẩm ${reviewCount} đánh giá`}
+        subTitle={`${productCount} sản phẩm ${totalReviewCount} đánh giá`}
         subTitleStyle={{
           color: '#767A7F'
         }}
@@ -55,7 +56,7 @@ const SellerProfile: React.FC = () => {
           />
           <SellerOrderEntry
             statusContent='Đánh giá'
-            statusCount={reviewCount}
+            statusCount={notReplyReview}
           />
         </Box>
 
