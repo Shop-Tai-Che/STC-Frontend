@@ -11,6 +11,7 @@ import {
   StatusOrderPage,
 } from "../pages";
 import TabMe from "@pages/TabMe/TabMe";
+import SellerProfile from "@pages/Seller/SellerProfile/SellerProfile";
 
 const MainRoute = () => {
   return (
@@ -29,6 +30,7 @@ const MainRoute = () => {
               element={<StatusOrderPage />}
             />
             <Route path="/tab-me" element={<TabMe />} />
+            <Route path="/seller-profile" element={<SellerProfile />} />
           </Routes>
           <BottomNavigationComponent />
         </Box>
