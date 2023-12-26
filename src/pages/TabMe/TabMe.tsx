@@ -4,32 +4,28 @@ import { useParams } from "react-router-dom";
 import { BusinessSvg, CatalogSvg } from "@assets/svg";
 import './TabMe.css'
 import AppLogo from '../../assets/Branding/App-Logo-v.1.png'
+import UserInfo from "@components/common/UserInfo";
 
 const TabMe: React.FC = () => {
   const { Item } = List;
   return (
     <Page
       hideScrollbar={true}>
-
-      <Box
-        flex
-        flexDirection='column'
-        alignItems='center'
-        className="tab-me__basic"
-      >
-        <Avatar
-          src={AppLogo}
-          size={56}
-          style={{ marginTop: 24 }}
-        />
-        <Text
-          size='xLarge'
-          bold={true}
-          style={{ marginTop: 8, marginBottom: 24 }}
-        >
-          User's Name here
-        </Text>
-      </Box>
+      <UserInfo
+        flexDirectionProp='column'
+        alignItemsProp='center'
+        userName='User name here'
+        avatarSize={64}
+        avatarSource={AppLogo}
+        userInfoStyle={{
+          backgroundColor: 'white',
+          paddingTop: 16,
+          paddingBottom: 16
+        }}
+        userInfoContentStyle={{
+          marginTop: 8
+        }}
+      />
       <List
         noSpacing
         divider={true}
