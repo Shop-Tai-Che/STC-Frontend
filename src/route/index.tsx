@@ -10,6 +10,7 @@ import {
   DetailProductPage,
   StatusOrderPage,
 } from "../pages";
+import TabMe from "@pages/TabMe/TabMe";
 
 const MainRoute = () => {
   return (
@@ -27,6 +28,7 @@ const MainRoute = () => {
               path="/status-order/:idOrder"
               element={<StatusOrderPage />}
             />
+            <Route path="/tab-me" element={<TabMe />} />
           </Routes>
           <BottomNavigationComponent />
         </Box>
