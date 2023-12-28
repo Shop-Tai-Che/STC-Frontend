@@ -10,7 +10,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
 
   return (
     <div
-      className="border-2 rounded-md"
+      className="border-2 rounded-md h-52"
       onClick={() => {
         const pageRedirect = `/product-detail/${product.id}`;
         navigate(pageRedirect);
@@ -19,20 +19,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
       <Box
         className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
         style={{ backgroundImage: `url(${product.ProductMedia[0].url})` }}
-      >
-        {/* {product.sale && (
-          <Text
-            size="xxSmall"
-            className="absolute right-2 top-2 uppercase bg-green text-white h-8 px-[6px] rounded-full"
-          >
-            Giảm
-            {product.sale.type === "percent" ? (
-              `${product.sale.amount * 100}%`
-            ) : (
-              <PriceDisplay>{product.sale.amount}</PriceDisplay>
-            )}
-          </Text>
-        )} */}
+      > 
       </Box>
       <div className="p-2">
         <p className="my-2 two-line-display max-line-2">{product.title}</p>

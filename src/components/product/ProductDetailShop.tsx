@@ -22,7 +22,7 @@ const ProductDetailShop = ({ product }: Props) => {
         </div>
       </div>
       <button
-        className="bg-transparent font-semibold hover:bg-gray-200 py-2 px-4 border rounded"
+        className="bg-transparent font-semibold hover:bg-gray-200 py-2 px-4 border rounded w-fit"
         style={{ color: primaryColor, borderColor: primaryColor }}
       >
         Xem shop

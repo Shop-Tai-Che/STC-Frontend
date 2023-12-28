@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FetchState } from "@utils/type/FetchState";
 import { ProductList } from "@utils/type";
+import axios from "axios";
 
 export const GetAllPopularProducts = () => {
   const [fetchState, setFetchState] = useState<FetchState>(FetchState.DEFAULT);
@@ -10,25 +11,19 @@ export const GetAllPopularProducts = () => {
     try {
       setFetchState(FetchState.LOADING);
 
-      const response = await fetch(
+      const response = await axios.get(
         `${import.meta.env.VITE_API_SUGGESTION}?page=0&pageSize=10`,
-        {
-          method: "GET",
+        { 
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
           },
         },
       );
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const resData = await response.json();
-      setProducts(resData);
-      console.log(resData);
+      const resData = response.data as ProductList;
+      setProducts(resData); 
       setFetchState(FetchState.SUCCESS);
-    } catch (error) {
+    } catch (error) { 
       setFetchState(FetchState.ERROR);
     }
   };

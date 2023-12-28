@@ -19,7 +19,7 @@ const ButtonOrder: FC<{ product: Product }> = ({ product }) => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white flex justify-center items-center">
+    <div className="fixed bottom-0 left-0 z-50 w-full h-12 bg-white flex justify-center items-end ">
       <Button
         className="w-4/12 "
         style={{ backgroundColor: tertiaryColor, borderRadius: "0px" }}

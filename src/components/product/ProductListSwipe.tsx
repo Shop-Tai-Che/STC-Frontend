@@ -16,7 +16,7 @@ const ProductListSwipeContent: FC = () => {
   useEffect(() => {
     if (fetchState === FetchState.DEFAULT) getRes();
   }, []);
-
+ 
   return (
     <SectionText title="Gợi ý cho bạn" padding="title-only">
       <Swiper
@@ -24,15 +24,17 @@ const ProductListSwipeContent: FC = () => {
         slidesPerView={2.2}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
-        className="px-4"
+        className="px-4 "
+   
       >
         {(fetchState === FetchState.ERROR ||
           fetchState === FetchState.LOADING) && <ProductListSwipeFallBack />}
 
         {fetchState === FetchState.SUCCESS && (
-          <div className="grid grid-cols-2 gap-2 px-4">
+          <div className="table h-full">
             {products?.data.map((product: any, index) => (
-              <ProductItem key={index} product={product} />
+              <SwiperSlide className="table-column h-full" key={index}> <ProductItem key={index} product={product} /></SwiperSlide>
+             
             ))}
           </div>
         )}

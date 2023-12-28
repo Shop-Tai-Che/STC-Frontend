@@ -12,6 +12,7 @@ import { GetDetailProduct } from "@services/ProductServices/GetDetailProducts";
 import { GetReviewsByProductId } from "@services/ReviewServices/ReviewProduct";
 import { FetchState } from "@utils/type/FetchState";
 import { Product, Review } from "@utils/type";
+import { UserFetch } from "@utils/type/User";
 
 const ProductDetailContent: React.FC = () => {
   const { idProduct } = useParams();
@@ -100,7 +101,7 @@ const ProductDetailContent: React.FC = () => {
   );
 };
 
-const DetailProductPage: React.FC = () => {
+const DetailProductPage: React.FC<{currentUser: UserFetch}> = ({currentUser}) => {
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       <div className="flex-1 overflow-auto pb-20">

@@ -14,6 +14,7 @@ import { Page } from "zmp-ui";
 import { PRODUCT_ORDER, getNativeStorage } from "@utils/helper/nativeStorage";
 import { CreateOrder } from "@services/OrderServices/OrderProduct";
 import { useNavigate } from "react-router-dom";
+import { UserFetch } from "@utils/type/User";
 
 interface typeInputOrderInfoReceive {
   numberphone: string | null;
@@ -27,7 +28,9 @@ const INITINPUTORDERINFORECEIVE: typeInputOrderInfoReceive = {
   address: null,
 };
 
-const OrderDetailPage: React.FC = () => {
+const OrderDetailPage: React.FC<{ currentUser: UserFetch }> = ({
+  currentUser,
+}) => {
   const navigate = useNavigate();
   const [productItem, setProductItem] = useState<Product | null>(null);
   const [inputOrderInfoReceive, setInputOrderInfoReceive] =
@@ -57,7 +60,7 @@ const OrderDetailPage: React.FC = () => {
   }, [productItem, paymentInfor.shipPrices]);
 
   const handleChangeInputOrderInfoReceive = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { id, value } = event.target;
 
@@ -78,8 +81,8 @@ const OrderDetailPage: React.FC = () => {
 
   const handleCreateOrder = () => {
     if (productItem) {
-      const orderNeedPost: Order = {
-        user_id: 1,
+      const orderNeedPost = {
+        user_id: currentUser.id,
         product_id: productItem.id,
         shop_id: productItem.shop_id,
         amount: 1,
@@ -87,8 +90,10 @@ const OrderDetailPage: React.FC = () => {
         address: inputOrderInfoReceive.address as string,
         note: inputOrderInfoReceive.note as string,
         status: STATUS_ORDER.PROCESSING,
+        name: currentUser.name,
+        phone: "8324235242",
       };
-      // postOrder(orderNeedPost);
+      postOrder( orderNeedPost );
     }
   };
 

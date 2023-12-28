@@ -6,7 +6,9 @@ import { FetchState } from "./FetchState";
 import { TYPESPAYMENT, Payment, ShipPayment } from "./Payment";
 import { STATUS_ORDER, StatusOrder } from "./StatusOrder";
 import { Review } from "./Review";
-import { Order } from "./Order";
+import { Order, OrderStatusFetch } from "./Order";
+import { SetLocalStorageParam } from "./LocalStorage";
+
 export {
   Product,
   Category,
@@ -21,4 +23,6 @@ export {
   StatusOrder,
   Review,
   Order,
+  OrderStatusFetch,
+  SetLocalStorageParam
 };

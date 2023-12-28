@@ -13,12 +13,8 @@ export const GetReviewsByProductId = (productId: string) => {
       setFetchStateListReview(FetchState.LOADING);
       console.log("sadas")
       const res = await axios.get(
-        `${import.meta.env.VITE_API_REVIEW}?productId=${productId}`,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        },
+        `${import.meta.env.VITE_API_REVIEW}?productId=${productId}`
+       
       );
       const resData = res.data.reviews as Review[];
       setReview(resData);
@@ -37,16 +33,13 @@ export const PostReview = () => {
   );
   const postReview = async (review: Review) => {
     try {
-      setFetchStatus(FetchState.LOADING);
+      setFetchStatus(FetchState.LOADING); 
+      console.log()
       const res = await axios.post(
-        `${import.meta.env.VITE_API_REVIEW}`,
-        review,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        },
+        `${import.meta.env.VITE_API_REVIEW}`.replace(" ",""),
+        review 
       );
+      console.log(res.data)
       setFetchStatus(FetchState.SUCCESS);
     } catch (error) {
       setFetchStatus(FetchState.ERROR);

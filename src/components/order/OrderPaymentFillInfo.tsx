@@ -18,7 +18,7 @@ const OrderPaymentFillInfo: React.FC<{
   };
   const TypePayment = editView ? (
     <select className="py-3 block w-full   outline-none ">
-      <option selected>Thanh toán bằng tiền mặt</option>
+      <option >Thanh toán bằng tiền mặt</option>
     </select>
   ) : (
     <h1>{convertPayment()}</h1>

@@ -52,19 +52,19 @@ const ProductComment: React.FC<{ listReview: Review[]; productId: number }> = ({
             title="Gửi đánh giá"
             isDisable={!inputTextComment}
             {...{ type: "button" }}
-            // onClick={() => {
-            //   postReview({
-            //     product_id: productId,
-            //     user_id: 2,
-            //     rating: 2,
-            //     comment: inputTextComment,
-            //   } as Review);
+            onClick={() => {
+              postReview({
+                product_id: productId,
+                user_id: 2,
+                rating: 2,
+                comment: inputTextComment,
+              } as Review);
 
-            //   openSnackbar({
-            //     type: "success",
-            //     text: "Chức năng dành cho các bên tích hợp phát triển...",
-            //   });
-            // }}
+              openSnackbar({
+                type: "success",
+                text: "Chức năng dành cho các bên tích hợp phát triển...",
+              });
+            }}
           />
         </div>
       </form>

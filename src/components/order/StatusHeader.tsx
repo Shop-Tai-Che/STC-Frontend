@@ -97,23 +97,23 @@ const ItemStatusReceived: FC = () => {
   );
 };
 
-const StatusHeader: FC<{ currentStatusOrder: StatusOrder | null }> = ({
+const StatusHeader: FC<{ currentStatusOrder: string | null }> = ({
   currentStatusOrder,
 }) => {
   const StatusItem: FC = () => {
     if (!currentStatusOrder) {
       return <></>;
     }
-    if (currentStatusOrder.typeStatus === STATUS_ORDER.PROCESSING)
+    if (currentStatusOrder === STATUS_ORDER.PROCESSING)
       return <ItemStatusProcessing />;
 
-    if (currentStatusOrder.typeStatus === STATUS_ORDER.DELIVERING)
+    if (currentStatusOrder === STATUS_ORDER.DELIVERING)
       return <ItemStatusShipping />;
 
-    if (currentStatusOrder.typeStatus === STATUS_ORDER.SUCCESS)
+    if (currentStatusOrder === STATUS_ORDER.SUCCESS)
       return <ItemStatusReceived />;
 
-    if (currentStatusOrder.typeStatus === STATUS_ORDER.CANCELED)
+    if (currentStatusOrder === STATUS_ORDER.CANCELED)
       return <ItemStatusCanceled />;
 
     return <></>;
