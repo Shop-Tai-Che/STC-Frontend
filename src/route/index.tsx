@@ -12,6 +12,7 @@ import {
   Profile,
   ValidityOrder,
 } from "../pages";
+import ComfirmOrder from "@pages/ValidityOrder/comfirmOrder";
 import useAuth from "../hooks/useAuth";
 import useGetAppInfo from "../hooks/useGetAppInfo";
 import { CreateUser } from "@services/UserServices"; 
@@ -61,6 +62,10 @@ const MainRoute = () => {
                 <Route
                   path="/validity-order"
                   element={<ValidityOrder currentUser={resCreateUser} />}
+                />
+                <Route
+                  path="/confirm-order/:idOrder"
+                  element={<ComfirmOrder  />}
                 />
               </Routes>
               <BottomNavigationComponent />

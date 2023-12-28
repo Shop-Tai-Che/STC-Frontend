@@ -23,6 +23,7 @@ export const NO_BOTTOM_NAVIGATION_PAGES = [
   "/search",
   "/order",
   "/status-order",
+  "/confirm-order"
 ];
 
 const BottomNavigationComponent: FC = () => {

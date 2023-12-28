@@ -96,10 +96,10 @@ export const GetOrderByShopId = () => {
     FetchState.DEFAULT
   );
   const [order, setOrder] = useState<OrderStatusFetch>();
-  const getResGetOrder = async (shopId: string) => {
+  const getResGetOrder = async (shopId: number) => {
     try {
       setFetchStateOrder(FetchState.LOADING);
-
+      console.log(`${import.meta.env.VITE_API_ORDER}/shop?page=0&pageSize=10&shopId=${shopId}`)
       const res = await axios.get(
         `${import.meta.env.VITE_API_ORDER}/shop?page=0&pageSize=10&shopId=${shopId}`,
         {
@@ -109,6 +109,36 @@ export const GetOrderByShopId = () => {
         }
       );
       const resData = res.data.data as OrderStatusFetch;
+      setOrder(resData);
+      console.log(res);
+      setFetchStateOrder(FetchState.SUCCESS);
+    } catch (error) {
+      console.log(error);
+      setFetchStateOrder(FetchState.ERROR);
+    }
+  };
+  return [order, fetchStateOrder, getResGetOrder] as const;
+};
+
+export const GetOrderByUser = () => {
+  const [fetchStateOrder, setFetchStateOrder] = useState<FetchState>(
+    FetchState.DEFAULT
+  );
+  const [order, setOrder] = useState<OrderStatusFetch[]>();
+  const getResGetOrder = async (userId: number) => {
+    try {
+      setFetchStateOrder(FetchState.LOADING);
+      console.log( `${import.meta.env.VITE_API_ORDER}?page=0&pageSize=10&userId=${userId}`)
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_ORDER}?page=0&pageSize=10&userId=${userId}`,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      const resData = res.data.data as OrderStatusFetch[];
+      console.log(res.data,"+++++++++++++")
       setOrder(resData);
       setFetchStateOrder(FetchState.SUCCESS);
     } catch (error) {

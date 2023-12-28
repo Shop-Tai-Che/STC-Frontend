@@ -2,6 +2,8 @@ import { DividerSpace } from "@components/common";
 import ProductItem from "./productItem";
 import React from "react";
 import { UserFetch } from "@utils/type/User";
+import ViewStatusOrder from "./viewStatusOrder";
+import UpdateStatusOrder from "./updateStatusOrder";
 
 const ValidityOrder: React.FC<{ currentUser: UserFetch }> = ({
   currentUser,
@@ -9,14 +11,13 @@ const ValidityOrder: React.FC<{ currentUser: UserFetch }> = ({
   return (
     <div className="bg-white">
       {currentUser.is_seller ? (
-        <> </>
+        <> 
+        <UpdateStatusOrder shopId={currentUser.id} />
+
+        </>
       ) : (
         <>
-          <DividerSpace />
-          <ProductItem />
-
-          <ProductItem />
-          <ProductItem />
+          <ViewStatusOrder userId={currentUser.id} />
         </>
       )}
     </div>

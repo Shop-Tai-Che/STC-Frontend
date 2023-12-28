@@ -21,6 +21,7 @@ export interface Order {
 
 
 export interface OrderStatusFetch extends Order{
+  map(arg0: (orderItem: any, index: any) => import("react").JSX.Element): unknown;
   status:STATUS_ORDER,
   Product:{
     title:string,

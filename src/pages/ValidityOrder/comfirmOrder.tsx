@@ -7,31 +7,18 @@ import ProductShortageItem from "@components/product/ProductShortageItem";
 import {
   OrderInforReceive,
   OrderPaymentFillInfo,
-  StatusHeader,
-  ButtonStatusOrder,
+  StatusHeader, 
 } from "@components/order";
+import ButtonStatusOrderSeller from "@components/order/ButtionStatusOrderSeller";
 import { DividerSpace } from "@components/common";
 import { Page } from "zmp-ui";
 import { GetOrderByOrderId } from "@services/OrderServices/OrderProduct";
-import { useParams } from "react-router-dom";
-import { UserFetch } from "@utils/type/User";
+import { useParams } from "react-router-dom"; 
 
-const StatusOrderPage: React.FC<{ currentUser: UserFetch }> = ({
-  currentUser,
-}) => {
+const ComfirmOrder= () => {
   const { idOrder } = useParams();
   const [order, fetchStateOrder, getResGetOrder] = GetOrderByOrderId();
-  const [orderItem, setOrderItem] = useState<OrderStatusFetch | null>(null);
-  // const [productItem, setProductItem] = useState<Product | null>(null);
-  // const [addressUserOrder, setAddressUserOrder] = useState<string | null>(null);
-  // const [numberPhoneUserOrder, setNumberPhoneUserOrder] = useState<
-  //   string | null
-  // >(null);
-  // const [noteUserOrder, setNoteUserOrder] = useState<string | null>(null);
-  // const [paymentInfor, setPaymentInfor] = useState<Payment>({
-  //   typePayment: TYPESPAYMENT.CASH,
-  //   totalPrices: 3121,
-  // });
+  const [orderItem, setOrderItem] = useState<OrderStatusFetch | null>(null); 
 
   const [needChangeStatus, setNeedChangeStatus] = useState(false);
   const setChangeStatusCallback = () => {
@@ -77,15 +64,15 @@ const StatusOrderPage: React.FC<{ currentUser: UserFetch }> = ({
               } as ShipPayment
             }
           />
-          <ButtonStatusOrder
+         <ButtonStatusOrderSeller
             currentStatusOrder={orderItem.status}
             orderId={orderItem.id}
             setChangeStatusCallback={setChangeStatusCallback}
-          />
+          /> 
         </Page>
       )}
     </>
   );
 };
 
-export default StatusOrderPage;
+export default ComfirmOrder;

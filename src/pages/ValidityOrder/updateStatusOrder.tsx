@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { GetOrderByUser } from "@services/OrderServices/OrderProduct";
+import { GetOrderByShopId } from "@services/OrderServices/OrderProduct";
 import { DividerSpace } from "@components/common";
 import ProductItem from "./productItem";
 import { useNavigate } from "react-router-dom";
 
-const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
-  const [order, fetchStateOrder, getResGetOrder] = GetOrderByUser();
+const UpdateStatusOrder: React.FC<{ shopId: number }> = ({ shopId }) => {
+  const  [order, fetchStateOrder, getResGetOrder] = GetOrderByShopId();
 
   useEffect(() => {
-    getResGetOrder(userId);
+    getResGetOrder(shopId);
   }, []);
   const navigate = useNavigate();
   return (
@@ -16,7 +16,7 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
       {order &&
         order.map((orderItem, index) => {
           const onAction = () => {
-            navigate(`/status-order/${orderItem.id}`);
+            navigate(`/confirm-order/${orderItem.id}`);
           };
           return (
             <>
@@ -26,6 +26,7 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
                 price={orderItem.Product.price}
                 status={orderItem.status}
                 onActon={onAction}
+                isSeller
               />
             </>
           );
@@ -34,4 +35,4 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
   );
 };
 
-export default ViewStatusOrder;
+export default UpdateStatusOrder;
