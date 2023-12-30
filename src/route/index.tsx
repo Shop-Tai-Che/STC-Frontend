@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { Box, ZMPRouter } from "zmp-ui";
-import Store from "../redux/store";
 import BottomNavigationComponent from "../components/layout/bottom-navigation";
 import {
   HomePage,
-  OrderDetailPage,
-  DetailProductPage,
-  StatusOrderPage,
+  OrderDetail,
+  DetailProduct,
+  StatusOrder,
   Profile,
   ValidityOrder,
+  ShopDetail,
 } from "../pages";
 import ComfirmOrder from "@pages/ValidityOrder/comfirmOrder";
 import useAuth from "../hooks/useAuth";
 import useGetAppInfo from "../hooks/useGetAppInfo";
-import { CreateUser } from "@services/UserServices"; 
+import { CreateUser } from "@services/UserServices";
 
 const MainRoute = () => {
   const { login } = useAuth();
@@ -39,38 +38,43 @@ const MainRoute = () => {
     <>
       {resCreateUser ? (
         <ZMPRouter>
-          <Provider store={Store}>
-            <Box className="flex-1 flex flex-col overflow-hidden">
-              <Routes>
-                <Route
-                  path="/"
-                  element={<HomePage currentUser={resCreateUser} />}
-                />
-                <Route
-                  path="/product-detail/:idProduct"
-                  element={<DetailProductPage currentUser={resCreateUser} />}
-                />
-                <Route
-                  path="/order"
-                  element={<OrderDetailPage currentUser={resCreateUser} />}
-                />
-                <Route
-                  path="/status-order/:idOrder"
-                  element={<StatusOrderPage currentUser={resCreateUser} />}
-                />
-                <Route path="/profile" element={<Profile  currentUser={resCreateUser}/>} />
-                <Route
-                  path="/validity-order"
-                  element={<ValidityOrder currentUser={resCreateUser} />}
-                />
-                <Route
-                  path="/confirm-order/:idOrder"
-                  element={<ComfirmOrder  />}
-                />
-              </Routes>
-              <BottomNavigationComponent />
-            </Box>
-          </Provider>
+          <Box className="flex-1 flex flex-col overflow-hidden">
+            <Routes>
+              <Route
+                path="/"
+                element={<HomePage currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/product-detail/:idProduct"
+                element={<DetailProduct currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/order"
+                element={<OrderDetail currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/status-order/:idOrder"
+                element={<StatusOrder currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/profile"
+                element={<Profile currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/validity-order"
+                element={<ValidityOrder currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/confirm-order/:idOrder"
+                element={<ComfirmOrder />}
+              />
+              <Route
+                path="/shop-detail/:idShop"
+                element={<ShopDetail currentUser={resCreateUser} />}
+              />
+            </Routes>
+            <BottomNavigationComponent />
+          </Box>
         </ZMPRouter>
       ) : (
         <> </>

@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
-import { GetOrderByUser } from "@services/OrderServices/OrderProduct";
-import { DividerSpace } from "@components/common";
-import ProductItem from "./productItem";
 import { useNavigate } from "react-router-dom";
+import { GetOrderByUserId } from "@services/OrderServices";
+import ProductItem from "./productItem";
 
 const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
-  const [order, fetchStateOrder, getResGetOrder] = GetOrderByUser();
+  const [order, fetchStateOrder, getResGetOrder] = GetOrderByUserId();
 
   useEffect(() => {
     getResGetOrder(userId);
   }, []);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   return (
     <>
       {order &&
@@ -20,7 +19,7 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
           };
           return (
             <>
-              <ProductItem
+              <ProductItem key={index}
                 image={orderItem?.Product.ProductMedia[0].url}
                 name={orderItem.Product.title}
                 price={orderItem.Product.price}

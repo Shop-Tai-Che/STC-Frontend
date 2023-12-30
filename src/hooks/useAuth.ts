@@ -1,11 +1,7 @@
-import api from 'zmp-sdk'; 
-import { setCurrentUser } from '@store/action';
-import setDataToStorage from '@store/setStorage';
-import { FetchState } from '@utils/type/FetchState';
-import { useState } from 'react';
+import api from 'zmp-sdk';
 
-const useAuth = () => { 
-    const login = (actionGetOrCreateUser) => { 
+const useAuth = () => {
+    const login = (actionGetOrCreateUser) => {
 
         api.login({
             success: async () => {
@@ -14,17 +10,15 @@ const useAuth = () => {
                         console.error('getUserInfo|error', error);
                     },
                 });
-                console.log("login" ,userInfo)
                 await actionGetOrCreateUser(userInfo)
-              
+
             },
             fail: error => {
                 console.error('login error', error);
             },
         });
     };
-  
-    
-    return { login,   };
+
+    return { login, };
 };
 export default useAuth;

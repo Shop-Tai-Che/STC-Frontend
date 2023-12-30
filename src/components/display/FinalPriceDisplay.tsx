@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from "react";
 import { SelectedOptions } from "@utils/type/Cart";
 import { Product } from "@utils/type/Product";
-import { calcFinalPrice } from "@utils/helper/product";
+import { calcFinalPrice } from "@utils/helper/calcFinalPrice";
 import { PriceDisplay } from "./PriceDisplay";
 
 export const FinalPriceDisplay: FC<{

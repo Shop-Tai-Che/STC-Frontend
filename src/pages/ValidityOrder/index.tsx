@@ -1,5 +1,3 @@
-import { DividerSpace } from "@components/common";
-import ProductItem from "./productItem";
 import React from "react";
 import { UserFetch } from "@utils/type/User";
 import ViewStatusOrder from "./viewStatusOrder";
@@ -11,9 +9,8 @@ const ValidityOrder: React.FC<{ currentUser: UserFetch }> = ({
   return (
     <div className="bg-white">
       {currentUser.is_seller ? (
-        <> 
-        <UpdateStatusOrder shopId={currentUser.id} />
-
+        <>
+          <UpdateStatusOrder shopId={currentUser.id} />
         </>
       ) : (
         <>

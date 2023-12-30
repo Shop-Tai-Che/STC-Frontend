@@ -13,4 +13,11 @@ export interface Review {
   updated_at: string;
   ReviewMedia?: [];
   Reply?: Reply[];
+  User?:{
+    name:string;
+    avatar?:string;
+    phone?:string;
+    is_seller:boolean;
+    active:boolean;
+  }
 }

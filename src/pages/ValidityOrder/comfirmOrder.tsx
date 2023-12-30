@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Product } from "@utils/type";
-import { FetchState } from "@utils/type/FetchState";
-import { OrderStatusFetch } from "@utils/type/Order";
-import { ShipPayment } from "@utils/type/Payment";
+import { useParams } from "react-router-dom";
+import { Page } from "zmp-ui";
+import { ButtonStatusOrderSeller } from "@components/button";
+import { DividerSpace } from "@components/divider";
 import ProductShortageItem from "@components/product/ProductShortageItem";
 import {
   OrderInforReceive,
   OrderPaymentFillInfo,
-  StatusHeader, 
+  StatusHeader,
 } from "@components/order";
-import ButtonStatusOrderSeller from "@components/order/ButtionStatusOrderSeller";
-import { DividerSpace } from "@components/common";
-import { Page } from "zmp-ui";
-import { GetOrderByOrderId } from "@services/OrderServices/OrderProduct";
-import { useParams } from "react-router-dom"; 
+import { GetOrderByOrderId } from "@services/OrderServices";
+import { Product } from "@utils/type/Product";
+import { FetchState } from "@utils/type/FetchState";
+import { OrderStatusFetch } from "@utils/type/Order";
+import { ShipPayment } from "@utils/type/Payment";
 
-const ComfirmOrder= () => {
+const ComfirmOrder = () => {
   const { idOrder } = useParams();
   const [order, fetchStateOrder, getResGetOrder] = GetOrderByOrderId();
-  const [orderItem, setOrderItem] = useState<OrderStatusFetch | null>(null); 
+  const [orderItem, setOrderItem] = useState<OrderStatusFetch | null>(null);
 
   const [needChangeStatus, setNeedChangeStatus] = useState(false);
   const setChangeStatusCallback = () => {
@@ -33,42 +33,43 @@ const ComfirmOrder= () => {
       setOrderItem(order as OrderStatusFetch);
     }
   }, [fetchStateOrder]);
-
+  console.log(orderItem)
   return (
     <>
       {orderItem && (
         <Page className="bg-white">
           <StatusHeader currentStatusOrder={orderItem.status} />
-          <DividerSpace />
+
           <ProductShortageItem
             product={
               {
                 id: orderItem.id,
                 title: orderItem.Product.title,
-                price: orderItem.Product.price ,
+                price: orderItem.Product.price,
                 shop_id: orderItem.shop_id,
-                created_at: "2023-11-23T15:31:37.560Z",
+                created_at: "2023-11-23T15:31:37.560",
                 updated_at: null,
                 ProductMedia: orderItem.Product.ProductMedia,
               } as Product
             }
           />
           <DividerSpace />
-          <OrderInforReceive />
+          <OrderInforReceive orderItem={orderItem} title="Chi tiết đơn hàng "/>
           <DividerSpace />
           <OrderPaymentFillInfo
-            paymentInfor={
-              {
-                typePayment: orderItem.payment_method,
-                shipPrices: 20000,
-              } as ShipPayment
-            }
+              paymentInfor={
+                {
+                  typePayment: orderItem.payment_method,
+                  shipPrices: orderItem.ship_fee,
+                } as ShipPayment
+              }
+              needDisplayTitle={false}
           />
-         <ButtonStatusOrderSeller
+          <ButtonStatusOrderSeller
             currentStatusOrder={orderItem.status}
             orderId={orderItem.id}
             setChangeStatusCallback={setChangeStatusCallback}
-          /> 
+          />
         </Page>
       )}
     </>

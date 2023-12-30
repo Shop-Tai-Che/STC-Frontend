@@ -2,21 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import { ReplySvg } from "@assets/svg";
 import { ButtonSecondary } from "@components/common";
 import { useSnackbar } from "zmp-ui";
-import { Review } from "@utils/type";
+import { Review } from "@utils/type/Review";
+import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import { FetchState } from "@utils/type/FetchState";
-import { PostReview } from "@services/ReviewServices/ReviewProduct";
+import { CreateReview } from "@services/ReviewServices";
 import convertDMY from "@utils/helper/convertDMY";
+import { UserFetch } from "@utils/type/User";
+import { Product } from "@utils/type/Product";
 
-const ProductComment: React.FC<{ listReview: Review[]; productId: number }> = ({
-  listReview,
-  productId,
-}) => {
+const ProductComment: React.FC<{
+  listReview: Review[];
+  product: Product;
+  currentUser: UserFetch;
+}> = ({ listReview, product, currentUser }) => {
   const { openSnackbar, setDownloadProgress, closeSnackbar } = useSnackbar();
   const [listItemReviews, setListItemReviews] = useState<Review[]>(listReview);
-  const [fetchStatus, postReview] = PostReview();
-  const [inputTextComment, setInputTextComment] = useState<string | null>(null);
+  const [fetchStatus, postReview] = CreateReview();
+  const [inputTextComment, setInputTextComment] = useState<string>("");
   const handleInputTextComment = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
     setInputTextComment(e.target.value);
   };
@@ -24,49 +28,69 @@ const ProductComment: React.FC<{ listReview: Review[]; productId: number }> = ({
     if (fetchStatus == FetchState.SUCCESS) {
       setListItemReviews((prev) => [
         {
-          product_id: productId,
-          user_id: 2,
-          rating: 2,
+          product_id: product.id,
+          user_id: currentUser.id,
+          rating: 5,
           comment: inputTextComment,
         } as Review,
         ...prev,
       ]);
+      setInputTextComment("");
     }
   }, [fetchStatus]);
+
+  const checkOrderStatus = (userIdToCheck, orders, desiredStatus) => {
+    return orders.some(
+      (order) =>
+        order.user_id === userIdToCheck && order.status === desiredStatus
+    );
+  };
+
   return (
     <section className="bg-white antialiased">
       <form className="mb-6 px-4">
-        <div className="py-2 px-2 mb-4 bg-white rounded-lg rounded-t-lg border border-black  ">
-          <textarea
-            id="comment"
-            rows={6}
-            style={{ resize: "none" }}
-            className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none "
-            placeholder="Bạn cảm thấy sao về sản phẩm này?"
-            required
-            onChange={handleInputTextComment}
-          />
-        </div>
-        <div style={{ width: "100%" }}>
-          <ButtonSecondary
-            title="Gửi đánh giá"
-            isDisable={!inputTextComment}
-            {...{ type: "button" }}
-            onClick={() => {
-              postReview({
-                product_id: productId,
-                user_id: 2,
-                rating: 2,
-                comment: inputTextComment,
-              } as Review);
+        {product &&
+          checkOrderStatus(
+            currentUser.id,
+            product.Order,
+            STATUS_ORDER.SUCCESS
+          ) && (
+            <>
+              <div className="py-2 px-2 mb-4 bg-white rounded-lg rounded-t-lg border border-black  ">
+                <textarea
+                  id="comment"
+                  rows={6}
+                  style={{ resize: "none" }}
+                  className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none "
+                  placeholder="Bạn cảm thấy sao về sản phẩm này?"
+                  required
+                  value={inputTextComment}
+                  onChange={handleInputTextComment}
+                />
+              </div>
 
-              openSnackbar({
-                type: "success",
-                text: "Chức năng dành cho các bên tích hợp phát triển...",
-              });
-            }}
-          />
-        </div>
+              <div style={{ width: "100%" }}>
+                <ButtonSecondary
+                  title="Gửi đánh giá"
+                  isDisable={!inputTextComment}
+                  {...{ type: "button" }}
+                  onClick={() => {
+                    postReview({
+                      product_id: product.id,
+                      user_id: currentUser.id,
+                      rating: 2,
+                      comment: inputTextComment,
+                    } as Review);
+
+                    openSnackbar({
+                      type: "success",
+                      text: "Chức năng dành cho các bên tích hợp phát triển...",
+                    });
+                  }}
+                />
+              </div>
+            </>
+          )}
       </form>
 
       <div className="max-w-2xl mx-auto">
@@ -84,10 +108,16 @@ const ProductComment: React.FC<{ listReview: Review[]; productId: number }> = ({
                     <p className="inline-flex items-center mr-3 text-sm text-gray-900  font-semibold">
                       <img
                         className="mr-2 w-6 h-6 rounded-full"
-                        src="https://img.a.transfermarkt.technology/portrait/big/3366-1683638749.jpg?lm=1"
+                        src={
+                          itemComment.User
+                            ? itemComment.User.avatar
+                            : currentUser.avatar
+                        }
                         alt="user"
                       />
-                      Ricardo Izecson dos Santos Leite {itemComment.user_id}
+                      {itemComment.User
+                        ? itemComment.User.name
+                        : currentUser.name}
                     </p>
                     <p className="text-sm text-gray-600  ">
                       <time title={itemComment.created_at}>
@@ -99,15 +129,6 @@ const ProductComment: React.FC<{ listReview: Review[]; productId: number }> = ({
                   </div>
                 </footer>
                 <p dangerouslySetInnerHTML={{ __html: itemComment.comment }} />
-                {/* <div className="flex items-center mt-4 space-x-4">
-                      <button
-                        type="button"
-                        className="flex items-center text-sm text-gray-500 hover:underline font-medium"
-                      >
-                        <ReplySvg />
-                        Reply
-                      </button>
-                    </div> */}
               </article>
             );
           })}

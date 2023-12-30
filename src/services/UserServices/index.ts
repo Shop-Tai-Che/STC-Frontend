@@ -16,9 +16,8 @@ export const CreateUser = () => {
       setFetchStatusUser(FetchState.LOADING);
 
       const url = `${import.meta.env.VITE_API_USER_CREATION}`.replace(" ", "");
-      console.log(url, user)
-      const res = await axios.post(url, user,);
-      console.log("res", res);
+ 
+      const res = await axios.post(url, user,); 
       setFetchStatusUser(FetchState.SUCCESS);
       setResCreateUser(res.data);
       setDataToStorage(setCurrentUser(res.data))

@@ -3,8 +3,7 @@ import { SetLocalStorageParam } from "@utils/type";
 
 
 const setDataToStorage = async ({ type, data }: SetLocalStorageParam) => {
-    try {
-        console.log("dataToStorage", data)
+    try { 
         const { errorKeys } = await setStorage({
             data: {
                 [type]: data,

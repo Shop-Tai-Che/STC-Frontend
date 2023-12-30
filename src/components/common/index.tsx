@@ -1,13 +1,13 @@
-import BannerHome from "./BannerHome";
-import ButtonOrder from "./ButtonOrder";
-import DividerSpace from "./DividerSpace";
-import SectionText from "./SectionText";
-import InputNoOutline from "./InputNoOutline";
-import ButtonSecondary from "./ButtonSecondary";
-import DividerSpaceLine from "./DividerSpaceLine";
+import Banner from "../../pages/Home/Banner";
+import ButtonOrder from "../button/ButtonOrder";
+import DividerSpace from "../divider/DividerSpace";
+import SectionText from "../section/SectionText";
+import InputNoOutline from "../input/InputNoOutline";
+import ButtonSecondary from "../button/ButtonSecondary";
+import DividerSpaceLine from "../divider/DividerSpaceLine";
 
 export {
-  BannerHome,
+  Banner,
   ButtonOrder,
   DividerSpace,
   SectionText,
@@ -15,4 +15,4 @@ export {
   ButtonSecondary,
   DividerSpaceLine,
 };
-export * from "./SkeletonsList";
+export * from "../skeleton/SkeletonsList";

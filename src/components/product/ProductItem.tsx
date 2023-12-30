@@ -32,7 +32,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
             <FinalPriceDisplay product={product} />
           </Text>
           <Text size="xxSmall" className="text-gray-400">
-            23 đã bán
+            {product.has_sold} đã bán
           </Text>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { GetOrderByShopId } from "@services/OrderServices/OrderProduct";
-import { DividerSpace } from "@components/common";
-import ProductItem from "./productItem";
 import { useNavigate } from "react-router-dom";
+import { GetOrderByShopId } from "@services/OrderServices"; 
+import ProductItem from "./productItem";
+
 
 const UpdateStatusOrder: React.FC<{ shopId: number }> = ({ shopId }) => {
   const  [order, fetchStateOrder, getResGetOrder] = GetOrderByShopId();
@@ -20,7 +20,7 @@ const UpdateStatusOrder: React.FC<{ shopId: number }> = ({ shopId }) => {
           };
           return (
             <>
-              <ProductItem
+              <ProductItem key={index}
                 image={orderItem?.Product.ProductMedia[0].url}
                 name={orderItem.Product.title}
                 price={orderItem.Product.price}

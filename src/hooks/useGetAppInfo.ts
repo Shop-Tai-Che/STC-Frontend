@@ -1,5 +1,4 @@
 import api from 'zmp-sdk';
-// import store from "../store"
 
 export interface IAppInfo {
     name: string;
@@ -13,8 +12,7 @@ const useGetAppInfo = () => {
     const getAppInfo = () => {
         api.getAppInfo({
             success: data => {
-                // store.dispatch('setAppInfo', data);
-                console.log('get appInfo|success', data);
+                console.log('get appInfo|success');
             },
             fail: error => {
                 console.error('get appInfo|error', error);

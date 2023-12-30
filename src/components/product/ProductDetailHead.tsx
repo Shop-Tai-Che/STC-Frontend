@@ -4,9 +4,18 @@ import { Icon, Text } from "zmp-ui";
 import { FinalPriceDisplay } from "@components/display";
 import { Product } from "@utils/type";
 import { primaryColor } from "@utils/helper/config";
+import UpdateLove from "@services/ProductServices/UpdateLove";
 
-const ProductDetailHead: FC<{ product: Product }> = ({ product }) => {
-  const [hasLoveProduct, setHasLoveProduct] = useState(false);
+const ProductDetailHead: FC<{
+  numberReview: number;
+  product: Product;
+  userId: number;
+}> = ({ numberReview, product, userId }) => {
+  const isUserIdExist = (product?.Love as { user_id: number }[] | undefined)?.some(item => item.user_id === userId) ?? false;
+
+  const [hasLoveProduct, setHasLoveProduct] = useState(isUserIdExist);
+  const [fetchStatus, updateStatusLove] = UpdateLove();
+
 
   return (
     <div className="p-2">
@@ -14,7 +23,7 @@ const ProductDetailHead: FC<{ product: Product }> = ({ product }) => {
       <Text size="xLarge" className="my-2">
         {product.title}
       </Text>
-      <div className="grid grid-cols-4 gap-8 items-end">
+      <div className=" grid-cols-4 gap-8 items-end" style={{ display: "grid" }}>
         <div className="col-span-3 flex items-end justify-start gap-6">
           <Text
             size="large"
@@ -23,12 +32,15 @@ const ProductDetailHead: FC<{ product: Product }> = ({ product }) => {
           >
             <FinalPriceDisplay product={product} />
           </Text>
-          <Text size="small">2 đánh giá </Text>
-          <Text size="small">23 đã bán</Text>
+          <Text size="small">{numberReview} đánh giá </Text>
+          <Text size="small">{product?.has_sold} đã bán</Text>
         </div>
         <button
           className="bg-transparent flex justify-end"
-          onClick={() => setHasLoveProduct(!hasLoveProduct)}
+          onClick={() => {
+            updateStatusLove(userId, product.id);
+            setHasLoveProduct(!hasLoveProduct);
+          }}
         >
           {hasLoveProduct ? (
             <Icon icon="zi-heart-solid" className="text-rose-600" />
