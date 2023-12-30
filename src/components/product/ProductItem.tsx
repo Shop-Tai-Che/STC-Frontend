@@ -19,10 +19,20 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
       <Box
         className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
         style={{ backgroundImage: `url(${product.ProductMedia[0].url})` }}
-      > 
-      </Box>
+      ></Box>
       <div className="p-2">
-        <p className="my-2 two-line-display max-line-2">{product.title}</p>
+        <p
+          style={{
+            display: "inline-block",
+            height: "2rem",
+            lineHeight: "1em",
+            overflow: "hidden",
+            margin: "2px",
+            padding: "4px",
+          }}
+        >
+          {product.title}
+        </p>
         <div className="flex items-end justify-between">
           <Text
             size="small"
