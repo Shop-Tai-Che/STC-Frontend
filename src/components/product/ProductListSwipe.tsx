@@ -1,38 +1,40 @@
 import React, { useEffect } from "react";
-import SectionText from "../common/SectionText";
+import SectionText from "../section/SectionText";
 import ProductItem from "./ProductItem";
 import { FC, Suspense } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ProductSlideSkeleton } from "../common/SkeletonsList";
+import { ProductSlideSkeleton } from "../skeleton/SkeletonsList";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { GetAllPopularProducts } from "@services/ProductServices";
+import { GetProductsPopular } from "@services/ProductServices";
 import { FetchState } from "@utils/type/FetchState";
 
 const ProductListSwipeContent: FC = () => {
-  const [products, fetchState, getRes] = GetAllPopularProducts();
+  const [products, fetchState, getRes] = GetProductsPopular();
 
   useEffect(() => {
     if (fetchState === FetchState.DEFAULT) getRes();
   }, []);
-
+ 
   return (
     <SectionText title="Gợi ý cho bạn" padding="title-only">
       <Swiper
         spaceBetween={10}
         slidesPerView={2.2}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-        className="px-4"
+        // onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
+        className="px-4 "
+   
       >
         {(fetchState === FetchState.ERROR ||
           fetchState === FetchState.LOADING) && <ProductListSwipeFallBack />}
 
         {fetchState === FetchState.SUCCESS && (
-          <div className="grid grid-cols-2 gap-2 px-4">
+          <div className="table h-full">
             {products?.data.map((product: any, index) => (
-              <ProductItem key={index} product={product} />
+              <SwiperSlide className="table-column h-full" key={index}> <ProductItem key={index} product={product} /></SwiperSlide>
+             
             ))}
           </div>
         )}

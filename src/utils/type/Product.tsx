@@ -1,3 +1,5 @@
+import { Shop } from "./Shop";
+import { STATUS_ORDER } from "./StatusOrder";
 export interface PercentSale {
   amount: number;
   type: "percent";
@@ -68,10 +70,27 @@ export interface Product {
   created_at: string;
   updated_at: null;
   tag_id?: number;
+  has_sold?: number;
   tag: Tag;
   ProductMedia: ProductMedia[];
-  _count?: CountLove;
-  Love?: Love;
+  _count?: {
+    Love:number;
+    Review:number;
+  };
+  Love?: {
+    user_id:number;
+  };
+  Shop?: Shop;
+  Order?:{
+    user_id:number;
+    name:string;
+    status:
+    | STATUS_ORDER.PROCESSING
+    | STATUS_ORDER.DELIVERING
+    | STATUS_ORDER.WAIT_FOR_PAYMENT
+    | STATUS_ORDER.CANCELED
+    | STATUS_ORDER.SUCCESS;
+  }[]
 }
 
 export interface ProductList {

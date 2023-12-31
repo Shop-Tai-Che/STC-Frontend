@@ -1,11 +1,11 @@
 import React, { Suspense, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import { ProductItemSkeleton, SectionText } from "@components/common";
-import { GetAllLatestProduct } from "@services/ProductServices";
+import { GetProductLatest } from "@services/ProductServices";
 import { FetchState } from "@utils/type/FetchState";
 
 const ProductListGridContent: React.FC = () => {
-  const [products, fetchState, getRes] = GetAllLatestProduct();
+  const [products, fetchState, getRes] = GetProductLatest();
 
   useEffect(() => {
     if (fetchState === FetchState.DEFAULT) getRes();

@@ -1,6 +1,17 @@
-import HomePage from "./HomePage";
-import OrderDetailPage from "./OrderDetailPage";
-import DetailProductPage from "./DetailProductPage";
-import StatusOrderPage from "./StatusOrderPage";
+import HomePage from "./Home";
+import OrderDetail from "./OrderDetail";
+import DetailProduct from "./DetailProduct";
+import StatusOrder from "./StatusOrder";
+import Profile from "./Profile";
+import ValidityOrder from "./ValidityOrder";
+import ShopDetail from "./ShopDetail";
 
-export { HomePage, OrderDetailPage, DetailProductPage, StatusOrderPage };
+export {
+  HomePage,
+  OrderDetail,
+  DetailProduct,
+  StatusOrder,
+  Profile,
+  ValidityOrder,
+  ShopDetail,
+};

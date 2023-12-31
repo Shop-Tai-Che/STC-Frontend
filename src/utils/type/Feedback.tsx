@@ -1,6 +1,6 @@
 export type Feedback = {
   id: number;
-  user_id: string;
+  user_id: number;
   cover: string;
   product_id: string;
   rating: 4;

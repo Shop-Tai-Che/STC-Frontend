@@ -4,8 +4,9 @@ import appConfig from "../app-config.json";
 import { createRoot } from "react-dom/client";
 import "./css/tailwind.css";
 import "zmp-ui/zaui.css";
-import "./css/app.css";
-
+import "./css/app.css"; 
+ 
+import 'zmp-framework/zmp-bundle.min.css';
 if (!window.APP_CONFIG) {
   window.APP_CONFIG = appConfig;
 }

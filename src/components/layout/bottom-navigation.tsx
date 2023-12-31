@@ -1,19 +1,20 @@
 import React, { FC, useMemo, useState } from "react";
-import { MenuItem } from "@utils/type";
 import { BottomNavigation, Icon } from "zmp-ui";
-import { useVirtualKeyboardVisible } from "@utils/hooks";
 import { useLocation, useNavigate } from "react-router";
+import { MenuItem } from "@utils/type";
+import { primaryColor } from "@utils/helper/config";
+import { useVirtualKeyboardVisible } from "@utils/hooks";
 
 const tabs: Record<string, MenuItem> = {
   "/": {
     label: "Trang chủ",
     icon: <Icon icon="zi-home" />,
-    activeIcon: <Icon icon="zi-home" />,
+    activeIcon: <Icon icon="zi-home" style={{ fontWeight: "bold" }} />,
   },
   "/profile": {
     label: "Cá nhân",
     icon: <Icon icon="zi-user" />,
-    activeIcon: <Icon icon="zi-user-solid" />,
+    activeIcon: <Icon icon="zi-user" style={{ fontWeight: "bold" }} />,
   },
 };
 
@@ -23,16 +24,19 @@ export const NO_BOTTOM_NAVIGATION_PAGES = [
   "/search",
   "/order",
   "/status-order",
+  "/confirm-order",
+  "/validity-order",
+  "/shop-detail"
 ];
 
 const BottomNavigationComponent: FC = () => {
-  const [activeTab, setActiveTab] = useState("chat");
+  const [activeTab, setActiveTab] = useState("/");
   const keyboardVisible = useVirtualKeyboardVisible();
   const navigate = useNavigate();
   const location = useLocation();
   const notBottomNav = useMemo(() => {
     return NO_BOTTOM_NAVIGATION_PAGES.some((page) =>
-      location.pathname.startsWith(page),
+      location.pathname.startsWith(page)
     );
   }, [location]);
 
@@ -52,6 +56,7 @@ const BottomNavigationComponent: FC = () => {
           icon={tabs[path].icon}
           activeIcon={tabs[path].activeIcon}
           onClick={() => navigate(path)}
+          style={{ color: activeTab === path ? primaryColor : "" }}
         />
       ))}
     </BottomNavigation>
