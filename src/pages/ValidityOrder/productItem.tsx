@@ -65,7 +65,7 @@ const ButtonStatusOrderSeller: React.FC<{ status: string }> = ({ status }) => {
           className="w-fit"
           style={{ backgroundColor: primaryColor }}
         >
-          Đang đã giao hàng & thanh toán
+          Đã giao hàng & thanh toán
         </Button>
       )}
       {status == STATUS_ORDER.PROCESSING && (
@@ -111,7 +111,7 @@ const ProductItem: React.FC<{
           <div className="flex justify-between w-full">
             <span className="subtitle ">1 Sản phẩm</span>
             <span className="subtitle ">
-              Thanh toán: <span style={{ color: primaryColor }}><PriceDisplay children={price}/></span>
+              Thanh toán: <span style={{ color: primaryColor }}><PriceDisplay children={price} /></span>
             </span>
           </div>
         </div>

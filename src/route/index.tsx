@@ -61,7 +61,7 @@ const MainRoute = () => {
                 element={<Profile currentUser={resCreateUser} />}
               />
               <Route
-                path="/validity-order"
+                path="/validity-order/:userState"
                 element={<ValidityOrder currentUser={resCreateUser} />}
               />
               <Route
