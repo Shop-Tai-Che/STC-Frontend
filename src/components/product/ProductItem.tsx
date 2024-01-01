@@ -18,7 +18,7 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
     >
       <Box
         className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
-        style={{ backgroundImage: `url(${product.ProductMedia[0].url})` }}
+        style={{ backgroundImage: `url(${product &&  product.ProductMedia[0] && product.ProductMedia[0].url ? product.ProductMedia[0].url : ""} )` }}
       ></Box>
       <div className="p-2">
         <p
