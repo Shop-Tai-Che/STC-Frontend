@@ -75,11 +75,11 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
           subTitle={currentUser.is_seller ? "" : "Điền thông tin qua Google Form"}
           className="tab-me__action__register-seller"
           onClick={() => {
-            currentUser.is_seller ? navigate(`/shop-detail/${currentUser.id}`) : <a
-              target="_blank"
-              href={FORM_REGISTRY_BECOME_SELLER}
-              className="title font-medium no-underline text-black"
-            />
+            if (currentUser.is_seller) {
+              navigate(`/shop-detail/${currentUser.id}`)
+            } else {
+              window.open(FORM_REGISTRY_BECOME_SELLER, '_blank');
+            }
           }}
         />
       </List>
