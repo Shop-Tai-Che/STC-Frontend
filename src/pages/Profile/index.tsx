@@ -41,8 +41,6 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     fetchData();
   }, []);
 
-  let isShop = true;
-
   return (
     <div className="max-w-2xl mx-auto bg-white">
       <UserInfo
@@ -71,17 +69,17 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
           }}
         />
         <List.Item
-          title={isShop ? "Shop của tôi" : "Đăng kí bán hàng"}
+          title={currentUser.is_seller ? "Shop của tôi" : "Đăng kí bán hàng"}
           prefix={<BusinessSvg />}
           suffix={<Icon icon="zi-chevron-right" />}
-          subTitle={isShop ? "" : "Điền thông tin qua Google Form"}
+          subTitle={currentUser.is_seller ? "" : "Điền thông tin qua Google Form"}
           className="tab-me__action__register-seller"
           onClick={() => {
-            isShop ? navigate(`/shop-detail/${currentUser.id}`) : <a
-              target="_blank"
-              href={FORM_REGISTRY_BECOME_SELLER}
-              className="title font-medium no-underline text-black"
-            />
+            if (currentUser.is_seller) {
+              navigate(`/shop-detail/${currentUser.id}`)
+            } else {
+              window.open(FORM_REGISTRY_BECOME_SELLER, '_blank');
+            }
           }}
         />
       </List>

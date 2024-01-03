@@ -1,10 +1,11 @@
 import React from "react";
 import { Page } from "zmp-ui";
 import { DividerSpace } from "@components/divider";
-import SearchProduct from "@components/search";
+// import SearchProduct from "@components/search";
 import { ProductListSwipe, ProductListGrid } from "@components/product";
 import Banner from "./Banner";
 import { UserFetch } from "@utils/type/User";
+
 
 const HomePage: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   return (
