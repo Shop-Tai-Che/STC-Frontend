@@ -40,8 +40,7 @@ const ProductDetailContent:  React.FC<{ currentUser: UserFetch }> = ({currentUse
         console.log(error);
       }
     }
-  }, []);
-  console.log(productItem);
+  }, []); 
   return (
     <div>
       {fetchStateDetailProduct === FetchState.LOADING && (

@@ -14,8 +14,7 @@ const ProductDetailImageSwipe = ({ product }) => {
       pagination={{
         type: "fraction",
       }}
-      modules={[Pagination, Navigation]}
-      navigation={true}
+      modules={[Pagination, Navigation]} 
       className="mySwiper"
     >
       {product.ProductMedia?.map((MediaItem, ChildIndex) => {
