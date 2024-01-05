@@ -16,8 +16,9 @@ import { FetchState } from "@utils/type/FetchState";
 import { Product } from "@utils/type/Product";
 import { Review } from "@utils/type/Review";
 import { UserFetch } from "@utils/type/User";
+import LoadingState from "@components/common/loading";
 
-const ProductDetailContent:  React.FC<{ currentUser: UserFetch }> = ({currentUser}) => {
+const ProductDetailContent: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   const { idProduct } = useParams();
   const { openSnackbar } = useSnackbar();
   const [productItem, fetchStateDetailProduct, getResDetailProduct] =
@@ -40,27 +41,16 @@ const ProductDetailContent:  React.FC<{ currentUser: UserFetch }> = ({currentUse
         console.log(error);
       }
     }
-  }, []); 
+  }, []);
   return (
     <div>
       {fetchStateDetailProduct === FetchState.LOADING && (
         <Page className="flex justify-center items-center">
-          <Button
-            variant="secondary"
-            type="highlight"
-            onClick={() => {
-              openSnackbar({
-                text: "Loading...",
-                type: "loading",
-              });
-            }}
-          >
-            Loading
-          </Button>
+          <LoadingState loadingTitle="Loading..." />
         </Page>
       )}
       {fetchStateDetailProduct === FetchState.SUCCESS && (
-        <>
+        <div>
           <ProductDetailHead
             product={productItem as Product}
             numberReview={reviews ? reviews.length : 0}
@@ -73,23 +63,12 @@ const ProductDetailContent:  React.FC<{ currentUser: UserFetch }> = ({currentUse
             <ProductDetailDescription description={productItem?.description} />
           </SectionText>
           <DividerSpace />
-        </>
+        </div>
       )}
 
       {fetchStateListReview === FetchState.LOADING && (
         <Page className="flex justify-center items-center">
-          <Button
-            variant="secondary"
-            type="highlight"
-            onClick={() => {
-              openSnackbar({
-                text: "Loading...",
-                type: "loading",
-              });
-            }}
-          >
-            Loading
-          </Button>
+          <LoadingState loadingTitle="Loading..." />
         </Page>
       )}
       {fetchStateListReview === FetchState.SUCCESS && (
@@ -112,10 +91,10 @@ const DetailProduct: React.FC<{ currentUser: UserFetch }> = ({
   currentUser,
 }) => {
   return (
-    <Page className="relative flex-1 flex flex-col bg-white">
+    <Page className="relative flex-1 flex flex-col bg-white" hideScrollbar={true}>
       <div className="flex-1 overflow-auto pb-20">
-        <Suspense fallback={<ProductDetailContent currentUser={currentUser}/>}>
-          <ProductDetailContent currentUser={currentUser}/>
+        <Suspense fallback={<ProductDetailContent currentUser={currentUser} />}>
+          <ProductDetailContent currentUser={currentUser} />
         </Suspense>
       </div>
     </Page>

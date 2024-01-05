@@ -4,6 +4,7 @@ import { PriceDisplay } from "@components/display";
 import getColorOpacity from "@utils/helper/getColorOpacity";
 import { primaryColor } from "@utils/helper/config";
 import { StatusOrder, STATUS_ORDER } from "@utils/type/StatusOrder";
+import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
 const ItemStatusShipping: FC = () => {
   const colorOpacity = getColorOpacity(primaryColor, "0.3");
@@ -22,7 +23,7 @@ const ItemStatusShipping: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay children={320000} />
+        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
       </Text>
     </>
   );
@@ -45,7 +46,7 @@ const ItemStatusProcessing: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay children={320000} />
+        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
       </Text>
     </>
   );
@@ -68,7 +69,7 @@ const ItemStatusCanceled: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay children={320000} />
+        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
       </Text>
     </>
   );
@@ -91,7 +92,7 @@ const ItemStatusReceived: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay children={320000} />
+        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
       </Text>
     </>
   );

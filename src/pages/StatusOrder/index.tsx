@@ -33,13 +33,13 @@ const StatusOrder: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     if (fetchStateOrder == FetchState.SUCCESS) {
       setOrderItem(order as OrderStatusFetch);
     }
-  }, [fetchStateOrder]); 
+  }, [fetchStateOrder]);
   return (
     <>
       {orderItem && (
         <Page className="bg-white">
           <StatusHeader currentStatusOrder={orderItem.status} />
- 
+
           <ProductShortageItem
             product={
               {

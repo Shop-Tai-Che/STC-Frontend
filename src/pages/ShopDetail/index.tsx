@@ -18,7 +18,6 @@ const FORM_UP_PRODUCT =
 const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   const [products, fetchState, getRes] = GetProductByShopId();
   const { idShop } = useParams();
-  let orderCount = 3;
 
   useEffect(() => {
     if (fetchState === FetchState.DEFAULT && idShop) {

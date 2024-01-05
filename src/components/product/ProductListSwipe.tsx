@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { GetProductsPopular } from "@services/ProductServices";
 import { FetchState } from "@utils/type/FetchState";
+import { HOME_TITLE } from "@utils/type/Title";
 
 const ProductListSwipeContent: FC = () => {
   const [products, fetchState, getRes] = GetProductsPopular();
@@ -16,16 +17,16 @@ const ProductListSwipeContent: FC = () => {
   useEffect(() => {
     if (fetchState === FetchState.DEFAULT) getRes();
   }, []);
- 
+
   return (
-    <SectionText title="Gợi ý cho bạn" padding="title-only">
+    <SectionText title={HOME_TITLE.LOVE} padding="title-only">
       <Swiper
         spaceBetween={10}
         slidesPerView={2.2}
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
         className="px-4 "
-   
+
       >
         {(fetchState === FetchState.ERROR ||
           fetchState === FetchState.LOADING) && <ProductListSwipeFallBack />}
@@ -34,7 +35,7 @@ const ProductListSwipeContent: FC = () => {
           <div className="table h-full">
             {products?.data.map((product: any, index) => (
               <SwiperSlide className="table-column h-full" key={index}> <ProductItem key={index} product={product} /></SwiperSlide>
-             
+
             ))}
           </div>
         )}
@@ -46,7 +47,7 @@ const ProductListSwipeContent: FC = () => {
 const ProductListSwipeFallBack: FC = () => {
   const recommendProducts = [...new Array(3)];
   return (
-    <SectionText title="Gợi ý cho bạn" padding="title-only">
+    <SectionText padding="title-only" >
       <Swiper slidesPerView={2.5} spaceBetween={16} className="px-4">
         {recommendProducts.map((_, index) => (
           <SwiperSlide key={index}>
@@ -54,7 +55,7 @@ const ProductListSwipeFallBack: FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </SectionText>
+    </SectionText >
   );
 };
 

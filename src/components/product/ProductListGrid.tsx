@@ -16,7 +16,7 @@ const ProductListGridContent: React.FC = () => {
         fetchState === FetchState.LOADING) && <ProductListGridFallback />}
 
       {fetchState === FetchState.SUCCESS && (
-        <div className=" grid-cols-2 gap-2 px-4" style={{display:"grid"}}>
+        <div className=" grid-cols-2 gap-2 px-4" style={{ display: "grid" }}>
           {products?.data.map((product: any, index) => (
             <ProductItem key={index} product={product} />
           ))}

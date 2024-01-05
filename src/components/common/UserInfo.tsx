@@ -1,6 +1,5 @@
 import React from "react";
 import { Page, List, Icon, Avatar, Box, Text } from "zmp-ui";
-import AppLogo from '../../assets/Branding/App-Logo-v.1.png'
 
 // Define the props type
 interface UserInfoProps {

@@ -12,9 +12,8 @@ const ProductDetailDescription: React.FC<{ description?: string }> = ({
       <div className="px-4">
         {description && (
           <div
-            className={`text-sm text-gray-500 ${
-              !readMoreDescription && `max-line-2`
-            } `}
+            className={`text-sm text-gray-500 ${!readMoreDescription && `max-line-2`
+              } `}
             dangerouslySetInnerHTML={{ __html: description }}
           />
         )}

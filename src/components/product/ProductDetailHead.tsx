@@ -5,6 +5,7 @@ import { FinalPriceDisplay } from "@components/display";
 import { Product } from "@utils/type";
 import { primaryColor } from "@utils/helper/config";
 import UpdateLove from "@services/ProductServices/UpdateLove";
+import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
 const ProductDetailHead: FC<{
   numberReview: number;
@@ -18,25 +19,25 @@ const ProductDetailHead: FC<{
 
 
   return (
-    <div className="p-2">
+    <div>
       <ProductDetailImageSwipe product={product} />
-      <Text size="xLarge" className="my-2">
+      <Text size="xLarge" className="pl-4 pr-4 pt-2">
         {product.title}
       </Text>
-      <div className=" grid-cols-4 gap-8 items-end" style={{ display: "grid" }}>
+      <div className="pl-4 pr-2 grid-cols-4 gap-8 items-end" style={{ display: "grid" }}>
         <div className="col-span-3 flex items-end justify-start gap-6">
           <Text
             size="large"
             className=" mt-2 text-primary"
-            style={{ color: primaryColor, fontWeight: "bolder" }}
+            style={{ color: primaryColor, fontWeight: '600' }}
           >
-            <FinalPriceDisplay product={product} />
+            <FinalPriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.DETAIL_PRODUCT} product={product} />
           </Text>
           <Text size="small">{numberReview} đánh giá </Text>
           <Text size="small">{product?.has_sold} đã bán</Text>
         </div>
         <button
-          className="bg-transparent flex justify-end"
+          className="pr-4 bg-transparent flex justify-end"
           onClick={() => {
             updateStatusLove(userId, product.id);
             setHasLoveProduct(!hasLoveProduct);

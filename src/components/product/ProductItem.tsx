@@ -4,6 +4,7 @@ import { PriceDisplay, FinalPriceDisplay } from "@components/display";
 import { primaryColor } from "@utils/helper/config";
 import { Product } from "@utils/type";
 import { useNavigate } from "react-router-dom";
+import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
 const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
@@ -46,9 +47,9 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
           <Text
             size="small"
             className="text-primary"
-            style={{ color: primaryColor, fontWeight: "bolder" }}
+            style={{ color: primaryColor, fontWeight: "normal" }}
           >
-            <FinalPriceDisplay product={product} />
+            <FinalPriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.BUYER_PRODUCT_LIST} product={product} />
           </Text>
           <Text size="xxSmall" className="text-gray-400">
             {product.has_sold} đã bán
