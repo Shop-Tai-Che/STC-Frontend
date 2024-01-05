@@ -15,6 +15,7 @@ import ComfirmOrder from "@pages/ValidityOrder/comfirmOrder";
 import useAuth from "../hooks/useAuth";
 import useGetAppInfo from "../hooks/useGetAppInfo";
 import { CreateUser } from "@services/UserServices";
+import OrderSuccess from "@pages/OrderSuccess";
 
 const MainRoute = () => {
   const { login } = useAuth();
@@ -67,6 +68,10 @@ const MainRoute = () => {
               <Route
                 path="/confirm-order/:idOrder"
                 element={<ComfirmOrder />}
+              />
+              <Route
+                path="/confirm-order-success/:idOrder"
+                element={<OrderSuccess />}
               />
               <Route
                 path="/shop-detail/:idShop"

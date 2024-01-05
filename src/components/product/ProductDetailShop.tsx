@@ -1,9 +1,8 @@
 import React from "react";
-import { Text } from "zmp-ui";
-import { primaryColor } from "@utils/helper/config";
 import { Product } from "@utils/type";
 import { useNavigate } from "react-router-dom";
 import UserInfo from "@components/common/UserInfo";
+import AppLogo from '../../assets/images/AppLogo.png'
 
 interface Props {
   product: Product;
@@ -21,12 +20,11 @@ const ProductDetailShop = ({ product }: Props) => {
         alignItemsProp='center'
         userInfoStyle={{
           backgroundColor: 'white',
-          padding: '16px 12px 16px 12px', // Top & Bottom: 16px, Left & Right: 12px
+          padding: '8px 12px 8px 12px', // Top & Bottom: 8px, Left & Right: 12px
         }}
         avatarSource={
           (product.Shop?.ShopInfo[0]?.avatar &&
-            product.Shop?.ShopInfo[0].avatar) ||
-          "https://media1.nguoiduatin.vn/media/dong-xuan-thuan/2023/07/20/ai.jpg"
+            product.Shop?.ShopInfo[0].avatar) || AppLogo
         }
         avatarSize={48}
         userInfoContentStyle={{

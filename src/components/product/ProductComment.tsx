@@ -48,7 +48,7 @@ const ProductComment: React.FC<{
 
   return (
     <section className="bg-white antialiased">
-      <form className="mb-6 px-4">
+      <form className="px-4">
         {product &&
           checkOrderStatus(
             currentUser.id,
@@ -93,14 +93,15 @@ const ProductComment: React.FC<{
           )}
       </form>
 
-      <div className="max-w-2xl mx-auto">
+      <div
+      // className="max-w-2xl mx-auto"
+      >
         {listItemReviews &&
           listItemReviews.map((itemComment, index) => {
             return (
               <article
                 key={index}
-                className={`py-4 text-base bg-white rounded-lg 
-                 mb-3 ml-6 lg:ml-12  
+                className={`text-base bg-white rounded-lg ml-6    
                 `}
               >
                 <footer className="flex justify-between items-center mb-2">

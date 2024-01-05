@@ -14,8 +14,8 @@ const CreateOrder = () => {
       setFetchStatusOrder(FetchState.LOADING);
       const abc = order; 
       const url = `${import.meta.env.VITE_API_ORDER}`.replace(" ", "");
-       const res = await axios.post(url, order);
-       setFetchStatusOrder(FetchState.SUCCESS);
+      const res = await axios.post(url, order);
+      setFetchStatusOrder(FetchState.SUCCESS);
       setResCreateOrder(res.data.order);
     } catch (error) {
       console.log(error);

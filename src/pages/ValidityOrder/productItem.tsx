@@ -3,6 +3,7 @@ import { Button, Text } from "zmp-ui";
 import { primaryColor } from "@utils/helper";
 import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import { PriceDisplay } from "@components/display";
+import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
 const ButtonStatusOrderBuyer: React.FC<{ status: string }> = ({ status }) => {
   return (
@@ -107,15 +108,22 @@ const ProductItem: React.FC<{
           className="flex flex-col items-start col-start-2 col-span-full h-full"
           onClick={onActon}
         >
-          <div className="font-medium no-underline mb-5">{name}</div>
-          <div className="flex justify-between w-full">
-            <span className="subtitle ">1 Sản phẩm</span>
-            <span className="subtitle ">
-              Thanh toán: <span style={{ color: primaryColor }}><PriceDisplay children={price} /></span>
+          <div className="font-medium no-underline mb-2">{name}</div>
+          <div className="flex justify-between w-full" style={{ alignItems: 'center', alignSelf: 'center' }} >
+            {/* This span will be aligned to the left */}
+            <span className="subtitle" style={{ fontSize: 14 }}>1 Sản phẩm</span>
+
+            {/* This span will be aligned to the right */}
+            <span className="subtitle" style={{ fontSize: 14 }}>
+              Thanh toán:
+              <span style={{ color: primaryColor }}>
+                <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.SHOP_PRODUCT_LIST} children={price} />
+              </span>
             </span>
           </div>
+
         </div>
-        <div className="col-start-1 col-span-full flex justify-end">
+        <div className="col-span-full flex justify-end">
           {isSeller ? (
             <>
               <ButtonStatusOrderSeller status={status} />

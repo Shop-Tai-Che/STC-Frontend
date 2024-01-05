@@ -43,7 +43,7 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   });
   const [resCreateOrder, fetchStatusOrder, postOrder] = CreateOrder();
 
- 
+
   useEffect(() => {
     productItem && setTotalPayment(productItem.price + paymentInfor.shipPrices);
   }, [productItem, paymentInfor.shipPrices]);
@@ -63,8 +63,8 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     if (fetchStatusOrder == FetchState.SUCCESS) handleOrderProduct();
   }, [fetchStatusOrder]);
 
-  const handleOrderProduct = () => { 
-    if (resCreateOrder?.id) navigate(`/status-order/${resCreateOrder.id}`);
+  const handleOrderProduct = () => {
+    if (resCreateOrder?.id) navigate(`/confirm-order-success/${resCreateOrder.id}`);
   };
 
   const handleCreateOrder = () => {
@@ -94,7 +94,7 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
           <OrderInforReceive
             editView
             onChange={handleChangeInputOrderInfoReceive}
-          /> 
+          />
           <DividerSpace />
           <OrderPaymentFillInfo editView paymentInfor={paymentInfor} />
           <TotalPaymentAndOrder

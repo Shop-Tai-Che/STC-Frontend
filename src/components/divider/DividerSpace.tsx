@@ -9,8 +9,8 @@ const DividerSpace: React.FC<
     <Box
       style={{
         minHeight: size,
-        marginTop: "15px",
-        marginBottom: "15px",
+        marginTop: "8px",
+        marginBottom: "8px",
         backgroundColor: "#f4f5f6",
       }}
       {...props}

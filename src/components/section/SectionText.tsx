@@ -4,7 +4,7 @@ import { Box, Text } from "zmp-ui";
 import { BoxProps } from "zmp-ui/box";
 
 export interface SetionProps extends BoxProps {
-  title: string;
+  title?: string;
   padding?: "all" | "none" | "title-only";
   icon?: any;
 }
@@ -17,9 +17,8 @@ const SectionText: FC<PropsWithChildren<SetionProps>> = ({
 }) => {
   return (
     <Box
-      className={`bg-background ${padding === "all" ? "p-4 space-y-4" : ""} ${
-        padding === "title-only" ? "py-4 space-y-4" : ""
-      }`}
+      className={`bg-background ${padding === "all" ? "p-4 space-y-4" : ""} ${padding === "title-only" ? "py-4 space-y-4" : ""
+        }`}
       {...props}
     >
       <div className="flex justify-between ">

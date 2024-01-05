@@ -5,13 +5,15 @@ import { PriceDisplay } from "@components/display";
 
 const ProductShortageItem: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <div className="flex items-center p-2 h-28 gap-5">
+    <div className="flex items-center p-2 gap-5 ">
       <img
         src={product.ProductMedia[0].url}
         alt="Product Image"
         className="w-28 object-contain rounded-lg"
       />
-      <div className=" h-full flex flex-col justify-between w-full pr-6">
+      <div
+        className="flex flex-col w-full pr-6"
+      >
         <Text
           size="normal"
           className="m-0 p-0"

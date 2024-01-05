@@ -3,6 +3,7 @@ import { Text } from "zmp-ui";
 import { PriceDisplay } from "@components/display";
 import { primaryColor } from "@utils/helper/config";
 import { ButtonSecondary } from "@components/common";
+import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
 const TotalPaymentAndOrder: React.FC<{
   totalPayment: number;
@@ -19,7 +20,7 @@ const TotalPaymentAndOrder: React.FC<{
           className="text-primary"
           style={{ color: primaryColor, fontWeight: "bolder" }}
         >
-          <PriceDisplay children={totalPayment} />
+          <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={totalPayment} />
         </Text>
       </div>
 

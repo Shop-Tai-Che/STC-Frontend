@@ -13,27 +13,28 @@ const OrderInforReceive: React.FC<{
   editView?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   orderItem?: OrderStatusFetch | null;
-  title?:string;
+  title?: string;
 }> = ({ editView, onChange, orderItem, title }) => {
+
   const AdressField = editView ? (
-    <>
+    <div style={{ marginLeft: 12 }}>
       <InputNoOutline
         id="address"
-        placeholder="Nhập địa chỉ..."
+        placeholder="Nhập địa chỉ nhận hàng của bạn"
         onChange={onChange}
       />
       {/* <ButtonSecondary title="Tự động điền" isSecondary /> */}
-    </>
+    </div>
   ) : (
-    <h1>{orderItem?.address}</h1>
+    <h1 style={{ marginLeft: 12 }}>{orderItem?.address}</h1>
   );
 
   const ReceiverField = editView ? (
     <>
-      <div>
+      <div style={{ marginLeft: 12 }}>
         <label htmlFor="numberphone">Người nhận</label>
         <InputNoOutline
-          placeholder="Cho phép truy cập SĐT để tự động điền"
+          placeholder="Điền SĐT để người bán liên lạc với bạn"
           id="numberphone"
           onChange={onChange}
         />
@@ -41,7 +42,7 @@ const OrderInforReceive: React.FC<{
       {/* <Icon icon="zi-chevron-right" className="ml-5 self-center" /> */}
     </>
   ) : (
-    <div>
+    <div style={{ marginLeft: 12 }}>
       <Text className="font-bold" style={{ color: primaryColor }} bold>
         {orderItem && orderItem.name ? orderItem?.name : " "} -{" "}
         {orderItem && orderItem.phone ? orderItem?.phone : " "}
@@ -51,31 +52,31 @@ const OrderInforReceive: React.FC<{
   );
 
   const NoteField = editView ? (
-    <>
+    <div style={{ marginLeft: 12 }}>
       <InputNoOutline
         id="note"
         placeholder="Ghi chú cho người bán..."
         onChange={onChange}
       />
-    </>
+    </div>
   ) : (
-    <h3>{orderItem?.note}</h3>
+    <h3 style={{ marginLeft: 12 }}>{orderItem?.note}</h3>
   );
 
   return (
-    <SectionText title={title ? title :"1. Thông tin nhận hàng"} padding="title-only">
+    <SectionText title={title ? title : "1. Thông tin nhận hàng"} padding="title-only">
       <div className="px-4">
-        <div className="flex gap-5 justify-start items-center">
+        <div className="flex justify-start items-center">
           <Icon icon="zi-location" />
           {AdressField}
         </div>
         <DividerSpaceLine />
-        <div className="flex gap-5 justify-start items-start ">
+        <div className="flex justify-start items-start ">
           <Icon icon="zi-user" />
           {ReceiverField}
         </div>
         <DividerSpaceLine />
-        <div className="flex gap-5 justify-start items-start">
+        <div className="flex justify-start items-start" style={{ alignItems: 'center' }}>
           <Icon icon="zi-note" />
           {NoteField}
         </div>

@@ -1,12 +1,14 @@
-import React, { PropsWithChildren, ChangeEvent, FC } from "react";
+import React, { PropsWithChildren, ChangeEvent, FC, EventHandler, MouseEvent } from "react";
 import { Box, Text } from "zmp-ui";
 import { BoxProps } from "zmp-ui/box";
+import { getLocation } from "zmp-sdk/apis";
 
 interface SetionProps {
   id?: string;
   placeholder?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   type?: string;
+  onClickProp?: (event: MouseEvent<HTMLInputElement>) => void;
 }
 
 const InputNoOutline: FC<SetionProps> = ({
@@ -14,6 +16,7 @@ const InputNoOutline: FC<SetionProps> = ({
   placeholder,
   type,
   onChange,
+  onClickProp,
   ...props
 }) => {
   return (
@@ -23,6 +26,7 @@ const InputNoOutline: FC<SetionProps> = ({
       onChange={onChange}
       className="w-full text-sm focus:border-b-2 mt-2  outline-none opacity-70 "
       placeholder={placeholder}
+      onClick={onClickProp}
       {...props}
     />
   );
