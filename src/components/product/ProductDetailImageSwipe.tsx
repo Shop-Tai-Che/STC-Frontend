@@ -14,20 +14,37 @@ const ProductDetailImageSwipe = ({ product }) => {
       pagination={{
         type: "fraction",
       }}
-      modules={[Pagination, Navigation]} 
+      modules={[Pagination, Navigation]}
       className="mySwiper"
     >
       {product.ProductMedia?.map((MediaItem, ChildIndex) => {
         return (
           <SwiperSlide key={ChildIndex}>
             <Box
-              className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
               style={{
-                backgroundImage: `url(${MediaItem.url})`,
-                minHeight: "60vh",
+                height: "60vh",
                 width: "100%",
+                display: 'block', // Or 'flex' if that suits your layout better
+                // position: 'relative',
+                overflow: 'hidden',
+                backgroundColor: 'black',
+                alignItems: 'center',
+                justifyContent: 'center',
+                alignContent: 'center',
+                justifyItems: 'center'
               }}
-            />
+            >
+              <img
+                src={MediaItem.url}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center'
+                }}
+              />
+            </Box>
           </SwiperSlide>
         );
       })}

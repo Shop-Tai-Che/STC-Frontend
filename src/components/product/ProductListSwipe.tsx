@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { GetProductsPopular } from "@services/ProductServices";
 import { FetchState } from "@utils/type/FetchState";
 import { HOME_TITLE } from "@utils/type/Title";
+import { primaryColor } from "@utils/helper/config";
 
 const ProductListSwipeContent: FC = () => {
   const [products, fetchState, getRes] = GetProductsPopular();
@@ -19,14 +20,11 @@ const ProductListSwipeContent: FC = () => {
   }, []);
 
   return (
-    <SectionText title={HOME_TITLE.LOVE} padding="title-only">
+    <SectionText title={HOME_TITLE.LOVE} padding="title-only" titleStyle={{ color: `${primaryColor}` }}>
       <Swiper
         spaceBetween={10}
         slidesPerView={2.2}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
         className="px-4 "
-
       >
         {(fetchState === FetchState.ERROR ||
           fetchState === FetchState.LOADING) && <ProductListSwipeFallBack />}

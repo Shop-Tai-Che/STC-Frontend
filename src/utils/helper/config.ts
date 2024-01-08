@@ -13,3 +13,5 @@ export const secondaryColor = getConfig(
 export const tertiaryColor = getConfig(
   (config) => config.template.tertiaryColor,
 );
+
+export const greyColor = '#A4A5A6';

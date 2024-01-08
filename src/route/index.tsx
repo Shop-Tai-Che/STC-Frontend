@@ -16,6 +16,7 @@ import useAuth from "../hooks/useAuth";
 import useGetAppInfo from "../hooks/useGetAppInfo";
 import { CreateUser } from "@services/UserServices";
 import OrderSuccess from "@pages/OrderSuccess";
+import HomeFromCate from "@pages/HomeFromCate";
 
 const MainRoute = () => {
   const { login } = useAuth();
@@ -44,6 +45,10 @@ const MainRoute = () => {
               <Route
                 path="/"
                 element={<HomePage currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/:idCate"
+                element={<HomeFromCate />}
               />
               <Route
                 path="/product-detail/:idProduct"
@@ -82,8 +87,32 @@ const MainRoute = () => {
           </Box>
         </ZMPRouter>
       ) : (
-        <> </>
-      )}
+        <>
+          <ZMPRouter>
+            <Box className="flex-1 flex flex-col overflow-hidden">
+              <Routes>
+                <Route
+                  path="/"
+                  element={<HomePage currentUser={resCreateUser} />}
+                />
+                <Route
+                  path="/:idCate"
+                  element={<HomeFromCate />}
+                />
+                <Route
+                  path="/product-detail/:idProduct"
+                  element={<DetailProduct currentUser={resCreateUser} />}
+                />
+                <Route
+                  path="/order"
+                  element={<OrderDetail currentUser={resCreateUser} />}
+                />
+              </Routes>
+            </Box>
+          </ZMPRouter>
+        </>
+      )
+      }
     </>
   );
 };
