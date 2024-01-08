@@ -7,12 +7,14 @@ export interface SetionProps extends BoxProps {
   title?: string;
   padding?: "all" | "none" | "title-only";
   icon?: any;
+  titleStyle?: object;
 }
 const SectionText: FC<PropsWithChildren<SetionProps>> = ({
   children,
   title,
   padding,
   icon,
+  titleStyle,
   ...props
 }) => {
   return (
@@ -22,7 +24,10 @@ const SectionText: FC<PropsWithChildren<SetionProps>> = ({
       {...props}
     >
       <div className="flex justify-between ">
-        <Text.Title className={`${padding === "title-only" ? "px-4" : ""}`}>
+        <Text.Title
+          className={`${padding === "title-only" ? "px-4" : ""}`}
+          style={titleStyle}
+        >
           {title}
         </Text.Title>
         <div className="px-4">{icon}</div>

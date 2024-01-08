@@ -4,5 +4,7 @@ import ShipSvg from "./ship";
 import PackageSvg from "./package";
 import BusinessSvg from "./business";
 import CheckSvg from "./check";
+import FashionSvg from "./fashion";
+import WcSvg from "./wc";
 
-export { ReplySvg, PaymentSvg, ShipSvg, PackageSvg, BusinessSvg, CheckSvg };
+export { ReplySvg, PaymentSvg, ShipSvg, PackageSvg, BusinessSvg, CheckSvg, FashionSvg, WcSvg };
