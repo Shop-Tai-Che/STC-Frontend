@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetOrderByUserId } from "@services/OrderServices";
 import ProductItem from "./productItem";
+import OrderSuccess from "@pages/OrderSuccess";
+import { EmptyOrderSvg } from "@assets/svg";
 
 const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
   const [order, fetchStateOrder, getResGetOrder] = GetOrderByUserId();
@@ -9,17 +11,18 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
   useEffect(() => {
     getResGetOrder(userId);
   }, []);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   return (
     <>
-      {order &&
+      {order ? (
         order.map((orderItem, index) => {
           const onAction = () => {
             navigate(`/status-order/${orderItem.id}`);
           };
           return (
             <>
-              <ProductItem key={index}
+              <ProductItem
+                key={index}
                 image={orderItem?.Product.ProductMedia[0].url}
                 name={orderItem.Product.title}
                 price={orderItem.Product.price}
@@ -28,7 +31,17 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
               />
             </>
           );
-        })}
+        })
+      ) : (
+        <OrderSuccess
+          mainTitle="Bạn chưa có đơn hàng nào"
+          hasPrimaryButton
+          primaryButtonTitle="Mua ngay"
+          primaryButtonDestination="home"
+          iconProp={<EmptyOrderSvg />}
+          hasSecondaryButton={false}
+        />
+      )}
     </>
   );
 };
