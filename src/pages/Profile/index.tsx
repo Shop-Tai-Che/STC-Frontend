@@ -28,7 +28,6 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     },
   ];
 
-
   const fetchData = async () => {
     try {
       const userData = await getDataToStorage(getCurrentUser());
@@ -44,41 +43,39 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   return (
     <div className="max-w-2xl mx-auto bg-white">
       <UserInfo
-        flexDirectionProp='column'
-        alignItemsProp='center'
+        flexDirectionProp="column"
+        alignItemsProp="center"
         avatarSource={currentUser.avatar}
         avatarSize={64}
         userName={currentUser.name}
-        userNameSize='large'
+        userNameSize="large"
         userInfoContentStyle={{ marginTop: 4 }}
-        userInfoType='buyer-profile'
+        userInfoType="buyer-profile"
       />
       <DividerSpace />
-      <List
-        noSpacing
-        divider={true}
-        style={{ backgroundColor: 'white' }}
-      >
+      <List noSpacing divider={true} style={{ backgroundColor: "white" }}>
         <List.Item
           title="Lịch sử đơn hàng"
           prefix={<PackageSvg />}
           suffix={<Icon icon="zi-chevron-right" />}
           className="tab-me__action__order-history"
           onClick={() => {
-            navigate(`/validity-order/buyer`)
+            navigate(`/validity-order/buyer`);
           }}
         />
         <List.Item
           title={currentUser.is_seller ? "Shop của tôi" : "Đăng kí bán hàng"}
-          prefix={<BusinessSvg />}
+          prefix={<BusinessSvg iconWidth={24} iconHeight={24} />}
           suffix={<Icon icon="zi-chevron-right" />}
-          subTitle={currentUser.is_seller ? "" : "Điền thông tin qua Google Form"}
+          subTitle={
+            currentUser.is_seller ? "" : "Điền thông tin qua Google Form"
+          }
           className="tab-me__action__register-seller"
           onClick={() => {
             if (currentUser.is_seller) {
-              navigate(`/shop-detail/${currentUser.id}`)
+              navigate(`/shop-detail/${currentUser.id}`);
             } else {
-              window.open(FORM_REGISTRY_BECOME_SELLER, '_blank');
+              window.open(FORM_REGISTRY_BECOME_SELLER, "_blank");
             }
           }}
         />

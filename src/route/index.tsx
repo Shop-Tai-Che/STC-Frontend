@@ -49,7 +49,7 @@ const MainRoute = () => {
                 path="/"
                 element={<HomePage currentUser={resCreateUser} />}
               />
-              <Route path="/:idCate" element={<HomeFromCate />} />
+              <Route path="/home-from-cate/:idTag" element={<HomeFromCate />} />
               <Route
                 path="/product-detail/:idProduct"
                 element={<DetailProduct currentUser={resCreateUser} />}

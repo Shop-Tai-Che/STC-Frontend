@@ -7,6 +7,9 @@ import CheckSvg from "./check";
 import FashionSvg from "./fashion";
 import WcSvg from "./wc";
 import PermissionSvg from "./permission";
+import DecorationSvg from "./decoration";
+import AccessorySvg from "./accessory";
+import EmptyOrderSvg from "./empty_order";
 
 export {
   ReplySvg,
@@ -18,4 +21,7 @@ export {
   FashionSvg,
   WcSvg,
   PermissionSvg,
+  DecorationSvg,
+  AccessorySvg,
+  EmptyOrderSvg,
 };
