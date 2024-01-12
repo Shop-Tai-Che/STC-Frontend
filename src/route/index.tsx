@@ -17,6 +17,8 @@ import useGetAppInfo from "../hooks/useGetAppInfo";
 import { CreateUser } from "@services/UserServices";
 import OrderSuccess from "@pages/OrderSuccess";
 import HomeFromCate from "@pages/HomeFromCate";
+import NoPermission from "@pages/NoPermission";
+import { CheckSvg } from "@assets/svg";
 
 const MainRoute = () => {
   const { login } = useAuth();
@@ -30,6 +32,7 @@ const MainRoute = () => {
       zalo_id: user.id,
     });
   };
+
   useEffect(() => {
     login(actionGetOrCreateUser);
   }, []);
@@ -46,10 +49,7 @@ const MainRoute = () => {
                 path="/"
                 element={<HomePage currentUser={resCreateUser} />}
               />
-              <Route
-                path="/:idCate"
-                element={<HomeFromCate />}
-              />
+              <Route path="/:idCate" element={<HomeFromCate />} />
               <Route
                 path="/product-detail/:idProduct"
                 element={<DetailProduct currentUser={resCreateUser} />}
@@ -76,43 +76,32 @@ const MainRoute = () => {
               />
               <Route
                 path="/confirm-order-success/:idOrder"
-                element={<OrderSuccess />}
+                element={
+                  <OrderSuccess
+                    iconProp={<CheckSvg />}
+                    mainTitle="Đặt hàng thành công"
+                    hasPrimaryButton={true}
+                    hasSecondaryButton={true}
+                    primaryButtonTitle="Xem đơn hàng"
+                    secondaryButtonTitle="Mua hàng tiếp"
+                  />
+                }
               />
               <Route
                 path="/shop-detail/:idShop"
                 element={<ShopDetail currentUser={resCreateUser} />}
+              />
+              <Route
+                path="/no-permission"
+                element={<NoPermission isAskingPermisson={false} />}
               />
             </Routes>
             <BottomNavigationComponent />
           </Box>
         </ZMPRouter>
       ) : (
-        <>
-          <ZMPRouter>
-            <Box className="flex-1 flex flex-col overflow-hidden">
-              <Routes>
-                <Route
-                  path="/"
-                  element={<HomePage currentUser={resCreateUser} />}
-                />
-                <Route
-                  path="/:idCate"
-                  element={<HomeFromCate />}
-                />
-                <Route
-                  path="/product-detail/:idProduct"
-                  element={<DetailProduct currentUser={resCreateUser} />}
-                />
-                <Route
-                  path="/order"
-                  element={<OrderDetail currentUser={resCreateUser} />}
-                />
-              </Routes>
-            </Box>
-          </ZMPRouter>
-        </>
-      )
-      }
+        <></>
+      )}
     </>
   );
 };
