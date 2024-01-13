@@ -25,18 +25,18 @@ export const ProductCategory = [
     ),
     tag: "fashion",
   },
-  {
-    id: 4,
-    name: "Vệ sinh",
-    cover: (
-      <WcSvg
-        svgColor={primaryColor}
-        iconWidth={iconWH.iconWidth}
-        iconHeight={iconWH.iconHeight}
-      />
-    ),
-    tag: "wc",
-  },
+  // {
+  //   id: 4,
+  //   name: "Vệ sinh",
+  //   cover: (
+  //     <WcSvg
+  //       svgColor={primaryColor}
+  //       iconWidth={iconWH.iconWidth}
+  //       iconHeight={iconWH.iconHeight}
+  //     />
+  //   ),
+  //   tag: "wc",
+  // },
   {
     id: 2,
     name: "Văn phòng",
@@ -61,16 +61,16 @@ export const ProductCategory = [
     ),
     tag: "office",
   },
-  {
-    id: 5,
-    name: "Trang trí",
-    cover: (
-      <DecorationSvg
-        svgColor={primaryColor}
-        iconWidth={iconWH.iconWidth}
-        iconHeight={iconWH.iconHeight}
-      />
-    ),
-    tag: "office",
-  },
+  // {
+  //   id: 5,
+  //   name: "Trang trí",
+  //   cover: (
+  //     <DecorationSvg
+  //       svgColor={primaryColor}
+  //       iconWidth={iconWH.iconWidth}
+  //       iconHeight={iconWH.iconHeight}
+  //     />
+  //   ),
+  //   tag: "office",
+  // },
 ];
