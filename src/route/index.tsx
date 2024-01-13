@@ -34,17 +34,15 @@ const MainRoute = () => {
     });
   };
 
-  useEffect(() => {
+  const handleLogin = ()=>{ 
     login(actionGetOrCreateUser);
+  }
+  useEffect(() => {
+    handleLogin();
   }, []);
 
   getAppInfo();
-  console.log(
-    fetchStatusUser == FetchState.DEFAULT,
-    fetchStatusUser,
-    isNoPermission,
-    resCreateUser
-  );
+ 
   return (
     <>
       <ZMPRouter>
@@ -53,7 +51,7 @@ const MainRoute = () => {
             {isNoPermission ? (
               <Route
                 path="/"
-                element={<NoPermission isAskingPermisson={false} />}
+                element={<NoPermission isAskingPermisson={false} onClickPrimaryButton={handleLogin} />}
               />
             ) : resCreateUser == null ? (
               <></>

@@ -7,12 +7,12 @@ import LoadingState from "@components/common/loading";
 
 interface NoPermissionProp {
   onClickPrimaryButton?: () => void;
-  isAskingPermisson: boolean;
+  isAskingPermisson: boolean; 
 }
 
 const NoPermission: React.FC<NoPermissionProp> = ({
   onClickPrimaryButton,
-  isAskingPermisson,
+  isAskingPermisson, 
 }) => {
   return (
     <Page
@@ -40,7 +40,7 @@ const NoPermission: React.FC<NoPermissionProp> = ({
           hasPrimaryButton={true}
           hasSecondaryButton={false}
           primaryButtonTitle="Cấp quyền cho Shop Tái Chế"
-          onClickPrimaryButton={() => onClickPrimaryButton}
+          onClickPrimaryButton={onClickPrimaryButton as ()=>void}
         />
       )}
     </Page>

@@ -1,6 +1,6 @@
 import { ButtonSecondary } from "@components/common";
 import React, { ReactNode } from "react";
-import {  Page, Text } from "zmp-ui";
+import { Page, Text } from "zmp-ui";
 import { useNavigate, useParams } from "react-router-dom";
 
 interface OrderSuccesProp {
@@ -63,7 +63,7 @@ const OrderSuccess: React.FC<OrderSuccesProp> = ({
             <ButtonSecondary
               title={secondaryButtonTitle ? secondaryButtonTitle : ""}
               isSecondary={true}
-              onClick={() => navigate("/")}
+              onClick={onClickPrimaryButton}
             />
           </div>
         )}
@@ -72,18 +72,19 @@ const OrderSuccess: React.FC<OrderSuccesProp> = ({
             <ButtonSecondary
               title={primaryButtonTitle}
               isPrimary={true}
-              onClick={() => {
-                if (idOrder) navigate(`/status-order/${idOrder}`);
-                else
-                  switch (primaryButtonDestination) {
-                    case "home":
-                      navigate("/");
-                      break;
-                    case "permission":
-                      onClickPrimaryButton();
-                      break;
-                  }
-              }}
+              // onClick={() => {
+              //   if (idOrder) navigate(`/status-order/${idOrder}`);
+              //   else
+              //     switch (primaryButtonDestination) {
+              //       case "home":
+              //         navigate("/");
+              //         break;
+              //       case "permission":
+              //         onClickPrimaryButton();
+              //         break;
+              //     }
+              // }}
+              onClick={onClickPrimaryButton}
             />
           </div>
         )}
