@@ -12,7 +12,9 @@ const GetOrderByUserId = () => {
     try {
       setFetchStateOrder(FetchState.LOADING);
       const res = await axios.get(
-        `${import.meta.env.VITE_API_ORDER}?page=0&pageSize=10&userId=${userId}`,
+        `${
+          import.meta.env.VITE_API_ORDER
+        }?page=0&pageSize=100&userId=${userId}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
