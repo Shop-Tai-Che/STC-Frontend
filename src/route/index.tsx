@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Box, ZMPRouter } from "zmp-ui";
+import { Box, SnackbarProvider, ZMPRouter } from "zmp-ui";
 import { FetchState } from "../utils/type/FetchState";
 import BottomNavigationComponent from "../components/layout/bottom-navigation";
 import {
@@ -20,6 +20,7 @@ import OrderSuccess from "@pages/OrderSuccess";
 import HomeFromCate from "@pages/HomeFromCate";
 import NoPermission from "@pages/NoPermission";
 import { CheckSvg } from "@assets/svg";
+import OrderSuccessPage from "@pages/OrderSuccessPage";
 
 const MainRoute = () => {
   const [isNoPermission, setIsNoPermission] = useState<boolean>(false);
@@ -34,24 +35,29 @@ const MainRoute = () => {
     });
   };
 
-  const handleLogin = ()=>{ 
+  const handleLogin = () => {
     login(actionGetOrCreateUser);
-  }
+  };
   useEffect(() => {
     handleLogin();
   }, []);
 
   getAppInfo();
- 
+
   return (
-    <>
+    <SnackbarProvider>
       <ZMPRouter>
         <Box className="flex-1 flex flex-col overflow-hidden">
           <Routes>
             {isNoPermission ? (
               <Route
                 path="/"
-                element={<NoPermission isAskingPermisson={false} onClickPrimaryButton={handleLogin} />}
+                element={
+                  <NoPermission
+                    isAskingPermisson={false}
+                    onClickPrimaryButton={handleLogin}
+                  />
+                }
               />
             ) : resCreateUser == null ? (
               <></>
@@ -92,19 +98,7 @@ const MainRoute = () => {
                   />
                   <Route
                     path="/confirm-order-success/:idOrder"
-                    element={
-                      <OrderSuccess
-                        iconProp={<CheckSvg />}
-                        mainTitle="Đặt hàng thành công"
-                        hasPrimaryButton={true}
-                        hasSecondaryButton={true}
-                        primaryButtonTitle="Xem đơn hàng"
-                        secondaryButtonTitle="Mua hàng tiếp"
-                        onClickPrimaryButton={function (): void {
-                          throw new Error("Function not implemented.");
-                        }}
-                      />
-                    }
+                    element={<OrderSuccessPage />}
                   />
                   <Route
                     path="/shop-detail/:idShop"
@@ -119,7 +113,7 @@ const MainRoute = () => {
           )}
         </Box>
       </ZMPRouter>
-    </>
+    </SnackbarProvider>
   );
 };
 

@@ -11,6 +11,7 @@ import ProductShopItem from "./productShopItem";
 import { Product } from "@utils/type";
 import SellerOrderEntry from "@components/seller/SellerOrderEntry";
 import UserInfo from "@components/common/UserInfo";
+import AppLogo from "@assets/images/AppLogo.png";
 
 const FORM_UP_PRODUCT =
   "https://docs.google.com/forms/d/e/1FAIpQLSfbZOmiULkqBA77rvzsXlRUxs3yiP3M4iVDYjBs-eC3D2fkSQ/viewform";
@@ -24,7 +25,6 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
       getRes(idShop);
     }
   }, []);
-
 
   const calculateSumReview = (products: any[]): number => {
     if (!products || !Array.isArray(products)) {
@@ -42,54 +42,55 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     return sumOfReviews;
   };
 
-
   const countProcessingOrders = (products: any[]): number => {
     let sumOfOrder = products.reduce((accumulator, item) => {
       // Filter the order array for items with status "process" and count them
-      const processOrders = item.Order.filter(order => order.status === "PROCESSING").length;
+      const processOrders = item.Order.filter(
+        (order) => order.status === "PROCESSING"
+      ).length;
       // Add the count to the accumulator
       return accumulator + processOrders;
     }, 0);
-    console.log('sumOfOrder', sumOfOrder)
+    console.log("sumOfOrder", sumOfOrder);
     return sumOfOrder;
-  }
-
-  console.log('products', products);
+  };
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
       {fetchState == FetchState.SUCCESS && (
-        <div
-          className="flex-1 overflow-auto pb-20"
-        >
+        <div className="flex-1 overflow-auto pb-20">
           <UserInfo
-            flexDirectionProp='row'
-            alignItemsProp='center'
+            flexDirectionProp="row"
+            alignItemsProp="center"
             userInfoStyle={{
-              backgroundColor: 'white',
-              padding: '0px 12px 0px 12px', // Top & Bottom: 16px, Left & Right: 12px
+              backgroundColor: "white",
+              padding: "0px 12px 0px 12px", // Top & Bottom: 16px, Left & Right: 12px
             }}
             avatarSource={
               (products &&
                 products[0].Shop?.ShopInfo[0]?.avatar &&
                 products[0].Shop?.ShopInfo[0].avatar) ||
-              "https://media1.nguoiduatin.vn/media/dong-xuan-thuan/2023/07/20/ai.jpg"
+              AppLogo
             }
             avatarSize={48}
             userInfoContentStyle={{
-              marginLeft: 8
+              marginLeft: 8,
             }}
-            userName={products &&
+            userName={
+              products &&
               products[0].Shop?.ShopInfo?.[0]?.name &&
-              products[0].Shop?.ShopInfo?.[0]?.name}
+              products[0].Shop?.ShopInfo?.[0]?.name
+            }
             userNameSize="large"
-            userInfoType='seller-profile'
-            subTitle={<Text>
-              {!products || products.length == 0 ? 0 : products.length} sản
-              phẩm, {products ? calculateSumReview(products) : 0} đánh giá
-            </Text>}
+            userInfoType="seller-profile"
+            subTitle={
+              <Text>
+                {!products || products.length == 0 ? 0 : products.length} sản
+                phẩm, {products ? calculateSumReview(products) : 0} đánh giá
+              </Text>
+            }
             subTitleStyle={{
-              color: '#767A7F'
+              color: "#767A7F",
             }}
           />
 
@@ -97,33 +98,32 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
 
           <Box
             flex
-            flexDirection='column'
+            flexDirection="column"
             style={{
-              backgroundColor: 'white',
+              backgroundColor: "white",
               marginTop: 4,
-              padding: '0px 12px 0px 12px', // Top & Bottom: 16px, Left & Right: 12px
+              padding: "0px 12px 0px 12px", // Top & Bottom: 16px, Left & Right: 12px
             }}
           >
-            <Text size='xLarge' bold>
+            <Text size="xLarge" bold>
               Đơn hàng của shop
             </Text>
             <Box
-              flexDirection='row'
-              alignItems='center'
-              style={{ width: '100%', marginTop: 12 }} // Make the parent Box take full width of the screen
+              flexDirection="row"
+              alignItems="center"
+              style={{ width: "100%", marginTop: 12 }} // Make the parent Box take full width of the screen
             >
               <SellerOrderEntry
-                statusContent='Chờ xác nhận'
+                statusContent="Chờ xác nhận"
                 statusCount={products ? countProcessingOrders(products) : 0}
-                routePath='validity-order'
-                routeParam='seller'
+                routePath="validity-order"
+                routeParam="seller"
               />
-              <SellerOrderEntry
-                statusContent='Đánh giá'
+              {/* <SellerOrderEntry
+                statusContent="Đánh giá"
                 statusCount={products ? calculateSumReview(products) : 0}
-              />
+              /> */}
             </Box>
-
           </Box>
           <DividerSpace />
           <SectionText
@@ -131,7 +131,7 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
             padding="title-only"
             icon={
               currentUser.is_seller &&
-                currentUser.id == (idShop ? parseInt(idShop) : undefined) ? (
+              currentUser.id == (idShop ? parseInt(idShop) : undefined) ? (
                 <a href={FORM_UP_PRODUCT} target="_blank">
                   <Icon icon="zi-add-story" />
                 </a>

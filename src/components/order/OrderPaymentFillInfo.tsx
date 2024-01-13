@@ -28,6 +28,7 @@ const OrderPaymentFillInfo: React.FC<{
     <SectionText
       title={!needDisplayTitle ? "" : "2. Thông tin thanh toán"}
       padding={!needDisplayTitle ? "none" : "title-only"}
+      titleStyle={{ color: primaryColor }}
     >
       <div className="px-4">
         <div className="flex justify-start items-center">
@@ -41,12 +42,12 @@ const OrderPaymentFillInfo: React.FC<{
             <Text
               size="small"
               className="text-primary"
-              style={{ color: primaryColor, fontWeight: "bolder" }}
+              style={{ color: primaryColor, fontWeight: "normal" }}
             >
-              <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={paymentInfor.shipPrices} />
+              <PriceDisplay priceSize={16} children={paymentInfor.shipPrices} />
             </Text>
             <Text size="small" className="text-slate-600">
-              Phí ship
+              Phí ship (cố định)
             </Text>
           </div>
         </div>

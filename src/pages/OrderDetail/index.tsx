@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Page } from "zmp-ui";
+import { Page, useSnackbar } from "zmp-ui";
 import ProductShortageItem from "@components/product/ProductShortageItem";
 import {
   OrderInforReceive,
@@ -15,7 +15,7 @@ import { Product } from "@utils/type/Product";
 import { ShipPayment, TYPESPAYMENT } from "@utils/type/Payment";
 import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import { PRODUCT_ORDER, getNativeStorage } from "@utils/helper";
-
+import { isValidPhone } from "@utils/helper/validatePhone";
 
 interface typeInputOrderInfoReceive {
   numberphone: string | null;
@@ -42,7 +42,7 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     shipPrices: 20000,
   });
   const [resCreateOrder, fetchStatusOrder, postOrder] = CreateOrder();
-
+  const { openSnackbar, setDownloadProgress, closeSnackbar } = useSnackbar();
 
   useEffect(() => {
     productItem && setTotalPayment(productItem.price + paymentInfor.shipPrices);
@@ -64,24 +64,62 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   }, [fetchStatusOrder]);
 
   const handleOrderProduct = () => {
-    if (resCreateOrder?.id) navigate(`/confirm-order-success/${resCreateOrder.id}`);
+    if (resCreateOrder?.id)
+      navigate(`/confirm-order-success/${resCreateOrder.id}`);
   };
 
-  const handleCreateOrder = () => {
-    if (productItem) {
-      const orderNeedPost = {
-        user_id: currentUser.id,
-        product_id: productItem.id,
-        shop_id: productItem.shop_id,
-        amount: 1,
-        payment_method: TYPESPAYMENT.CASH,
-        address: inputOrderInfoReceive.address as string,
-        note: inputOrderInfoReceive.note as string,
-        status: STATUS_ORDER.PROCESSING,
-        name: currentUser.name,
-        phone: "8324235242",
-      };
-      postOrder(orderNeedPost);
+  const snackBarIfInvalidOrder = (message) =>
+    openSnackbar({
+      text: `${message}`,
+      type: "warning",
+      duration: 3000,
+    });
+
+  const handleCreateOrder = (prodItem) => {
+    const orderNeedPost = {
+      user_id: currentUser.id,
+      product_id: prodItem.id,
+      shop_id: prodItem.shop_id,
+      amount: 1,
+      payment_method: TYPESPAYMENT.CASH,
+      address: inputOrderInfoReceive.address as string,
+      note: inputOrderInfoReceive.note as string,
+      status: STATUS_ORDER.PROCESSING,
+      name: currentUser.name,
+      phone: inputOrderInfoReceive.numberphone,
+    };
+    postOrder(orderNeedPost);
+  };
+
+  const isValidOrder = () => {
+    if (
+      inputOrderInfoReceive.address &&
+      inputOrderInfoReceive.numberphone &&
+      productItem &&
+      isValidPhone(inputOrderInfoReceive.numberphone)
+    ) {
+      handleCreateOrder(productItem);
+    } else if (
+      !inputOrderInfoReceive.address &&
+      inputOrderInfoReceive.numberphone
+    ) {
+      snackBarIfInvalidOrder("Vui lòng điền địa chỉ nhận hàng");
+    } else if (
+      !inputOrderInfoReceive.numberphone &&
+      inputOrderInfoReceive.address
+    ) {
+      snackBarIfInvalidOrder("Vui lòng điền SĐT người nhận");
+    } else if (
+      !inputOrderInfoReceive.address &&
+      !inputOrderInfoReceive.numberphone
+    ) {
+      snackBarIfInvalidOrder("Vui lòng điền thông tin nhận hàng");
+    } else if (
+      inputOrderInfoReceive.address &&
+      inputOrderInfoReceive.numberphone &&
+      !isValidPhone(inputOrderInfoReceive.numberphone)
+    ) {
+      snackBarIfInvalidOrder("Số điện thoại không hợp lệ");
     }
   };
 
@@ -98,7 +136,7 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
           <DividerSpace />
           <OrderPaymentFillInfo editView paymentInfor={paymentInfor} />
           <TotalPaymentAndOrder
-            onClick={handleCreateOrder}
+            onClick={isValidOrder}
             totalPayment={totalPayment}
           />
         </Page>

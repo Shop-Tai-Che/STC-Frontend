@@ -1,0 +1,9 @@
+.order-infor-receive__input {
+  display: flex;
+  flex-direction: "row";
+  align-items: center;
+  margin-top: 24px;
+}
+.order-infor-receive__input__filled-info {
+  margin-left: 16px;
+}
