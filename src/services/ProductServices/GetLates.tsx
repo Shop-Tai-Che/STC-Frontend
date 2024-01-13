@@ -11,7 +11,7 @@ const GetProductLatest = () => {
       setFetchState(FetchState.LOADING);
 
       const res = await axios.get(
-        `${import.meta.env.VITE_API_PRODUCT}?page=0&pageSize=10`,
+        `${import.meta.env.VITE_API_PRODUCT}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
