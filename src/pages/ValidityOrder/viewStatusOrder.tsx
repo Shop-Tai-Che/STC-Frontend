@@ -1,21 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetOrderByUserId } from "@services/OrderServices";
 import ProductItem from "./productItem";
 import OrderSuccess from "@pages/OrderSuccess";
 import { EmptyOrderSvg } from "@assets/svg";
+import { Text } from "zmp-ui";
+import EmptyOrderHistory from "@pages/StatusOrder/EmptyOrderHistory";
+import { FetchState } from "@utils/type";
 
 const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
+  const navigate = useNavigate();
+  const [isNoOrder, setIsNoOrder] = useState<boolean>(true);
   const [order, fetchStateOrder, getResGetOrder] = GetOrderByUserId();
 
   useEffect(() => {
     getResGetOrder(userId);
   }, []);
-  const navigate = useNavigate();
+  console.log(
+    "User Order History",
+    order,
+    "and fetchStateOrder",
+    fetchStateOrder
+  );
+
+  useEffect(() => {
+    // Check the fetchStateOrder to determine if the API request has completed.
+    if (order && order.length > 0) {
+      setIsNoOrder(false);
+    } else {
+      setIsNoOrder(true);
+    }
+  }, [fetchStateOrder, order]);
+
   return (
     <>
-      {order ? (
-        order.map((orderItem, index) => {
+      {isNoOrder ? (
+        <>
+          <EmptyOrderHistory />
+        </>
+      ) : (
+        order?.map((orderItem, index) => {
           const onAction = () => {
             navigate(`/status-order/${orderItem.id}`);
           };
@@ -32,15 +56,6 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
             </>
           );
         })
-      ) : (
-        <OrderSuccess
-          mainTitle="Bạn chưa có đơn hàng nào"
-          hasPrimaryButton
-          primaryButtonTitle="Mua ngay"
-          primaryButtonDestination="home"
-          iconProp={<EmptyOrderSvg />}
-          hasSecondaryButton={false}
-        />
       )}
     </>
   );
