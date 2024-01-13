@@ -1,9 +1,7 @@
 import { ButtonSecondary } from "@components/common";
 import React, { ReactNode } from "react";
-import { Button, Icon, Page, Text } from "zmp-ui";
+import {  Page, Text } from "zmp-ui";
 import { useNavigate, useParams } from "react-router-dom";
-import { OrderStatusFetch } from "@utils/type/Order";
-import { CheckSvg } from "@assets/svg";
 
 interface OrderSuccesProp {
   orderId?: string;
