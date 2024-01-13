@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Box, ZMPRouter } from "zmp-ui";
+import { FetchState } from "../utils/type/FetchState";
 import BottomNavigationComponent from "../components/layout/bottom-navigation";
 import {
   HomePage,
@@ -21,10 +22,10 @@ import NoPermission from "@pages/NoPermission";
 import { CheckSvg } from "@assets/svg";
 
 const MainRoute = () => {
-  const { login } = useAuth();
+  const [isNoPermission, setIsNoPermission] = useState<boolean>(false);
+  const { login } = useAuth({ setIsNoPermission });
   const { getAppInfo } = useGetAppInfo();
   const [resCreateUser, fetchStatusUser, postUser] = CreateUser();
-
   const actionGetOrCreateUser = async (user) => {
     await postUser({
       name: user.name,
@@ -38,70 +39,88 @@ const MainRoute = () => {
   }, []);
 
   getAppInfo();
-
+  console.log(
+    fetchStatusUser == FetchState.DEFAULT,
+    fetchStatusUser,
+    isNoPermission,
+    resCreateUser
+  );
   return (
     <>
-      {resCreateUser ? (
-        <ZMPRouter>
-          <Box className="flex-1 flex flex-col overflow-hidden">
-            <Routes>
+      <ZMPRouter>
+        <Box className="flex-1 flex flex-col overflow-hidden">
+          <Routes>
+            {isNoPermission ? (
               <Route
                 path="/"
-                element={<HomePage currentUser={resCreateUser} />}
-              />
-              <Route path="/home-from-cate/:idTag" element={<HomeFromCate />} />
-              <Route
-                path="/product-detail/:idProduct"
-                element={<DetailProduct currentUser={resCreateUser} />}
-              />
-              <Route
-                path="/order"
-                element={<OrderDetail currentUser={resCreateUser} />}
-              />
-              <Route
-                path="/status-order/:idOrder"
-                element={<StatusOrder currentUser={resCreateUser} />}
-              />
-              <Route
-                path="/profile"
-                element={<Profile currentUser={resCreateUser} />}
-              />
-              <Route
-                path="/validity-order/:userState"
-                element={<ValidityOrder currentUser={resCreateUser} />}
-              />
-              <Route
-                path="/confirm-order/:idOrder"
-                element={<ComfirmOrder />}
-              />
-              <Route
-                path="/confirm-order-success/:idOrder"
-                element={
-                  <OrderSuccess
-                    iconProp={<CheckSvg />}
-                    mainTitle="Đặt hàng thành công"
-                    hasPrimaryButton={true}
-                    hasSecondaryButton={true}
-                    primaryButtonTitle="Xem đơn hàng"
-                    secondaryButtonTitle="Mua hàng tiếp"
-                  />
-                }
-              />
-              <Route
-                path="/shop-detail/:idShop"
-                element={<ShopDetail currentUser={resCreateUser} />}
-              />
-              <Route
-                path="/no-permission"
                 element={<NoPermission isAskingPermisson={false} />}
               />
-            </Routes>
+            ) : resCreateUser == null ? (
+              <></>
+            ) : (
+              <>
+                <>
+                  <Route
+                    path="/"
+                    element={<HomePage currentUser={resCreateUser} />}
+                  />
+                  <Route
+                    path="/home-from-cate/:idTag"
+                    element={<HomeFromCate />}
+                  />
+                  <Route
+                    path="/product-detail/:idProduct"
+                    element={<DetailProduct currentUser={resCreateUser} />}
+                  />
+                  <Route
+                    path="/order"
+                    element={<OrderDetail currentUser={resCreateUser} />}
+                  />
+                  <Route
+                    path="/status-order/:idOrder"
+                    element={<StatusOrder currentUser={resCreateUser} />}
+                  />
+                  <Route
+                    path="/profile"
+                    element={<Profile currentUser={resCreateUser} />}
+                  />
+                  <Route
+                    path="/validity-order/:userState"
+                    element={<ValidityOrder currentUser={resCreateUser} />}
+                  />
+                  <Route
+                    path="/confirm-order/:idOrder"
+                    element={<ComfirmOrder />}
+                  />
+                  <Route
+                    path="/confirm-order-success/:idOrder"
+                    element={
+                      <OrderSuccess
+                        iconProp={<CheckSvg />}
+                        mainTitle="Đặt hàng thành công"
+                        hasPrimaryButton={true}
+                        hasSecondaryButton={true}
+                        primaryButtonTitle="Xem đơn hàng"
+                        secondaryButtonTitle="Mua hàng tiếp"
+                        onClickPrimaryButton={function (): void {
+                          throw new Error("Function not implemented.");
+                        }}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/shop-detail/:idShop"
+                    element={<ShopDetail currentUser={resCreateUser} />}
+                  />
+                </>
+              </>
+            )}
+          </Routes>
+          {fetchStatusUser == FetchState.SUCCESS && resCreateUser && (
             <BottomNavigationComponent />
-          </Box>
-        </ZMPRouter>
-      ) : (
-        <></>
-      )}
+          )}
+        </Box>
+      </ZMPRouter>
     </>
   );
 };
