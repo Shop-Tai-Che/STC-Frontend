@@ -32,7 +32,8 @@ const ButtonStatusOrderBuyer: React.FC<{ status: string }> = ({ status }) => {
           className="w-fit"
           style={{ backgroundColor: primaryColor }}
         >
-          Đang đợi xác nhận
+          {/* Đang đợi xác nhận */}
+          Đang xử lý
         </Button>
       )}
       {status == STATUS_ORDER.SUCCESS && (
@@ -41,7 +42,8 @@ const ButtonStatusOrderBuyer: React.FC<{ status: string }> = ({ status }) => {
           className="w-fit"
           style={{ backgroundColor: primaryColor }}
         >
-          Giao hàng thành công
+          {/* Giao hàng thành công */}
+          Đã nhận hàng
         </Button>
       )}
     </>
@@ -109,19 +111,26 @@ const ProductItem: React.FC<{
           onClick={onActon}
         >
           <div className="font-medium no-underline mb-2">{name}</div>
-          <div className="flex justify-between w-full" style={{ alignItems: 'center', alignSelf: 'center' }} >
+          <div
+            className="flex justify-between w-full"
+            style={{ alignItems: "center", alignSelf: "center" }}
+          >
             {/* This span will be aligned to the left */}
-            <span className="subtitle" style={{ fontSize: 14 }}>1 Sản phẩm</span>
+            <span className="subtitle" style={{ fontSize: 14 }}>
+              1 Sản phẩm
+            </span>
 
             {/* This span will be aligned to the right */}
             <span className="subtitle" style={{ fontSize: 14 }}>
               Thanh toán:
               <span style={{ color: primaryColor }}>
-                <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.SHOP_PRODUCT_LIST} children={price} />
+                <PriceDisplay
+                  priceSize={PRICE_FONT_SIZE_BY_LOCATION.SHOP_PRODUCT_LIST}
+                  children={price}
+                />
               </span>
             </span>
           </div>
-
         </div>
         <div className="col-span-full flex justify-end">
           {isSeller ? (

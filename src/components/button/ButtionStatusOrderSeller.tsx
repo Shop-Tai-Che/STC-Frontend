@@ -96,8 +96,8 @@ const ButtonStatusOrderSeller: React.FC<{
         />
       );
 
-    if (currentStatusOrder == STATUS_ORDER.SUCCESS)
-      return <ButtonStatusOrderReceived />;
+    // if (currentStatusOrder == STATUS_ORDER.SUCCESS)
+    //   return <ButtonStatusOrderReceived />;
 
     return <></>;
   };
