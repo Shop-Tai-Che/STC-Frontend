@@ -12,6 +12,7 @@ import { Product } from "@utils/type";
 import SellerOrderEntry from "@components/seller/SellerOrderEntry";
 import UserInfo from "@components/common/UserInfo";
 import AppLogo from "@assets/images/AppLogo.png";
+import { openChatScreen, CHAT_TYPE, primaryColor } from "@utils/helper";
 
 const FORM_UP_PRODUCT =
   "https://docs.google.com/forms/d/e/1FAIpQLSfbZOmiULkqBA77rvzsXlRUxs3yiP3M4iVDYjBs-eC3D2fkSQ/viewform";
@@ -132,8 +133,12 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
             icon={
               currentUser.is_seller &&
               currentUser.id == (idShop ? parseInt(idShop) : undefined) ? (
-                <a href={FORM_UP_PRODUCT} target="_blank">
-                  <Icon icon="zi-add-story" />
+                <a
+                  onClick={() => openChatScreen(CHAT_TYPE.POST_PRODUCT)}
+                  // target="_blank"
+                  // href={FORM_UP_PRODUCT}
+                >
+                  <Icon icon="zi-add-story" style={{ color: primaryColor }} />
                 </a>
               ) : (
                 <></>
