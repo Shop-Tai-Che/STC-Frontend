@@ -44,11 +44,12 @@ const ProductDetailContent: React.FC<{ currentUser: UserFetch }> = ({
       }
     }
   }, []);
+  console.log("productItem in ProductDetailContent", productItem);
   return (
     <div>
       {fetchStateDetailProduct === FetchState.LOADING && (
         <Page className="flex justify-center items-center">
-          <LoadingState loadingTitle="Loading..." />
+          <LoadingState />
         </Page>
       )}
       {fetchStateDetailProduct === FetchState.SUCCESS && (
