@@ -70,9 +70,11 @@ const UserInfo: React.FC<UserInfoProps> = ({
         style={userInfoStyle}
         onClick={onClickUserInfo}
       >
-        <Avatar src={avatarSource} size={avatarSize} />
+        <div>
+          <Avatar src={avatarSource} size={avatarSize} />
+        </div>
         <div style={userInfoContentStyle}>
-          <Text size={userNameSize} bold={true}>
+          <Text size={userNameSize} bold={true} style={{ marginBottom: 4 }}>
             {userName}
           </Text>
           {userInfoType == "buyer-profile" ? null : (

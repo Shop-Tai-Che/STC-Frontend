@@ -2,7 +2,8 @@ import React from "react";
 import { Product } from "@utils/type";
 import { useNavigate } from "react-router-dom";
 import UserInfo from "@components/common/UserInfo";
-import AppLogo from "../../assets/images/AppLogo.png";
+import { STC_LOGO } from "@utils/type/Avatar";
+import { greyColor } from "@utils/helper";
 
 interface Props {
   product: Product;
@@ -10,7 +11,7 @@ interface Props {
 const ProductDetailShop = ({ product }: Props) => {
   const navigate = useNavigate();
 
-  const maxLength = 20;
+  const maxLength = 40;
   return (
     <div
     // className="flex items-center justify-between space-x-4 px-4"
@@ -25,7 +26,7 @@ const ProductDetailShop = ({ product }: Props) => {
         avatarSource={
           (product.Shop?.ShopInfo[0]?.avatar &&
             product.Shop?.ShopInfo[0].avatar) ||
-          AppLogo
+          STC_LOGO
         }
         avatarSize={48}
         userInfoContentStyle={{
@@ -37,28 +38,21 @@ const ProductDetailShop = ({ product }: Props) => {
             ? `${product.Shop.ShopInfo[0].name.substring(0, maxLength)}...`
             : product.Shop?.ShopInfo?.[0]?.name
         }
-        userNameSize="large"
+        userNameSize="normal"
         userInfoType="seller-profile"
-        subTitle={
-          product.Shop?.ShopInfo?.[0]?.address &&
-          product.Shop?.ShopInfo?.[0]?.address?.length > maxLength
-            ? `${product.Shop.ShopInfo[0].address.substring(0, maxLength)}...`
-            : product.Shop?.ShopInfo?.[0]?.address
-          // + ' - ' + `${product.amount} sản phẩm`
-        }
+        // subTitle={
+        //   product.amount && `${product.amount} sản phẩm`
+        //   product.Shop?.ShopInfo?.[0]?.address &&
+        //   product.Shop?.ShopInfo?.[0]?.address?.length > maxLength
+        //     ? `${product.Shop.ShopInfo[0].address.substring(0, maxLength)}...`
+        //     : product.Shop?.ShopInfo?.[0]?.address
+        //   + ' - ' + `${product.amount} sản phẩm`
+        // }
+        subTitleStyle={{ fontSize: 14 }}
         onClickUserInfo={() => {
           navigate(`/shop-detail/${product.shop_id}`);
         }}
       />
-      {/* <button
-        className="bg-transparent font-semibold hover:bg-gray-200 py-2 px-4 border rounded w-fit"
-        style={{ color: primaryColor, borderColor: primaryColor }}
-        onClick={() => {
-          navigate(`/shop-detail/${product.shop_id}`);
-        }}
-      >
-        Xem shop
-      </button> */}
     </div>
   );
 };
