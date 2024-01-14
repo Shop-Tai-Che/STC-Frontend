@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { GetOrderByShopId } from "@services/OrderServices"; 
+import { GetOrderByShopId } from "@services/OrderServices";
 import ProductItem from "./productItem";
 
-
 const UpdateStatusOrder: React.FC<{ shopId: number }> = ({ shopId }) => {
-  const  [order, fetchStateOrder, getResGetOrder] = GetOrderByShopId();
+  const [order, fetchStateOrder, getResGetOrder] = GetOrderByShopId();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getResGetOrder(shopId);
   }, []);
-  const navigate = useNavigate();
+
   return (
     <>
       {order &&
@@ -20,7 +20,8 @@ const UpdateStatusOrder: React.FC<{ shopId: number }> = ({ shopId }) => {
           };
           return (
             <>
-              <ProductItem key={index}
+              <ProductItem
+                key={index}
                 image={orderItem?.Product.ProductMedia[0].url}
                 name={orderItem.Product.title}
                 price={orderItem.Product.price}
