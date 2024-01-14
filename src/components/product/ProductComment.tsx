@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ReplySvg } from "@assets/svg";
 import { ButtonSecondary } from "@components/common";
-import { useSnackbar } from "zmp-ui";
+import { useSnackbar, Text, Input, Avatar } from "zmp-ui";
 import { Review } from "@utils/type/Review";
 import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import { FetchState } from "@utils/type/FetchState";
@@ -46,6 +46,27 @@ const ProductComment: React.FC<{
     );
   };
 
+  const handlePostReview = () => {
+    if (inputTextComment.length == 0) {
+      openSnackbar({
+        type: "warning",
+        text: "Vui lòng nhập đánh giá",
+      });
+    } else {
+      postReview({
+        product_id: product.id,
+        user_id: currentUser.id,
+        rating: 2,
+        comment: inputTextComment,
+      } as Review);
+
+      openSnackbar({
+        type: "success",
+        text: "Đã gửi đánh giá",
+      });
+    }
+  };
+
   return (
     <section className="bg-white antialiased">
       <form className="px-4">
@@ -56,16 +77,17 @@ const ProductComment: React.FC<{
             STATUS_ORDER.SUCCESS
           ) && (
             <>
-              <div className="py-2 px-2 mb-4 bg-white rounded-lg rounded-t-lg border border-black  ">
-                <textarea
+              <div className="mb-4 bg-white rounded-lg rounded-t-lg">
+                <Input.TextArea
                   id="comment"
-                  rows={6}
-                  style={{ resize: "none" }}
-                  className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none "
-                  placeholder="Bạn cảm thấy sao về sản phẩm này?"
+                  // rows={6}
+                  // style={{ resize: "none" }}
+                  className="w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none"
+                  placeholder="Bạn cảm thấy như thế nào về sản phẩm này?"
                   required
                   value={inputTextComment}
                   onChange={handleInputTextComment}
+                  size="small"
                 />
               </div>
 
@@ -74,19 +96,7 @@ const ProductComment: React.FC<{
                   title="Gửi đánh giá"
                   isDisable={!inputTextComment}
                   {...{ type: "button" }}
-                  onClick={() => {
-                    postReview({
-                      product_id: product.id,
-                      user_id: currentUser.id,
-                      rating: 2,
-                      comment: inputTextComment,
-                    } as Review);
-
-                    openSnackbar({
-                      type: "success",
-                      text: "Chức năng dành cho các bên tích hợp phát triển...",
-                    });
-                  }}
+                  onClick={handlePostReview}
                 />
               </div>
             </>
@@ -96,43 +106,74 @@ const ProductComment: React.FC<{
       <div
       // className="max-w-2xl mx-auto"
       >
-        {listItemReviews &&
+        {listItemReviews.length > 0 ? (
           listItemReviews.map((itemComment, index) => {
             return (
               <article
                 key={index}
-                className={`text-base bg-white rounded-lg ml-6    
-                `}
+                className="text-base bg-white rounded-lg"
+                style={{ margin: 16 }}
               >
-                <footer className="flex justify-between items-center mb-2">
-                  <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm text-gray-900  font-semibold">
-                      <img
-                        className="mr-2 w-6 h-6 rounded-full"
+                <footer className="flex justify-between items-center">
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      className="inline-flex items-center text-sm text-gray-900  font-semibold"
+                      style={{
+                        marginRight: 12,
+                      }}
+                    >
+                      <Avatar
+                        size={24}
                         src={
                           itemComment.User
                             ? itemComment.User.avatar
                             : currentUser.avatar
                         }
-                        alt="user"
+                        style={{
+                          marginRight: 6,
+                        }}
+                        // alt="user"
                       />
-                      {itemComment.User
-                        ? itemComment.User.name
-                        : currentUser.name}
-                    </p>
-                    <p className="text-sm text-gray-600  ">
+                      <Text size="small" bold>
+                        {itemComment.User
+                          ? itemComment.User.name
+                          : currentUser.name}
+                      </Text>
+                    </div>
+                    <Text size="small" className="text-gray-500  ">
                       <time title={itemComment.created_at}>
                         {itemComment.created_at
                           ? convertDMY(itemComment.created_at)
                           : "Vừa xong"}
                       </time>
-                    </p>
+                    </Text>
                   </div>
                 </footer>
-                <p dangerouslySetInnerHTML={{ __html: itemComment.comment }} />
+                <p
+                  className="mt-2"
+                  dangerouslySetInnerHTML={{ __html: itemComment.comment }}
+                />
+                <div
+                  style={{
+                    height: 1,
+                    alignSelf: "stretch",
+                    background: "#E9EBED",
+                  }}
+                />
               </article>
             );
-          })}
+          })
+        ) : (
+          <Text size="small" className="ml-4 text-gray-500">
+            Sản phẩm chưa có đánh giá
+          </Text>
+        )}
       </div>
     </section>
   );
