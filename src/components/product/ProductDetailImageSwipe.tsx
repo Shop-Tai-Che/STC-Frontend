@@ -22,26 +22,26 @@ const ProductDetailImageSwipe = ({ product }) => {
           <SwiperSlide key={ChildIndex}>
             <Box
               style={{
-                height: "60vh",
+                height: "100%",
                 width: "100%",
-                display: 'block', // Or 'flex' if that suits your layout better
+                display: "block", // Or 'flex' if that suits your layout better
                 // position: 'relative',
-                overflow: 'hidden',
-                backgroundColor: 'black',
-                alignItems: 'center',
-                justifyContent: 'center',
-                alignContent: 'center',
-                justifyItems: 'center'
+                overflow: "hidden",
+                backgroundColor: "black",
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center",
+                justifyItems: "center",
               }}
             >
               <img
                 src={MediaItem.url}
                 alt=""
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center'
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center",
                 }}
               />
             </Box>

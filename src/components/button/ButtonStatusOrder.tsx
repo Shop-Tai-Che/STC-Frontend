@@ -93,7 +93,10 @@ const ButtonStatusOrderShipping: FC = () => {
   );
 };
 
-const ButtonStatusOrderReceived: FC = () => {
+const ButtonStatusOrderReceived: FC<{ productId: "string" }> = ({
+  productId,
+}) => {
+  const navigate = useNavigate();
   const colorOpacity = (color, opacity) => {
     return getColorOpacity(color, opacity);
   };
@@ -105,6 +108,7 @@ const ButtonStatusOrderReceived: FC = () => {
           backgroundColor: colorOpacity(primaryColor, 0.3),
           color: primaryColor,
         }}
+        onClick={() => navigate(`/product-detail/${productId}`)}
       >
         <Icon icon="zi-recall" /> Đánh giá sản phẩm
       </Button>
@@ -134,7 +138,7 @@ const ButtonStatusOrder: FC<{
       return <ButtonStatusOrderShipping />;
 
     if (currentStatusOrder == STATUS_ORDER.SUCCESS)
-      return <ButtonStatusOrderReceived />;
+      return <ButtonStatusOrderReceived productId={productId} />;
 
     if (currentStatusOrder == STATUS_ORDER.CANCELED)
       return (

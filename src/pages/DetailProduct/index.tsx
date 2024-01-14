@@ -18,7 +18,9 @@ import { Review } from "@utils/type/Review";
 import { UserFetch } from "@utils/type/User";
 import LoadingState from "@components/common/loading";
 
-const ProductDetailContent: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
+const ProductDetailContent: React.FC<{ currentUser: UserFetch }> = ({
+  currentUser,
+}) => {
   const { idProduct } = useParams();
   const { openSnackbar } = useSnackbar();
   const [productItem, fetchStateDetailProduct, getResDetailProduct] =
@@ -91,7 +93,10 @@ const DetailProduct: React.FC<{ currentUser: UserFetch }> = ({
   currentUser,
 }) => {
   return (
-    <Page className="relative flex-1 flex flex-col bg-white" hideScrollbar={true}>
+    <Page
+      className="relative flex-1 flex flex-col bg-white"
+      hideScrollbar={true}
+    >
       <div className="flex-1 overflow-auto pb-20">
         <Suspense fallback={<ProductDetailContent currentUser={currentUser} />}>
           <ProductDetailContent currentUser={currentUser} />

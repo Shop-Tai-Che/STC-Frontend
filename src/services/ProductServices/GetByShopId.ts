@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FetchState } from "@utils/type/FetchState";
-import { Product, } from "@utils/type/Product";
+import { Product } from "@utils/type/Product";
 import axios from "axios";
 
 const GetProductByShopId = () => {
@@ -11,12 +11,14 @@ const GetProductByShopId = () => {
     try {
       setFetchState(FetchState.LOADING);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_SHOP}?page=0&pageSize=10&shop_id=${shopId}`,
+        `${
+          import.meta.env.VITE_API_SHOP
+        }?page=0&pageSize=100&shop_id=${shopId}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-        },
+        }
       );
 
       const resData = response.data.data as Product[];
