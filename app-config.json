@@ -1,11 +1,11 @@
 {
   "app": {
- "title": "Shop Tái Chế",
+    "title": "Shop Tái Chế",
     "headerTitle": "Shop Tái Chế",
     "headerColor": "#ffffff",
     "textColor": "black",
     "textAlign": "left",
-    "statusBarColor": "#288f4e", 
+    "statusBarColor": "#288f4e",
     "statusBar": "normal",
     "actionBarHidden": false,
     "hideAndroidBottomNavigationBar": false,
@@ -19,10 +19,11 @@
   "listAsyncJS": [],
   "template": {
     "primaryColor": "#288f4e",
-    "secondaryColor": "#E5E2E5",
-    "tertiaryColor":"#B87A00",
+    "secondaryColor": "#E6FAED",
+    "tertiaryColor": "#B87A00",
+    "greyColor": "#EAEBED",
     "prefixCurrencySymbol": false,
     "currencySymbol": " đ",
-    "headerLogo": ""
+    "headerLogo": "https://firebasestorage.googleapis.com/v0/b/shop-tai-che.appspot.com/o/STC%20AppLogo.png?alt=media&token=3240bbeb-81a0-49b0-bd78-cef4f0ed7f42"
   }
 }
