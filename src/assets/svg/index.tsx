@@ -10,6 +10,7 @@ import PermissionSvg from "./permission";
 import DecorationSvg from "./decoration";
 import AccessorySvg from "./accessory";
 import EmptyOrderSvg from "./empty_order";
+import EmptyProductSvg from "./empty_product";
 
 export {
   ReplySvg,
@@ -24,4 +25,5 @@ export {
   DecorationSvg,
   AccessorySvg,
   EmptyOrderSvg,
+  EmptyProductSvg,
 };

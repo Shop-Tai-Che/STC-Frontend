@@ -7,11 +7,11 @@ export function getConfig<T>(getter: (config: typeof appConfig) => T) {
 export const primaryColor = getConfig((config) => config.template.primaryColor);
 
 export const secondaryColor = getConfig(
-  (config) => config.template.secondaryColor,
+  (config) => config.template.secondaryColor
 );
 
 export const tertiaryColor = getConfig(
-  (config) => config.template.tertiaryColor,
+  (config) => config.template.tertiaryColor
 );
 
-export const greyColor = '#A4A5A6';
+export const greyColor = getConfig((config) => config.template.greyColor);

@@ -11,11 +11,9 @@ const ProductShortageItem: React.FC<{ product: Product }> = ({ product }) => {
         alt="Product Image"
         className="w-28 object-contain rounded-lg"
       />
-      <div
-        className="flex flex-col w-full pr-6"
-      >
+      <div className="flex flex-col w-full pr-6">
         <Text
-          size="normal"
+          size="large"
           className="m-0 p-0"
           bold
           style={{
@@ -27,11 +25,11 @@ const ProductShortageItem: React.FC<{ product: Product }> = ({ product }) => {
         >
           {product.title}
         </Text>
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full mt-2">
           <Text size="normal">
             <PriceDisplay children={product.price} />{" "}
           </Text>
-          <Text size="normal">x1</Text>
+          <Text size="normal">Số lượng: 1</Text>
         </div>
       </div>
     </div>

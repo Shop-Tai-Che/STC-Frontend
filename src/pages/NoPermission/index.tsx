@@ -7,12 +7,12 @@ import LoadingState from "@components/common/loading";
 
 interface NoPermissionProp {
   onClickPrimaryButton?: () => void;
-  isAskingPermisson: boolean; 
+  isAskingPermisson: boolean;
 }
 
 const NoPermission: React.FC<NoPermissionProp> = ({
   onClickPrimaryButton,
-  isAskingPermisson, 
+  isAskingPermisson,
 }) => {
   return (
     <Page
@@ -29,7 +29,8 @@ const NoPermission: React.FC<NoPermissionProp> = ({
       ) : (
         <OrderSuccess
           mainTitle="Shop Tái Chế cần một chút Phép Màu"
-          subTitle="Để trải nghiệm toàn bộ tính năng của sốp, vui lòng cho phép truy cập thông tin cá nhân"
+          subTitle="Để trải nghiệm toàn bộ tính năng của sốp, 
+          vui lòng cho phép truy cập thông tin cá nhân"
           iconProp={
             <PermissionSvg
               iconWidth={72}
@@ -40,7 +41,7 @@ const NoPermission: React.FC<NoPermissionProp> = ({
           hasPrimaryButton={true}
           hasSecondaryButton={false}
           primaryButtonTitle="Cấp quyền cho Shop Tái Chế"
-          onClickPrimaryButton={onClickPrimaryButton as ()=>void}
+          onClickPrimaryButton={onClickPrimaryButton as () => void}
         />
       )}
     </Page>

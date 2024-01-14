@@ -20,7 +20,7 @@ const CategoryListSwipeContent: React.FC<CategoryListSwipeContentProp> = ({
   const navigate = useNavigate();
   return (
     <SectionText padding="title-only">
-      <Swiper spaceBetween={5} slidesPerView={3.5} className="px-4">
+      <Swiper spaceBetween={5} slidesPerView={3} className="px-4">
         <div>
           {ProductCategory.map(({ id, name, cover, tag }) => (
             <SwiperSlide
@@ -36,7 +36,6 @@ const CategoryListSwipeContent: React.FC<CategoryListSwipeContentProp> = ({
               <div
                 style={{
                   borderRadius: "8px",
-                  borderColor: `${greyColor}`,
                   flex: 1,
                   marginBottom: 4,
                   padding: "10px",

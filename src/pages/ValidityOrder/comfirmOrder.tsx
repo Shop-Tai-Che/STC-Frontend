@@ -33,7 +33,7 @@ const ComfirmOrder = () => {
       setOrderItem(order as OrderStatusFetch);
     }
   }, [fetchStateOrder]);
-  console.log(orderItem)
+  // console.log(orderItem);
   return (
     <>
       {orderItem && (
@@ -54,16 +54,16 @@ const ComfirmOrder = () => {
             }
           />
           <DividerSpace />
-          <OrderInforReceive orderItem={orderItem} title="Chi tiết đơn hàng "/>
+          <OrderInforReceive orderItem={orderItem} title="Chi tiết đơn hàng " />
           <DividerSpace />
           <OrderPaymentFillInfo
-              paymentInfor={
-                {
-                  typePayment: orderItem.payment_method,
-                  shipPrices: orderItem.ship_fee,
-                } as ShipPayment
-              }
-              needDisplayTitle={false}
+            paymentInfor={
+              {
+                typePayment: orderItem.payment_method,
+                shipPrices: orderItem.ship_fee,
+              } as ShipPayment
+            }
+            needDisplayTitle={false}
           />
           <ButtonStatusOrderSeller
             currentStatusOrder={orderItem.status}

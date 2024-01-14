@@ -20,22 +20,23 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
       <Box
         className="relative aspect-video rounded-t-md bg-cover bg-center bg-skeleton"
         style={{
-          backgroundImage:
-            `url(${product && product.ProductMedia[0] && product.ProductMedia[0].url
+          backgroundImage: `url(${
+            product && product.ProductMedia[0] && product.ProductMedia[0].url
               ? product.ProductMedia[0].url
-              : ""} )`,
-          height: '60%',
-          width: '100%'
+              : ""
+          } )`,
+          height: "60%",
+          width: "100%",
         }}
       />
       <div className="p-2 flex-grow">
         <Text
           style={{
-            display: '-webkit-box',
-            WebkitLineClamp: '2',
-            WebkitBoxOrient: 'vertical',
-            textOverflow: 'ellipsis',
-            overflow: 'hidden',
+            display: "-webkit-box",
+            WebkitLineClamp: "2",
+            WebkitBoxOrient: "vertical",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
             lineHeight: "1.2em",
           }}
         >
@@ -49,7 +50,10 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
             className="text-primary"
             style={{ color: primaryColor, fontWeight: "normal" }}
           >
-            <FinalPriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.BUYER_PRODUCT_LIST} product={product} />
+            <FinalPriceDisplay
+              priceSize={PRICE_FONT_SIZE_BY_LOCATION.BUYER_PRODUCT_LIST}
+              product={product}
+            />
           </Text>
           <Text size="xxSmall" className="text-gray-400">
             {product.has_sold} đã bán

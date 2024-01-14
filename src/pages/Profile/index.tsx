@@ -6,7 +6,7 @@ import { DividerSpace } from "@components/divider";
 import getDataToStorage from "@store/getStorage";
 import { getCurrentUser } from "@store/action";
 import { UserFetch } from "@utils/type/User";
-import { primaryColor } from "@utils/helper";
+import { CHAT_TYPE, openChatScreen, primaryColor } from "@utils/helper";
 import UserInfo from "@components/common/UserInfo";
 
 const FORM_REGISTRY_BECOME_SELLER =
@@ -68,14 +68,15 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
           prefix={<BusinessSvg iconWidth={24} iconHeight={24} />}
           suffix={<Icon icon="zi-chevron-right" />}
           subTitle={
-            currentUser.is_seller ? "" : "Điền thông tin qua Google Form"
+            currentUser.is_seller ? "" : "Chat với Admin của Shop Tái Chế"
           }
           className="tab-me__action__register-seller"
           onClick={() => {
             if (currentUser.is_seller) {
               navigate(`/shop-detail/${currentUser.id}`);
             } else {
-              window.open(FORM_REGISTRY_BECOME_SELLER, "_blank");
+              // window.open(FORM_REGISTRY_BECOME_SELLER, "_blank");
+              openChatScreen(CHAT_TYPE.SELLER_REGISTRATION);
             }
           }}
         />

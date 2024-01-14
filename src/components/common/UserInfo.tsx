@@ -3,19 +3,45 @@ import { Page, List, Icon, Avatar, Box, Text } from "zmp-ui";
 
 // Define the props type
 interface UserInfoProps {
-  flexDirectionProp: 'row' | 'column' | 'row-reverse' | 'column-reverse';
-  alignItemsProp: "initial" | "center" | "flex-start" | "flex-end" | "stretch" | "baseline" | undefined;
+  flexDirectionProp: "row" | "column" | "row-reverse" | "column-reverse";
+  alignItemsProp:
+    | "initial"
+    | "center"
+    | "flex-start"
+    | "flex-end"
+    | "stretch"
+    | "baseline"
+    | undefined;
   classNameProp?: string;
   avatarSource: string;
   avatarSize: number;
-  userNameSize: "small" | "xLarge" | "large" | "normal" | "xSmall" | "xxSmall" | "xxxSmall" | "xxxxSmall" | undefined;
-  userName: string | object | undefined
+  userNameSize:
+    | "small"
+    | "xLarge"
+    | "large"
+    | "normal"
+    | "xSmall"
+    | "xxSmall"
+    | "xxxSmall"
+    | "xxxxSmall"
+    | undefined;
+  userName: string | object | undefined;
   userInfoStyle: object;
   userInfoContentStyle: object;
-  userInfoType: 'buyer-profile' | 'seller-profile';
-  subTitleSize?: "small" | "xLarge" | "large" | "normal" | "xSmall" | "xxSmall" | "xxxSmall" | "xxxxSmall" | undefined;
+  userInfoType: "buyer-profile" | "seller-profile";
+  subTitleSize?:
+    | "small"
+    | "xLarge"
+    | "large"
+    | "normal"
+    | "xSmall"
+    | "xxSmall"
+    | "xxxSmall"
+    | "xxxxSmall"
+    | undefined;
   subTitleStyle?: object;
-  subTitle?: string | object | undefined | null
+  subTitle?: string | object | undefined | null;
+  onClickUserInfo?: () => void;
 }
 
 const UserInfo: React.FC<UserInfoProps> = ({
@@ -31,9 +57,9 @@ const UserInfo: React.FC<UserInfoProps> = ({
   userInfoType,
   subTitleSize,
   subTitleStyle,
-  subTitle
+  subTitle,
+  onClickUserInfo,
 }) => {
-
   return (
     <>
       <Box
@@ -42,29 +68,22 @@ const UserInfo: React.FC<UserInfoProps> = ({
         alignItems={alignItemsProp}
         className={classNameProp}
         style={userInfoStyle}
+        onClick={onClickUserInfo}
       >
-        <Avatar
-          src={avatarSource}
-          size={avatarSize}
-        />
+        <Avatar src={avatarSource} size={avatarSize} />
         <div style={userInfoContentStyle}>
-          <Text
-            size={userNameSize}
-            bold={true}
-          >
+          <Text size={userNameSize} bold={true}>
             {userName}
           </Text>
-          {userInfoType == 'buyer-profile' ? null : <Text
-            size={subTitleSize}
-            style={subTitleStyle}
-          >
-            {subTitle}
-          </Text>}
+          {userInfoType == "buyer-profile" ? null : (
+            <Text size={subTitleSize} style={subTitleStyle}>
+              {subTitle}
+            </Text>
+          )}
         </div>
-
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default UserInfo
+export default UserInfo;

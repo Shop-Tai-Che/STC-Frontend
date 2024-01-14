@@ -63,7 +63,7 @@ const OrderSuccess: React.FC<OrderSuccesProp> = ({
             <ButtonSecondary
               title={secondaryButtonTitle ? secondaryButtonTitle : ""}
               isSecondary={true}
-              onClick={onClickPrimaryButton}
+              onClick={onClickSecondaryButton}
             />
           </div>
         )}

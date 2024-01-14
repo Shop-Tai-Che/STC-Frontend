@@ -1,7 +1,7 @@
 import React, { FC, HTMLProps, PropsWithChildren } from "react";
 import { Text, Box } from "zmp-ui";
 import { BodyTextProps } from "zmp-ui/text";
-import { secondaryColor } from "@utils/helper/config";
+import { greyColor, secondaryColor } from "@utils/helper/config";
 
 export const TextSkeleton: FC<PropsWithChildren<BodyTextProps>> = ({
   className,
@@ -9,7 +9,7 @@ export const TextSkeleton: FC<PropsWithChildren<BodyTextProps>> = ({
 }) => {
   return (
     <Text
-      style={{ color: secondaryColor }}
+      style={{ color: greyColor }}
       {...props}
       className={`bg-skeleton text-transparent w-fit h-fit animate-pulse ${
         className ?? ""
@@ -25,7 +25,7 @@ export const ImageSkeleton: FC<HTMLProps<HTMLImageElement>> = ({
   return (
     <div
       {...props}
-      style={{ backgroundColor: secondaryColor }}
+      style={{ backgroundColor: greyColor }}
       className={`bg-skeleton animate-pulse bg--secondary ${className ?? ""}`}
     />
   );

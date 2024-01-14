@@ -17,8 +17,6 @@ const ProductListGridContent: React.FC<{
     if (fetchState === FetchState.DEFAULT) getRes();
   }, []);
 
-  console.log("products", products);
-
   const AllProductPage = () => {
     return (
       <div className=" grid-cols-2 gap-2 px-4" style={{ display: "grid" }}>
@@ -41,15 +39,11 @@ const ProductListGridContent: React.FC<{
     );
   };
 
-  const selectTitle = () => {
-    return "oh";
-  };
-
   return (
     <SectionText
       title={
         idTag
-          ? `Sản phẩm tái chế cho ${
+          ? `Mới ra mắt ở ${
               ProductCategory.filter((cate) => cate.id == idTag)[0]["name"]
             }`
           : HOME_TITLE.NEW
@@ -88,16 +82,11 @@ const ProductListGridFallback: React.FC = () => {
 const ProductListGrid: React.FC<{ idTag?: number | undefined }> = ({
   idTag,
 }) => {
-  console.log("idTag", idTag);
-  console.log(
-    'ProductCategory.filter((cate) => cate.id == idTag)[0]["name"]',
-    ProductCategory.filter((cate) => cate.id == idTag)
-  );
   return (
     <Suspense fallback={<ProductListGridFallback />}>
       <ProductListGridContent
         idTag={idTag}
-        productPageTitle={`Sản phẩm tái chế cho con cặc`}
+        productPageTitle={`Mới ra mắt ở ...`}
       />
     </Suspense>
   );

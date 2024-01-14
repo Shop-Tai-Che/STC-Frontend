@@ -3,7 +3,12 @@ import { Icon } from "zmp-ui";
 import Button from "zmp-ui/button";
 import { Product } from "@utils/type/Product";
 import { useNavigate } from "react-router-dom";
-import { openChatScreen, primaryColor, tertiaryColor } from "@utils/helper";
+import {
+  CHAT_TYPE,
+  openChatScreen,
+  primaryColor,
+  tertiaryColor,
+} from "@utils/helper";
 
 const ButtonOrder: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
@@ -16,7 +21,7 @@ const ButtonOrder: React.FC<{ product: Product }> = ({ product }) => {
       <Button
         className="w-4/12 "
         style={{ backgroundColor: tertiaryColor, borderRadius: "0px" }}
-        onClick={() => openChatScreen()}
+        onClick={() => openChatScreen(CHAT_TYPE.SUPPORT, product)}
       >
         <Icon icon="zi-chat" />
       </Button>
