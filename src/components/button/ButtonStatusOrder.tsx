@@ -1,31 +1,35 @@
 import React, { FC, useEffect } from "react";
 import { Icon } from "zmp-ui";
-import Button from "zmp-ui/button"; 
+import Button from "zmp-ui/button";
 import { primaryColor } from "@utils/helper";
-import { FetchState, } from "@utils/type/FetchState";
+import { FetchState } from "@utils/type/FetchState";
 import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import { useNavigate } from "react-router-dom";
-import getColorOpacity from "@utils/helper/getColorOpacity"; 
+import getColorOpacity from "@utils/helper/getColorOpacity";
 import { updateStatusOrder } from "@services/OrderServices";
 
-const ButtonStatusOrderProcessing: FC<{ orderId: number, setChangeStatusCallback:()=>void }> = ({ orderId, setChangeStatusCallback })  => {
+const ButtonStatusOrderProcessing: FC<{
+  orderId: number;
+  setChangeStatusCallback: () => void;
+}> = ({ orderId, setChangeStatusCallback }) => {
   const colorOpacity = (color, opacity) => {
     return getColorOpacity(color, opacity);
   };
   const [updateStatus, fetchStatusOrder] = updateStatusOrder();
 
   useEffect(() => {
-    if(fetchStatusOrder == FetchState.SUCCESS)
-    {
-      setChangeStatusCallback() 
+    if (fetchStatusOrder == FetchState.SUCCESS) {
+      setChangeStatusCallback();
     }
-  },[fetchStatusOrder])
+  }, [fetchStatusOrder]);
   return (
     <>
       <Button
         className="w-2/5 rounded-full"
         style={{ backgroundColor: colorOpacity("#FF0900", 0.2), color: "red" }}
-        onClick={()=>updateStatus({orderId, newStatus: STATUS_ORDER.CANCELED} )}
+        onClick={() =>
+          updateStatus({ orderId, newStatus: STATUS_ORDER.CANCELED })
+        }
       >
         <Icon icon="zi-delete" /> {"  "}
         Hủy đơn
@@ -36,7 +40,6 @@ const ButtonStatusOrderProcessing: FC<{ orderId: number, setChangeStatusCallback
           backgroundColor: colorOpacity(primaryColor, 0.3),
           color: primaryColor,
         }}
-      
       >
         <Icon icon="zi-chat" /> {"  "}
         Hỗ trợ ngay
@@ -45,7 +48,10 @@ const ButtonStatusOrderProcessing: FC<{ orderId: number, setChangeStatusCallback
   );
 };
 
-const ButtonStatusOrderCanceled: FC<{ productId: number, setChangeStatusCallback: ()=>void }> = ({ productId, setChangeStatusCallback }) => {
+const ButtonStatusOrderCanceled: FC<{
+  productId: number;
+  setChangeStatusCallback: () => void;
+}> = ({ productId, setChangeStatusCallback }) => {
   const colorOpacity = (color, opacity) => {
     return getColorOpacity(color, opacity);
   };
@@ -58,7 +64,9 @@ const ButtonStatusOrderCanceled: FC<{ productId: number, setChangeStatusCallback
           backgroundColor: colorOpacity(primaryColor, 0.3),
           color: primaryColor,
         }}
-        onClick={()=>{navigate(`/product-detail/${productId}`)}}
+        onClick={() => {
+          navigate(`/product-detail/${productId}`);
+        }}
       >
         Mua lại sản phẩm{" "}
       </Button>
@@ -108,14 +116,19 @@ const ButtonStatusOrder: FC<{
   currentStatusOrder: string | null;
   orderId: number;
   productId: number;
-  setChangeStatusCallback : ()=>void
+  setChangeStatusCallback: () => void;
 }> = ({ currentStatusOrder, orderId, setChangeStatusCallback, productId }) => {
   const ButtonStatusOrderItem: FC = () => {
     if (!currentStatusOrder) {
       return <></>;
     }
     if (currentStatusOrder == STATUS_ORDER.PROCESSING)
-      return <ButtonStatusOrderProcessing  orderId={orderId} setChangeStatusCallback={setChangeStatusCallback}/>;
+      return (
+        <ButtonStatusOrderProcessing
+          orderId={orderId}
+          setChangeStatusCallback={setChangeStatusCallback}
+        />
+      );
 
     if (currentStatusOrder == STATUS_ORDER.DELIVERING)
       return <ButtonStatusOrderShipping />;
@@ -124,7 +137,12 @@ const ButtonStatusOrder: FC<{
       return <ButtonStatusOrderReceived />;
 
     if (currentStatusOrder == STATUS_ORDER.CANCELED)
-      return <ButtonStatusOrderCanceled productId={productId} setChangeStatusCallback={setChangeStatusCallback}/>;
+      return (
+        <ButtonStatusOrderCanceled
+          productId={productId}
+          setChangeStatusCallback={setChangeStatusCallback}
+        />
+      );
 
     return <></>;
   };

@@ -5,7 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { PriceDisplay } from "@components/display";
 import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
-const ProductShopItem: React.FC<{ product: Product }> = ({ product }) => {
+interface ProductShopItemProp {
+  product: Product;
+  viewType: "buyer" | "seller";
+}
+
+const ProductShopItem: React.FC<ProductShopItemProp> = ({
+  product,
+  viewType,
+}) => {
   const navigation = useNavigate();
   return (
     <div
@@ -22,27 +30,36 @@ const ProductShopItem: React.FC<{ product: Product }> = ({ product }) => {
           className="rounded-lg w-24 h-24"
         />
         <div className=" h-2/3 flex flex-col justify-between w-full">
-          <Text size="normal" className="m-0 p-0" style={{ fontWeight: 'normal' }}>
+          <Text
+            size="normal"
+            className="m-0 p-0"
+            style={{ fontWeight: "normal" }}
+          >
             {product.title}
           </Text>
           <div className="flex justify-between w-full">
-            <Text size="normal" style={{ fontWeight: 'normal', marginTop: 8 }}>
-              <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.SHOP_PRODUCT_LIST} children={product.price} />
+            <Text size="normal" style={{ fontWeight: "normal", marginTop: 8 }}>
+              <PriceDisplay
+                priceSize={PRICE_FONT_SIZE_BY_LOCATION.SHOP_PRODUCT_LIST}
+                children={product.price}
+              />
             </Text>
           </div>
         </div>
       </div>
-      <div className="flex gap-10  ">
-        <Text size="small" className="text-gray-500">
-          Kho hàng: {product.amount}
-        </Text>
-        <Text size="small" className="text-gray-500">
-          Đã bán: {product.has_sold}
-        </Text>
-        <Text size="small" className="text-gray-500">
-          Thích: {product._count?.Love}
-        </Text>
-      </div>
+      {viewType == "seller" ? (
+        <div className="flex gap-10  ">
+          <Text size="small" className="text-gray-500">
+            Kho hàng: {product.amount}
+          </Text>
+          <Text size="small" className="text-gray-500">
+            Đã bán: {product.has_sold}
+          </Text>
+          <Text size="small" className="text-gray-500">
+            Thích: {product._count?.Love}
+          </Text>
+        </div>
+      ) : null}
     </div>
   );
 };

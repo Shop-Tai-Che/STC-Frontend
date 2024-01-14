@@ -36,7 +36,6 @@ const CategoryListSwipeContent: React.FC<CategoryListSwipeContentProp> = ({
               <div
                 style={{
                   borderRadius: "8px",
-                  borderColor: `${greyColor}`,
                   flex: 1,
                   marginBottom: 4,
                   padding: "10px",
