@@ -15,8 +15,8 @@ const OrderPaymentFillInfo: React.FC<{
 }> = ({ editView, paymentInfor, needDisplayTitle = true }) => {
   const convertPayment = () => {
     return paymentInfor?.typePayment == TYPESPAYMENT.BANKING
-      ? "Thanh toán bằng tiền mặt"
-      : "Thanh toán bằng tiền mặt";
+      ? "Thanh toán bằng tiền mặt (mặc định)"
+      : "Thanh toán bằng tiền mặt (mặc định)";
   };
   const TypePayment = editView ? (
     <Text style={{ marginLeft: 12 }}>Thanh toán bằng tiền mặt (mặc định)</Text>

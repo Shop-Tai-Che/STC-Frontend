@@ -5,17 +5,17 @@ import { Review } from "@utils/type/Review";
 
 const CreateReview = () => {
   const [fetchStatus, setFetchStatus] = useState<FetchState>(
-    FetchState.DEFAULT,
+    FetchState.DEFAULT
   );
   const postReview = async (review: Review) => {
     try {
       setFetchStatus(FetchState.LOADING);
- 
+
       const res = await axios.post(
         `${import.meta.env.VITE_API_REVIEW}`.replace(" ", ""),
         review
       );
-      console.log(res.data)
+      // console.log(res.data)
       setFetchStatus(FetchState.SUCCESS);
     } catch (error) {
       setFetchStatus(FetchState.ERROR);
@@ -23,6 +23,5 @@ const CreateReview = () => {
   };
   return [fetchStatus, postReview] as const;
 };
-
 
 export default CreateReview;

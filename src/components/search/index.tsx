@@ -10,7 +10,7 @@ const TmnSearch: React.FC = () => {
         placeholder="Tên sản phẩm..."
         clearable
         onSearch={(value) => {
-          console.log(value);
+          // console.log(value);
         }}
       />
     </Box>

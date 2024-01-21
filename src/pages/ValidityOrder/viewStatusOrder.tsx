@@ -7,6 +7,7 @@ import { EmptyOrderSvg } from "@assets/svg";
 import { Text } from "zmp-ui";
 import EmptyOrderHistory from "@pages/StatusOrder/EmptyOrderHistory";
 import { FetchState } from "@utils/type";
+import { sortedArrByField } from "@utils/helper/sort";
 
 const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
   const navigate = useNavigate();
@@ -16,12 +17,6 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
   useEffect(() => {
     getResGetOrder(userId);
   }, []);
-  console.log(
-    "User Order History",
-    order,
-    "and fetchStateOrder",
-    fetchStateOrder
-  );
 
   useEffect(() => {
     // Check the fetchStateOrder to determine if the API request has completed.
@@ -32,6 +27,8 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
     }
   }, [fetchStateOrder, order]);
 
+  // Sort the order array by the created_at field in descending order
+  const sortedOrder = sortedArrByField(order, "created_at");
   return (
     <>
       {isNoOrder ? (
@@ -39,7 +36,7 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
           <EmptyOrderHistory />
         </>
       ) : (
-        order?.map((orderItem, index) => {
+        sortedOrder?.map((orderItem, index) => {
           const onAction = () => {
             navigate(`/status-order/${orderItem.id}`);
           };

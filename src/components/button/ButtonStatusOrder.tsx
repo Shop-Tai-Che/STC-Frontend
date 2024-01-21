@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
-import { Icon } from "zmp-ui";
+import { Icon, useSnackbar } from "zmp-ui";
 import Button from "zmp-ui/button";
-import { primaryColor } from "@utils/helper";
+import { CHAT_TYPE, openChatScreen, primaryColor } from "@utils/helper";
 import { FetchState } from "@utils/type/FetchState";
 import { STATUS_ORDER } from "@utils/type/StatusOrder";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,8 @@ import { updateStatusOrder } from "@services/OrderServices";
 const ButtonStatusOrderProcessing: FC<{
   orderId: number;
   setChangeStatusCallback: () => void;
-}> = ({ orderId, setChangeStatusCallback }) => {
+  onClickSupportBtn: () => void;
+}> = ({ orderId, setChangeStatusCallback, onClickSupportBtn }) => {
   const colorOpacity = (color, opacity) => {
     return getColorOpacity(color, opacity);
   };
@@ -40,6 +41,7 @@ const ButtonStatusOrderProcessing: FC<{
           backgroundColor: colorOpacity(primaryColor, 0.3),
           color: primaryColor,
         }}
+        onClick={onClickSupportBtn}
       >
         <Icon icon="zi-chat" /> {"  "}
         Hỗ trợ ngay
@@ -73,7 +75,9 @@ const ButtonStatusOrderCanceled: FC<{
     </>
   );
 };
-const ButtonStatusOrderShipping: FC = () => {
+const ButtonStatusOrderShipping: FC<{ onClickSupportBtn: () => void }> = ({
+  onClickSupportBtn,
+}) => {
   const colorOpacity = (color, opacity) => {
     return getColorOpacity(color, opacity);
   };
@@ -85,6 +89,7 @@ const ButtonStatusOrderShipping: FC = () => {
           backgroundColor: colorOpacity(primaryColor, 0.3),
           color: primaryColor,
         }}
+        onClick={onClickSupportBtn}
       >
         <Icon icon="zi-chat" /> {"  "}
         Hỗ trợ ngay
@@ -121,8 +126,25 @@ const ButtonStatusOrder: FC<{
   orderId: number;
   productId: number;
   setChangeStatusCallback: () => void;
-}> = ({ currentStatusOrder, orderId, setChangeStatusCallback, productId }) => {
-  const ButtonStatusOrderItem: FC = () => {
+  onClickSupportBtnHigherLevel: () => void;
+}> = ({
+  currentStatusOrder,
+  orderId,
+  setChangeStatusCallback,
+  productId,
+  onClickSupportBtnHigherLevel,
+}) => {
+  // const onClickSupportBtn = () => {
+  //   console.log("onClickSupportBtn");
+  //   useSnackbar().openSnackbar({
+  //     text: `Test`,
+  //     type: "warning",
+  //     duration: 3000,
+  //   });
+  // };
+  const ButtonStatusOrderItem: FC<{ onClickSupportBtnHigher: () => void }> = ({
+    onClickSupportBtnHigher,
+  }) => {
     if (!currentStatusOrder) {
       return <></>;
     }
@@ -131,11 +153,16 @@ const ButtonStatusOrder: FC<{
         <ButtonStatusOrderProcessing
           orderId={orderId}
           setChangeStatusCallback={setChangeStatusCallback}
+          onClickSupportBtn={onClickSupportBtnHigher}
         />
       );
 
     if (currentStatusOrder == STATUS_ORDER.DELIVERING)
-      return <ButtonStatusOrderShipping />;
+      return (
+        <ButtonStatusOrderShipping
+          onClickSupportBtn={onClickSupportBtnHigher}
+        />
+      );
 
     if (currentStatusOrder == STATUS_ORDER.SUCCESS)
       return <ButtonStatusOrderReceived productId={productId} />;
@@ -152,7 +179,9 @@ const ButtonStatusOrder: FC<{
   };
   return (
     <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white flex justify-around items-center">
-      <ButtonStatusOrderItem />
+      <ButtonStatusOrderItem
+        onClickSupportBtnHigher={onClickSupportBtnHigherLevel}
+      />
     </div>
   );
 };

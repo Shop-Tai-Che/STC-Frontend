@@ -21,7 +21,9 @@ const ButtonOrder: React.FC<{ product: Product }> = ({ product }) => {
       <Button
         className="w-4/12 "
         style={{ backgroundColor: tertiaryColor, borderRadius: "0px" }}
-        onClick={() => openChatScreen(CHAT_TYPE.SUPPORT, product)}
+        onClick={() =>
+          openChatScreen(CHAT_TYPE.SUPPORT, product.title, product.id)
+        }
       >
         <Icon icon="zi-chat" />
       </Button>
