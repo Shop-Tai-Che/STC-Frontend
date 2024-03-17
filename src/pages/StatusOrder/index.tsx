@@ -15,6 +15,7 @@ import { FetchState } from "@utils/type/FetchState";
 import { OrderStatusFetch } from "@utils/type/Order";
 import { UserFetch } from "@utils/type/User";
 import { ShipPayment } from "@utils/type/Payment";
+import { CHAT_TYPE, openChatScreen } from "@utils/helper";
 
 const StatusOrder: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   const { idOrder } = useParams();
@@ -38,7 +39,10 @@ const StatusOrder: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     <>
       {orderItem && (
         <Page className="bg-white">
-          <StatusHeader currentStatusOrder={orderItem.status} />
+          <StatusHeader
+            currentStatusOrder={orderItem.status}
+            orderTotalPrice={orderItem.total_price}
+          />
 
           <ProductShortageItem
             product={
@@ -69,6 +73,17 @@ const StatusOrder: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
             orderId={orderItem.id}
             productId={orderItem.product_id}
             setChangeStatusCallback={setChangeStatusCallback}
+            onClickSupportBtnHigherLevel={() => {
+              // console.log(
+              //   "onClickSupportBtnHigherLevel at the highest component"
+              // );
+              // console.log("orderItem", orderItem);
+              openChatScreen(
+                CHAT_TYPE.SUPPORT,
+                orderItem.Product.title,
+                orderItem.product_id
+              );
+            }}
           />
         </Page>
       )}

@@ -55,8 +55,6 @@ const ProductListSwipeContent: React.FC<{
     );
   };
 
-  console.log("products in Swiper", products);
-
   return (
     <SectionText
       title={

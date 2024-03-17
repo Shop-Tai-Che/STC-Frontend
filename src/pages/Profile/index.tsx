@@ -67,9 +67,7 @@ const Profile: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
           title={currentUser.is_seller ? "Shop của tôi" : "Đăng kí bán hàng"}
           prefix={<BusinessSvg iconWidth={24} iconHeight={24} />}
           suffix={<Icon icon="zi-chevron-right" />}
-          subTitle={
-            currentUser.is_seller ? "" : "Chat với Admin của Shop Tái Chế"
-          }
+          subTitle={currentUser.is_seller ? "" : "Với Admin của Shop Tái Chế"}
           className="tab-me__action__register-seller"
           onClick={() => {
             if (currentUser.is_seller) {

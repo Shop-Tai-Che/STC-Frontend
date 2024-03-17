@@ -80,7 +80,6 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
       // Add the count to the accumulator
       return accumulator + processOrders;
     }, 0);
-    console.log("sumOfOrder", sumOfOrder);
     return sumOfOrder;
   };
 
@@ -91,7 +90,6 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
       // Add the count to the accumulator
       return accumulator + order;
     }, 0);
-    console.log("sum of all order", sumOfAllOrder);
     return sumOfAllOrder;
   };
 
@@ -132,8 +130,6 @@ const ShopDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
   };
 
   const doesSellerHaveAnyProduct = () => products && products.length > 0;
-
-  console.log("products in Shop Detail", products);
 
   return (
     <Page className="relative flex-1 flex flex-col bg-white">

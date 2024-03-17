@@ -6,7 +6,9 @@ import { primaryColor } from "@utils/helper/config";
 import { StatusOrder, STATUS_ORDER } from "@utils/type/StatusOrder";
 import { PRICE_FONT_SIZE_BY_LOCATION } from "@utils/type/Price";
 
-const ItemStatusShipping: FC = () => {
+const ItemStatusShipping: FC<{ orderTotalPrice: number }> = ({
+  orderTotalPrice,
+}) => {
   const colorOpacity = getColorOpacity(primaryColor, "0.3");
 
   return (
@@ -23,13 +25,18 @@ const ItemStatusShipping: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
+        <PriceDisplay
+          priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS}
+          children={orderTotalPrice}
+        />
       </Text>
     </>
   );
 };
 
-const ItemStatusProcessing: FC = () => {
+const ItemStatusProcessing: FC<{ orderTotalPrice: number }> = ({
+  orderTotalPrice,
+}) => {
   const colorOpacity = getColorOpacity(primaryColor, "0.3");
 
   return (
@@ -46,13 +53,18 @@ const ItemStatusProcessing: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
+        <PriceDisplay
+          priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS}
+          children={orderTotalPrice}
+        />
       </Text>
     </>
   );
 };
 
-const ItemStatusCanceled: FC = () => {
+const ItemStatusCanceled: FC<{ orderTotalPrice: number }> = ({
+  orderTotalPrice,
+}) => {
   const colorOpacity = getColorOpacity("#FF0900", "0.3");
 
   return (
@@ -69,13 +81,18 @@ const ItemStatusCanceled: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
+        <PriceDisplay
+          priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS}
+          children={orderTotalPrice}
+        />
       </Text>
     </>
   );
 };
 
-const ItemStatusReceived: FC = () => {
+const ItemStatusReceived: FC<{ orderTotalPrice: number }> = ({
+  orderTotalPrice,
+}) => {
   const colorOpacity = getColorOpacity("#FF0900", "0.3");
 
   return (
@@ -92,30 +109,34 @@ const ItemStatusReceived: FC = () => {
         style={{ fontWeight: "bolder" }}
       >
         {" "}
-        <PriceDisplay priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS} children={320000} />
+        <PriceDisplay
+          priceSize={PRICE_FONT_SIZE_BY_LOCATION.ORDER_STATUS}
+          children={orderTotalPrice}
+        />
       </Text>
     </>
   );
 };
 
-const StatusHeader: FC<{ currentStatusOrder: string | null }> = ({
-  currentStatusOrder,
-}) => {
+const StatusHeader: FC<{
+  currentStatusOrder: string | null;
+  orderTotalPrice: number;
+}> = ({ currentStatusOrder, orderTotalPrice }) => {
   const StatusItem: FC = () => {
     if (!currentStatusOrder) {
       return <></>;
     }
     if (currentStatusOrder === STATUS_ORDER.PROCESSING)
-      return <ItemStatusProcessing />;
+      return <ItemStatusProcessing orderTotalPrice={orderTotalPrice} />;
 
     if (currentStatusOrder === STATUS_ORDER.DELIVERING)
-      return <ItemStatusShipping />;
+      return <ItemStatusShipping orderTotalPrice={orderTotalPrice} />;
 
     if (currentStatusOrder === STATUS_ORDER.SUCCESS)
-      return <ItemStatusReceived />;
+      return <ItemStatusReceived orderTotalPrice={orderTotalPrice} />;
 
     if (currentStatusOrder === STATUS_ORDER.CANCELED)
-      return <ItemStatusCanceled />;
+      return <ItemStatusCanceled orderTotalPrice={orderTotalPrice} />;
 
     return <></>;
   };

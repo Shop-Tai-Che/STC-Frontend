@@ -16,6 +16,7 @@ const HomeFromCate: React.FC<{ currentUser?: UserFetch }> = ({
       <div className="flex-1 overflow-auto pb-20">
         {/* <SearchProduct /> */}
         <ProductListSwipe idTag={tagNumber} />
+        <DividerSpace />
         <ProductListGrid idTag={tagNumber} />
       </div>
     </Page>
