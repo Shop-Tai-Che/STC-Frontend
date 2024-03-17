@@ -103,17 +103,17 @@ const OrderDetail: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
       !inputOrderInfoReceive.address &&
       inputOrderInfoReceive.numberphone
     ) {
-      snackBarIfInvalidOrder("Vui lòng điền địa chỉ nhận hàng");
+      snackBarIfInvalidOrder("Vui lòng nhập địa chỉ nhận hàng");
     } else if (
       !inputOrderInfoReceive.numberphone &&
       inputOrderInfoReceive.address
     ) {
-      snackBarIfInvalidOrder("Vui lòng điền SĐT người nhận");
+      snackBarIfInvalidOrder("Vui lòng nhập SĐT người nhận");
     } else if (
       !inputOrderInfoReceive.address &&
       !inputOrderInfoReceive.numberphone
     ) {
-      snackBarIfInvalidOrder("Vui lòng điền thông tin nhận hàng");
+      snackBarIfInvalidOrder("Vui lòng nhập thông tin nhận hàng");
     } else if (
       inputOrderInfoReceive.address &&
       inputOrderInfoReceive.numberphone &&

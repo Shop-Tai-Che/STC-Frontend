@@ -37,18 +37,18 @@ export const ProductCategory = [
   //   ),
   //   tag: "wc",
   // },
-  {
-    id: 2,
-    name: "Văn phòng",
-    cover: (
-      <BusinessSvg
-        svgColor={primaryColor}
-        iconWidth={iconWH.iconWidth}
-        iconHeight={iconWH.iconHeight}
-      />
-    ),
-    tag: "office",
-  },
+  // {
+  //   id: 2,
+  //   name: "Văn phòng",
+  //   cover: (
+  //     <BusinessSvg
+  //       svgColor={primaryColor}
+  //       iconWidth={iconWH.iconWidth}
+  //       iconHeight={iconWH.iconHeight}
+  //     />
+  //   ),
+  //   tag: "office",
+  // },
   {
     id: 1,
     name: "Phụ kiện",

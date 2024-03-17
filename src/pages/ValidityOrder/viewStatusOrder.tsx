@@ -40,13 +40,14 @@ const ViewStatusOrder: React.FC<{ userId: number }> = ({ userId }) => {
           const onAction = () => {
             navigate(`/status-order/${orderItem.id}`);
           };
+          let orderTotalPrice = orderItem.Product.price + orderItem.ship_fee;
           return (
             <>
               <ProductItem
                 key={index}
                 image={orderItem?.Product.ProductMedia[0].url}
                 name={orderItem.Product.title}
-                price={orderItem.Product.price}
+                price={orderTotalPrice}
                 status={orderItem.status}
                 onActon={onAction}
               />

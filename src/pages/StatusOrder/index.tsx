@@ -39,7 +39,10 @@ const StatusOrder: React.FC<{ currentUser: UserFetch }> = ({ currentUser }) => {
     <>
       {orderItem && (
         <Page className="bg-white">
-          <StatusHeader currentStatusOrder={orderItem.status} />
+          <StatusHeader
+            currentStatusOrder={orderItem.status}
+            orderTotalPrice={orderItem.total_price}
+          />
 
           <ProductShortageItem
             product={
